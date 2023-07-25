@@ -11,25 +11,16 @@
             "id": "812c1b440b550b2e",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
-            "id": "9a8df4964867f23c",
-            "type": "leaf",
-            "state": {
               "type": "markdown",
               "state": {
-                "file": "Vasilis.md",
+                "file": "People/Organizations/The Order of the Magi/Aneius.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -58,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tevas",
+                "query": "tag:#half-elf",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -103,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Vasilis.md",
+                "file": "People/Organizations/The Order of the Magi/Aneius.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Vasilis.md",
+                "file": "People/Organizations/The Order of the Magi/Aneius.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Vasilis.md"
+                "file": "People/Organizations/The Order of the Magi/Aneius.md"
               }
             }
           },
@@ -184,7 +175,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Vasilis.md",
+                "file": "People/Organizations/The Order of the Magi/Aneius.md",
                 "options": {
                   "collapse-filter": false,
                   "search": "",
@@ -302,45 +293,45 @@
       "initiative-tracker:Intiative Tracker Encounter Builder": false
     }
   },
-  "active": "9a8df4964867f23c",
+  "active": "812c1b440b550b2e",
   "lastOpenFiles": [
-    "Westfall.md",
-    "Vasilis.md",
-    "Mechanics/Races/Tholos.md",
-    "Mechanics/Mana.md",
-    "Mechanics/Races/Vantars.md",
-    "Mechanics/Races/Vashtis.md",
-    "Mechanics/Races/Celestials.md",
-    "Mechanics/Races/Druidians.md",
-    "Mechanics/Abyssalia Races.md",
-    "Vashtis.md",
-    "Celestials.md",
-    "Mechanics/Vashtis.md",
-    "Mechanics/Vantars.md",
-    "Mechanics/Tholos.md",
-    "Mechanics/Druidians.md",
-    "Mechanics/Celestials.md",
-    "Mechanics/Races",
-    "Mechanics/New folder",
-    "Vantars.md",
-    "Tholos.md",
-    "Druidians.md",
-    "_5e/compendium/races/elf-drow.md",
-    "_5e/compendium/races/human-variant.md",
-    "Factions/The Driftborne.md",
-    "Locations/The Archipelago of Arrival.md",
-    "Locations/The Spire of Fates.md",
-    "Locations/The Untethered Mountains.md",
-    "Creatures/Zharaggoth.md",
-    "Factions/The Cult of Zharaggoth",
-    "Mechanics",
+    "People/Organizations/The Order of the Magi/Henly.md",
+    "People/Organizations/The Order of the Magi/Aneius.md",
+    "People/Organizations/The Order of the Magi/Telam.md",
+    "People/Organizations/The Order of the Magi/Lana.md",
+    "People/Organizations/The Blue Company/Marceyan Blackstar.md",
+    "People/Organizations/Blackstar/Caerys Blackstar.md",
+    "People/Organizations/Blackstar/Eveth Blackwater.md",
+    "People/Organizations/The League of Sorcerers/Theo Stonewall.md",
+    "People/Organizations/The League of Sorcerers/Tameran Vacilio.md",
+    "People/Organizations/The League of Sorcerers/Illian Everguard.md",
+    "People/Organizations/The League of Sorcerers/Teyren.md",
+    "People/Organizations/The Blue Company/Cassius Vecna.md",
+    "People/Organizations/The Blue Company/The Blue Company.md",
+    "People/Organizations/The Artificers/The Artificers.md",
+    "People/Organizations/Blackstar/Severen Blackstar.md",
+    "People/Organizations/The Holy League",
+    "People/Admiral Varutyer.md",
+    "People/Emperor Maximilian.md",
+    "Lore/Appendix C- Rebellion in Illyria.md",
+    "Objects/Elder Blades/Tevas.md",
+    "Objects/Elder Blades/Caelum.md",
+    "Objects/Elder Blades/The Elder Blades.md",
+    "Lore/Address Concerning the Fundamental Questions of Humanity.md",
+    "Locations/Terros/The Empire.md",
+    "Lore/Mordred's Report on Isabel.md",
+    "Lore/The Journal of Caerys Blackstar.md",
+    "People/Organizations/The Order of the Magi/The Order of the Magi.md",
+    "People/Organizations/The Order of the Magi",
     "Lore",
-    "Locations/The Layers",
+    "Gods",
+    "People/Organizations/The Blue Company",
+    "People/Organizations/Blackstar",
+    "Locations/Alos/Centas",
+    "Locations/The Western Continent/Westfall/Untitled",
+    "Objects",
+    "People/Organizations/The League of Sorcerers",
     "_attachments/the crates logo.png",
-    "Campaigns/The Crates",
-    "Campaigns",
-    "Creatures",
-    "Locations",
     "_attachments/abyssailia logo.png",
     "Septus/Dungeons/Dakavestress/DKV Minidungeon 1/DKV Minidungeon 1.canvas",
     "Septus/Dungeons/Dakavestress/DKV Minidungeon 2/DKV Minidungeon 2.canvas",
