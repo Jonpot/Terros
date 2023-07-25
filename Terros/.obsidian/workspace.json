@@ -1,35 +1,49 @@
 {
   "main": {
-    "id": "257606e4c5a8b875",
+    "id": "a72d8e12c0b49f72",
     "type": "split",
     "children": [
       {
-        "id": "30e6fe7d7d2066b0",
+        "id": "3b0d8087078087cd",
         "type": "tabs",
         "children": [
           {
-            "id": "bb3fe5ba978f4457",
+            "id": "812c1b440b550b2e",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "graph",
               "state": {}
             }
+          },
+          {
+            "id": "9a8df4964867f23c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Vasilis.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "ccc30360ef23f0b9",
+    "id": "6bf1f5bc48bd2349",
     "type": "split",
     "children": [
       {
-        "id": "abbfdc0dea4912a2",
+        "id": "9ac3f9ab8130a5f6",
         "type": "tabs",
         "children": [
           {
-            "id": "209452e360627508",
+            "id": "307e6caaaadbc1ee",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -39,12 +53,12 @@
             }
           },
           {
-            "id": "29d4d111f20177d2",
+            "id": "dc36904939a4b98a",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tevas",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -54,7 +68,15 @@
             }
           },
           {
-            "id": "ae6568b02e22bb72",
+            "id": "c7d8ad6c0f7bc0df",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "50a83d1684b73cbe",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -65,22 +87,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 298.5
   },
   "right": {
-    "id": "451017ba1f2ebf5a",
+    "id": "59a0faf53a340467",
     "type": "split",
     "children": [
       {
-        "id": "e62c0a990c27150a",
+        "id": "902e6bbec448e5b3",
         "type": "tabs",
         "children": [
           {
-            "id": "8732126b0aae4c47",
+            "id": "f81da712bf4f6c00",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Vasilis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -92,18 +115,19 @@
             }
           },
           {
-            "id": "1119538836efd5ee",
+            "id": "86402a20843db14d",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Vasilis.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "3c6501e88e6002db",
+            "id": "7a5631de8863e8ac",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -114,18 +138,150 @@
             }
           },
           {
-            "id": "d1d1082ea7282848",
+            "id": "7c1170027976b663",
             "type": "leaf",
             "state": {
               "type": "outline",
+              "state": {
+                "file": "Vasilis.md"
+              }
+            }
+          },
+          {
+            "id": "4ed1d70e273c923b",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
               "state": {}
+            }
+          },
+          {
+            "id": "f137cd67422a33a3",
+            "type": "leaf",
+            "state": {
+              "type": "DICE_ROLLER_VIEW",
+              "state": {}
+            }
+          },
+          {
+            "id": "00f381799b465824",
+            "type": "leaf",
+            "state": {
+              "type": "initiative-tracker-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      },
+      {
+        "id": "b35feb6f75f8f7ab",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8f536b2c4a17645e",
+            "type": "leaf",
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "Vasilis.md",
+                "options": {
+                  "collapse-filter": false,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [
+                    {
+                      "query": "path:Naxia",
+                      "color": {
+                        "a": 1,
+                        "rgb": 14701138
+                      }
+                    },
+                    {
+                      "query": "path:\"Parapraxis/The Promise of Treasure\"",
+                      "color": {
+                        "a": 1,
+                        "rgb": 14725458
+                      }
+                    },
+                    {
+                      "query": "path:\"The Road to Gloomwind\"",
+                      "color": {
+                        "a": 1,
+                        "rgb": 11657298
+                      }
+                    },
+                    {
+                      "query": "path:\"Parapraxis\"",
+                      "color": {
+                        "a": 1,
+                        "rgb": 5431378
+                      }
+                    },
+                    {
+                      "query": "path:\"Septus/Septus Somnis\"",
+                      "color": {
+                        "a": 1,
+                        "rgb": 12580854
+                      }
+                    },
+                    {
+                      "query": "path:\"Septus/Septus Soldii\"",
+                      "color": {
+                        "a": 1,
+                        "rgb": 9655148
+                      }
+                    },
+                    {
+                      "query": "path:\"Septus\"",
+                      "color": {
+                        "a": 1,
+                        "rgb": 5431473
+                      }
+                    },
+                    {
+                      "query": "path:Global",
+                      "color": {
+                        "a": 1,
+                        "rgb": 11621088
+                      }
+                    },
+                    {
+                      "query": "path:\"Fangs of the Shinobi\"",
+                      "color": {
+                        "a": 1,
+                        "rgb": 14701233
+                      }
+                    }
+                  ],
+                  "collapse-display": true,
+                  "showArrow": false,
+                  "textFadeMultiplier": -1.9,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.684908789386401,
+                  "repelStrength": 19.469320066335,
+                  "linkStrength": 0.993366500829187,
+                  "linkDistance": 30,
+                  "scale": 0.9698942160501217,
+                  "close": true
+                }
+              }
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 347.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -133,11 +289,64 @@
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "random-note:Open random note": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "homepage:Open homepage": false,
+      "open-vscode:VSCode": false,
+      "omnisearch:Omnisearch": false,
+      "obsidian-leaflet-plugin:Open Leaflet Map": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "initiative-tracker:Intiative Tracker Encounter Builder": false
     }
   },
-  "active": "bb3fe5ba978f4457",
-  "lastOpenFiles": []
+  "active": "9a8df4964867f23c",
+  "lastOpenFiles": [
+    "Westfall.md",
+    "Vasilis.md",
+    "Mechanics/Races/Tholos.md",
+    "Mechanics/Mana.md",
+    "Mechanics/Races/Vantars.md",
+    "Mechanics/Races/Vashtis.md",
+    "Mechanics/Races/Celestials.md",
+    "Mechanics/Races/Druidians.md",
+    "Mechanics/Abyssalia Races.md",
+    "Vashtis.md",
+    "Celestials.md",
+    "Mechanics/Vashtis.md",
+    "Mechanics/Vantars.md",
+    "Mechanics/Tholos.md",
+    "Mechanics/Druidians.md",
+    "Mechanics/Celestials.md",
+    "Mechanics/Races",
+    "Mechanics/New folder",
+    "Vantars.md",
+    "Tholos.md",
+    "Druidians.md",
+    "_5e/compendium/races/elf-drow.md",
+    "_5e/compendium/races/human-variant.md",
+    "Factions/The Driftborne.md",
+    "Locations/The Archipelago of Arrival.md",
+    "Locations/The Spire of Fates.md",
+    "Locations/The Untethered Mountains.md",
+    "Creatures/Zharaggoth.md",
+    "Factions/The Cult of Zharaggoth",
+    "Mechanics",
+    "Lore",
+    "Locations/The Layers",
+    "_attachments/the crates logo.png",
+    "Campaigns/The Crates",
+    "Campaigns",
+    "Creatures",
+    "Locations",
+    "_attachments/abyssailia logo.png",
+    "Septus/Dungeons/Dakavestress/DKV Minidungeon 1/DKV Minidungeon 1.canvas",
+    "Septus/Dungeons/Dakavestress/DKV Minidungeon 2/DKV Minidungeon 2.canvas",
+    "Septus/Dungeons/Dakavestress/Dakavestress (Complete).canvas",
+    "Septus/Dungeons/Dakavestress/DKV Minidungeon 3/DKV Minidungeon 3.canvas",
+    "Septus/Dungeons/Da Cailin/Level 3/Da Cailin Level 3.canvas",
+    "Untitled.canvas"
+  ]
 }

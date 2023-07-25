@@ -1,0 +1,13 @@
+.callout[data-callout="potion"] {
+    --callout-color: 255, 223, 0;
+    --callout-icon: lucide-flask-round;
+}
+.callout[data-callout="moon"] {
+    --callout-color: 254, 252, 215;
+    --callout-icon: lucide-moon;
+}
+
+.callout[data-callout="bloodmoon"] {
+    --callout-color: 138, 3, 3;
+    --callout-icon: lucide-moon;
+}

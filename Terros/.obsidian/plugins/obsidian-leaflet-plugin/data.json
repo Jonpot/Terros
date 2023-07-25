@@ -1,0 +1,441 @@
+{
+  "mapMarkers": [
+    {
+      "id": "eastVakarai",
+      "lastAccessed": 1671335601648,
+      "markers": [
+        {
+          "id": "ID_6bebbabb38ca",
+          "type": "default",
+          "loc": [
+            -0.94921875,
+            2.5419921875
+          ],
+          "link": "Castallero",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": [
+            0.9101398601398601,
+            0.5192307692307693
+          ],
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_5abb0a199ad9",
+          "type": "default",
+          "loc": [
+            -1.3671875,
+            2.03515625
+          ],
+          "link": "Eastern Vakarai Jungle",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_687b18799949",
+          "type": "default",
+          "loc": [
+            -1.0546875,
+            2.1171875
+          ],
+          "link": "Glowbug Marshes",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_999af83938da",
+          "type": "default",
+          "loc": [
+            -0.9609375,
+            1.953125
+          ],
+          "link": "Allenore",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_0b685bab5a28",
+          "type": "default",
+          "loc": [
+            -1.01953125,
+            1.703125
+          ],
+          "link": "Geyser Flats",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_b99acb7b2bdb",
+          "type": "default",
+          "loc": [
+            -0.484375,
+            1.8828125
+          ],
+          "link": "Chasm Canopy",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_a818cbd969aa",
+          "type": "default",
+          "loc": [
+            -0.16796875,
+            1.88671875
+          ],
+          "link": "Blackheath",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_ab1bb8893b18",
+          "type": "default",
+          "loc": [
+            -0.69921875,
+            1.61328125
+          ],
+          "link": "Sea of Amber",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_5b4b59688bf8",
+          "type": "default",
+          "loc": [
+            -0.60546875,
+            1.412109375
+          ],
+          "link": "Cozcatliani",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_784b2999ba89",
+          "type": "default",
+          "loc": [
+            -0.501953125,
+            1.19921875
+          ],
+          "link": "Jewel Crown Forest",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_38c9cb69595a",
+          "type": "default",
+          "loc": [
+            -0.970703125,
+            1.3671875
+          ],
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_2a4948bbe8a9",
+          "type": "default",
+          "loc": [
+            -1.076171875,
+            0.970703125
+          ],
+          "link": "Gillhome",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_9a88f9d8fbaa",
+          "type": "default",
+          "loc": [
+            -1.345703125,
+            1.048828125
+          ],
+          "link": "Flamesquall",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": [
+            0.37552447552447554,
+            0.7361111111111112
+          ],
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_8bbb5b0bfa5b",
+          "type": "default",
+          "loc": [
+            -1.345703125,
+            1.38671875
+          ],
+          "link": "Crimson Graveyard",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": [
+            0.4965034965034965,
+            0.7361111111111112
+          ],
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_b918aafb5ab8",
+          "type": "default",
+          "loc": [
+            -1.068359375,
+            0.46875
+          ],
+          "link": "Da Katavu",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_78ebeaa9886a",
+          "type": "default",
+          "loc": [
+            -1.314453125,
+            0.505859375
+          ],
+          "link": "Quarestra Savannah",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_0ae8dbc8cbf9",
+          "type": "default",
+          "loc": [
+            -0.677734375,
+            0.71875
+          ],
+          "link": "Craterheart",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        },
+        {
+          "id": "ID_fb386babbbb8",
+          "type": "default",
+          "loc": [
+            -0.169921875,
+            2.1171875
+          ],
+          "link": "Frost Emerald Mountains",
+          "layer": "%5B%5BeastVakarai.png%5D%5D",
+          "mutable": true,
+          "command": false,
+          "percent": null,
+          "description": null,
+          "minZoom": null,
+          "maxZoom": null,
+          "tooltip": "hover"
+        }
+      ],
+      "overlays": [],
+      "shapes": [
+        {
+          "type": "polygon",
+          "color": "#ee3a3a",
+          "vertices": [
+            {
+              "lat": -1.095916748046875,
+              "lng": 2.25390625,
+              "id": "ID_7adb7b2b7b2b",
+              "targets": {
+                "vertexIds": []
+              }
+            },
+            {
+              "lat": -1.271697998046875,
+              "lng": 2.197265625,
+              "id": "ID_980a3b58c89b",
+              "targets": {
+                "vertexIds": []
+              }
+            },
+            {
+              "lat": -1.408416748046875,
+              "lng": 2.283203125,
+              "id": "ID_eb087a1a099b",
+              "targets": {
+                "vertexIds": []
+              }
+            },
+            {
+              "lat": -1.123260498046875,
+              "lng": 2.294921875,
+              "id": "ID_38cbfbe859b8",
+              "targets": {
+                "vertexIds": []
+              }
+            }
+          ]
+        }
+      ],
+      "files": [
+        "Septus/Map.md"
+      ]
+    }
+  ],
+  "defaultMarker": {
+    "type": "default",
+    "iconName": "map-marker",
+    "color": "#dddddd",
+    "transform": {
+      "size": 6,
+      "x": 0,
+      "y": -2
+    },
+    "isImage": true,
+    "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAmRJREFUSEvllVFIU1Ecxn/XNXPgvBvRUw8bUexCkII+pIvgZiERFkkIe9DtwZeIQAa1GBhIDz0YBCLZc9FAgjZiEBe6sFFE0K5McO1lMNAg2cNuVI6J3N24I4mivC71qfN6zvf9zvmf/3eOwD4PYZ/9+b8AtwEnUAPagUeAblfinZToosvluiuKYldnZ+fber0eXF9f/6zr+gbwDHiwHcQO4HE6nen+/v5TQ0NDjlgsZjocDqFYLDI5ObmhquobwzC+AlcB40+g7QAi8ESSpNOLi4tel8v1i94wDAYHB2vZbPY18BB40SrgCPBcVdUeWZbbG41GY25uThgfHxe8Xm/TK5PJMDIysqzrehm41CogADwtFosnJEnqSKfTm1NTUwdM0xRSqRR+v598Pk8kEvm0tLRUAM63ClCAw+Vyudvv97cpitKIx+NtlkkikSAQCJDL5RgeHl5dW1srAWdbBVg17cjlcmd6e3sPWuJIJML09DQ+n6/plUwmzYmJiVK1Wj0HrLQKsO4gubCwII2Ojrp/F2uaRjgc/lYoFJaBy0ClVYAVJtXtdnelUqmTsiwjCD+bbn5+3oxGo+/r9XoVuPC3LNjlwCpNRpbl44qiHHI6rSBDpVIhGAx+LJVKVvfcAt79K8DawD1ADoVCPYlEwjoVsViMmZkZzTTNVeDKbpK8pX3p8XiOzs7OHhsbG2vr6+v7omnaB+AakN8LQAi4KYqiY2BgwJfNZldqtdpj4P5ePHZbHmHgOjT/kE3gDvBqLwGWVxzo/tGSN+zMrXm7LtqJx7ZrdgOwtKbdDnYDsPNuzu874Dtou8gZHSV6ugAAAABJRU5ErkJggg=="
+  },
+  "markerIcons": [],
+  "color": "#dddddd",
+  "lat": 39.983334,
+  "long": -82.98333,
+  "notePreview": true,
+  "layerMarkers": true,
+  "previousVersion": "5.6.1",
+  "version": {
+    "major": 5,
+    "minor": 6,
+    "patch": 1
+  },
+  "warnedAboutMapMarker": false,
+  "copyOnClick": false,
+  "displayMarkerTooltips": "hover",
+  "displayOverlayTooltips": true,
+  "configDirectory": null,
+  "mapViewEnabled": true,
+  "mapViewParameters": {
+    "darkMode": "false",
+    "defaultZoom": 5,
+    "distanceMultiplier": 1,
+    "drawColor": "#3388ff",
+    "geojson": [],
+    "geojsonColor": "#3388ff",
+    "gpx": [],
+    "gpxColor": "#3388ff",
+    "height": "500px",
+    "image": "[[eastVakarai.png]]",
+    "imageOverlay": [],
+    "isMapView": false,
+    "layers": [
+      "[[eastVakarai.png]]"
+    ],
+    "linksFrom": [],
+    "linksTo": [],
+    "marker": [],
+    "commandMarker": [],
+    "markerFile": [],
+    "markerFolder": [],
+    "markerTag": [],
+    "maxZoom": 10,
+    "minZoom": 1,
+    "osmLayer": true,
+    "overlay": [],
+    "overlayColor": "blue",
+    "scale": 1,
+    "showAllMarkers": false,
+    "tileServer": [],
+    "verbose": false,
+    "zoomDelta": 1,
+    "zoomFeatures": false,
+    "id": "eastVakarai",
+    "filterTag": []
+  },
+  "enableDraw": true,
+  "defaultUnitType": "imperial",
+  "defaultTile": "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",
+  "defaultTileDark": "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",
+  "defaultAttribution": "Map tiles by <a href=\"http://stamen.com\">Stamen Design</a>, under <a href=\"http://creativecommons.org/licenses/by/3.0\">CC BY 3.0</a>. Data by <a href=\"http://openstreetmap.org\">OpenStreetMap</a>, under <a href=\"http://www.openstreetmap.org/copyright\">ODbL</a>.",
+  "defaultTileSubdomains": "a,b,c"
+}

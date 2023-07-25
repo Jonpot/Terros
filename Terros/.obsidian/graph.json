@@ -1,0 +1,86 @@
+{
+  "collapse-filter": false,
+  "search": "-path:\"_5e\"",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:lore",
+      "color": {
+        "a": 1,
+        "rgb": 5431473
+      }
+    },
+    {
+      "query": "tag:creature",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    },
+    {
+      "query": "tag:faction",
+      "color": {
+        "a": 1,
+        "rgb": 11657298
+      }
+    },
+    {
+      "query": "tag:person",
+      "color": {
+        "a": 1,
+        "rgb": 14725458
+      }
+    },
+    {
+      "query": "tag:layer",
+      "color": {
+        "a": 1,
+        "rgb": 8671968
+      }
+    },
+    {
+      "query": "tag:place",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
+    },
+    {
+      "query": "tag:campaign",
+      "color": {
+        "a": 1,
+        "rgb": 16529663
+      }
+    },
+    {
+      "query": "path:\"Septus/Septus Somnis\"",
+      "color": {
+        "a": 1,
+        "rgb": 12580854
+      }
+    },
+    {
+      "query": "path:\"Septus/Septus Soldii\"",
+      "color": {
+        "a": 1,
+        "rgb": 9655148
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -2.8,
+  "nodeSizeMultiplier": 1.53830845771144,
+  "lineSizeMultiplier": 0.546932006633499,
+  "collapse-forces": false,
+  "centerStrength": 0.478947368421053,
+  "repelStrength": 15.8947368421053,
+  "linkStrength": 0.81592039800995,
+  "linkDistance": 30,
+  "scale": 0.3213363860503724,
+  "close": false
+}

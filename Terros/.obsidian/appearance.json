@@ -1,3 +1,13 @@
 {
-  "accentColor": ""
+  "cssTheme": "Prism",
+  "enabledCssSnippets": [
+    "Theme - All Alternate Themes",
+    "supercharged-links-gen",
+    "compendium",
+    "callouts"
+  ],
+  "baseFontSize": 16,
+  "translucency": false,
+  "accentColor": "#8b6dee",
+  "theme": "obsidian"
 }

@@ -1,0 +1,17 @@
+/* Deity: #symbol images */
+.json5e-deity img[src$="#symbol"],
+.json5e-deity div[src$="#symbol"] {
+  float: right;
+  margin-left: 5px;
+  width: 200px;
+}
+.rendered-widget .callout[data-callout=statblock] img[src$="#token"],
+.rendered-widget .callout[data-callout=statblock] div[src$="#token"],
+.markdown-rendered .callout[data-callout=statblock] img[src$="#token"],
+.markdown-rendered .callout[data-callout=statblock] div[src$="#token"],
+.markdown-preview-section .callout[data-callout=statblock] img[src$="#token"],
+.markdown-preview-section .callout[data-callout=statblock] div[src$="#token"] {
+  float: right;
+  margin-left: 5px;
+  width: 150px;
+}

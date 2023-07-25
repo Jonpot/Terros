@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "title": "Home",
+      "path": "Home.md"
+    },
+    {
+      "type": "file",
+      "title": "Lighting",
+      "path": "Lighting.md"
+    },
+    {
+      "type": "file",
+      "title": "Soldii Combat Planning",
+      "path": "Septus/Septus Soldii/Soldii Combat Planning.md"
+    },
+    {
+      "type": "file",
+      "title": "Soldii Story Planning",
+      "path": "Septus/Septus Soldii/Soldii Story Planning.md"
+    },
+    {
+      "type": "file",
+      "title": "Da Cailin",
+      "path": "Septus/Dungeons/Da Cailin/Da Cailin.md"
+    },
+    {
+      "type": "file",
+      "title": "SSS205",
+      "path": "Septus/Septus Soldii/Sessions/SSS205.md"
+    }
+  ]
+}
