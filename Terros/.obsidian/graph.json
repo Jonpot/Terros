@@ -1,5 +1,5 @@
 {
-  "collapse-filter": false,
+  "collapse-filter": true,
   "search": "-path:\"_5e\"",
   "showTags": false,
   "showAttachments": false,
@@ -50,30 +50,30 @@
       }
     },
     {
-      "query": "path:\"Septus/Septus Somnis\"",
+      "query": "tag:item",
       "color": {
         "a": 1,
         "rgb": 12580854
       }
     },
     {
-      "query": "path:\"Septus/Septus Soldii\"",
+      "query": "tag:god",
       "color": {
         "a": 1,
         "rgb": 9655148
       }
     }
   ],
-  "collapse-display": false,
+  "collapse-display": true,
   "showArrow": true,
   "textFadeMultiplier": -2.8,
   "nodeSizeMultiplier": 1.53830845771144,
   "lineSizeMultiplier": 0.546932006633499,
-  "collapse-forces": false,
+  "collapse-forces": true,
   "centerStrength": 0.478947368421053,
   "repelStrength": 15.8947368421053,
   "linkStrength": 0.81592039800995,
   "linkDistance": 30,
-  "scale": 0.3213363860503749,
-  "close": false
+  "scale": 0.3213363860503792,
+  "close": true
 }

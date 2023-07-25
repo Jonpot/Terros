@@ -28,14 +28,14 @@ Has been known to, in the past, be able to sink entire cities below the waves (s
 Can summon the God of Water.
 
 ## Conversations
-- [[Lana]] was away from the rest of the magi very often. Very good friends with [[Cassia]]. Fought in [[The Time War]].
+- [[Lana]] was away from the rest of the magi very often. Very good friends with [[Casia]]. Fought in [[The Time War]].
 
 After [[Eveth Blackwater|Eveth Blackstar]], she went into the Sea.
 
-Wild Hunt: Led by [[Esrien]], who was the best friend of [[Lana]].
+Wild Hunt: Led by [[Ezrien]], who was the best friend of [[Lana]].
 
-Esrien hated the Ocean and sailing.
+[[Ezrien]] hated the Ocean and sailing.
 
 Lana admired the elves.
 
-After the war, [[Telam]] went away. Came here to [[Caeta]] to work on something. All the mages but Lana left, until eventually Carina left too, leaving Lana behind. They were waiting for [[Nale]], but he never came. Cassia did something, but Carina can't remember why.
+After the war, [[Telam]] went away. Came here to [[Caeta]] to work on something. All the mages but Lana left, until eventually Carina left too, leaving Lana behind. They were waiting for [[Nale]], but he never came. [[Casia]] did something, but Carina can't remember why.

@@ -7,4 +7,4 @@ Sword of [[Ishivan]], Magic, Knowledge, and the Arcane.
 
 One of [[The Elder Blades]].
 
-Previously held by [[Cassia]].
+Previously held by [[Casia]].

@@ -1,5 +1,6 @@
 ---
 icon: place 
+aliases: ["The Netherese Empire"]
 ---
 #country #organization 
 

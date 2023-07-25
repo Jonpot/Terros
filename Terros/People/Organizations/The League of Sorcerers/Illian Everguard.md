@@ -20,7 +20,7 @@ Wants to prioritize getting the blades, in particular the [[Codex de Gnosis]] an
 
 ## Lore from Illian:
 - [[Cassius Vecna|The Lich King]] was defeated. The accounts show he was killed. The army of the dead and the rest of his minions were pushed to [[Caeta|Telam's Gate]] where they darkened the sky. The last of his minions fled and vowed to take vengeance. - [[Illian Everguard]] 
-- Doesn’t know where the other mages are. [[Cassia]] is still alive somewhere. [[Telam]] is dead.
+- Doesn’t know where the other mages are. [[Casia]] is still alive somewhere. [[Telam]] is dead.
 - [[Illyria]]  fell to [[The Empire]]. The Empire controls the entirety of [[Terros]], all of the Western Continent, the top half of [[Alos]], and [[Qhana]].
 - The [[Tela Verii]] are not human. Not bird people. Not from this world, come from [[Caeta|Telam's Gate]]. 
 

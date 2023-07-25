@@ -3,4 +3,4 @@ icon: place
 ---
 #location #city 
 
-Current sunk beneath [[the Ceon sea]].
+Currently sunk beneath [[The Ceon Sea]].

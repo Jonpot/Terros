@@ -12,7 +12,7 @@ The group of mages led by [[Telam]].
 [[Miran]] 
 [[Aneius]] 
 [[Henly]] 
-[[Cassia]] 
+[[Casia]] 
 [[Ezrien]] 
 [[Eudoxus]] 
 [[Nale]] 

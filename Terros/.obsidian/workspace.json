@@ -11,9 +11,17 @@
             "id": "812c1b440b550b2e",
             "type": "leaf",
             "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "7ec93d096200b3ce",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "People/Organizations/The Order of the Magi/Aneius.md",
+                "file": "Lore/Mordred's Report on Isabel.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -78,7 +86,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 298.5
+    "width": 298.5,
+    "collapsed": true
   },
   "right": {
     "id": "59a0faf53a340467",
@@ -94,7 +103,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "People/Organizations/The Order of the Magi/Aneius.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +119,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "People/Organizations/The Order of the Magi/Aneius.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,9 +140,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "People/Organizations/The Order of the Magi/Aneius.md"
-              }
+              "state": {}
             }
           },
           {
@@ -162,8 +167,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       },
       {
         "id": "b35feb6f75f8f7ab",
@@ -175,7 +179,6 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "People/Organizations/The Order of the Magi/Aneius.md",
                 "options": {
                   "collapse-filter": false,
                   "search": "",
@@ -262,7 +265,7 @@
                   "repelStrength": 19.469320066335,
                   "linkStrength": 0.993366500829187,
                   "linkDistance": 30,
-                  "scale": 0.9698942160501217,
+                  "scale": 0.25104611555618184,
                   "close": true
                 }
               }
@@ -295,33 +298,35 @@
   },
   "active": "812c1b440b550b2e",
   "lastOpenFiles": [
-    "People/Organizations/The Order of the Magi/Henly.md",
-    "People/Organizations/The Order of the Magi/Aneius.md",
-    "People/Organizations/The Order of the Magi/Telam.md",
-    "People/Organizations/The Order of the Magi/Lana.md",
-    "People/Organizations/The Blue Company/Marceyan Blackstar.md",
-    "People/Organizations/Blackstar/Caerys Blackstar.md",
-    "People/Organizations/Blackstar/Eveth Blackwater.md",
-    "People/Organizations/The League of Sorcerers/Theo Stonewall.md",
-    "People/Organizations/The League of Sorcerers/Tameran Vacilio.md",
-    "People/Organizations/The League of Sorcerers/Illian Everguard.md",
-    "People/Organizations/The League of Sorcerers/Teyren.md",
-    "People/Organizations/The Blue Company/Cassius Vecna.md",
-    "People/Organizations/The Blue Company/The Blue Company.md",
-    "People/Organizations/The Artificers/The Artificers.md",
-    "People/Organizations/Blackstar/Severen Blackstar.md",
-    "People/Organizations/The Holy League",
-    "People/Admiral Varutyer.md",
-    "People/Emperor Maximilian.md",
-    "Lore/Appendix C- Rebellion in Illyria.md",
-    "Objects/Elder Blades/Tevas.md",
-    "Objects/Elder Blades/Caelum.md",
-    "Objects/Elder Blades/The Elder Blades.md",
-    "Lore/Address Concerning the Fundamental Questions of Humanity.md",
-    "Locations/Terros/The Empire.md",
+    "The Centerlands.md",
+    "Delos.md",
+    "Tel Dorac.md",
+    "Gods/God of Winter.md",
+    "Gods/The God of Time.md",
+    "People/Cadmus.md",
+    "Gods/Ishivan.md",
+    "People/Isabel.md",
     "Lore/Mordred's Report on Isabel.md",
-    "Lore/The Journal of Caerys Blackstar.md",
-    "People/Organizations/The Order of the Magi/The Order of the Magi.md",
+    "Locations/Terros/Cormyr.md",
+    "People/Organizations/The Order of the Red Rose/The Order of the Red Rose.md",
+    "People/Organizations/The Order of the Red Rose",
+    "Objects/Codexes/Codex de Natura.md",
+    "Objects/Codexes/Codex de Caelus.md",
+    "Objects/Codexes/Codex de Gnosis.md",
+    "Objects/Codexes",
+    "Objects/Elder Blades/Cetus.md",
+    "Locations/Terros/Caldaria.md",
+    "Objects/Kestrel.md",
+    "People/Emperor Caius.md",
+    "Locations/Terros/The Empire.md",
+    "Lore/Letter to Lord Cadmus.md",
+    "People/Organizations/The Order of the Magi/Aneius.md",
+    "Lore/The History of Terros, Volume 12.md",
+    "Acadia.md",
+    "People/Organizations/The Order of the Magi/Ezrien.md",
+    "People/Organizations/The Order of the Magi/Henly.md",
+    "Henley.md",
+    "People/Organizations/The Holy League",
     "People/Organizations/The Order of the Magi",
     "Lore",
     "Gods",
@@ -329,8 +334,6 @@
     "People/Organizations/Blackstar",
     "Locations/Alos/Centas",
     "Locations/The Western Continent/Westfall/Untitled",
-    "Objects",
-    "People/Organizations/The League of Sorcerers",
     "_attachments/the crates logo.png",
     "_attachments/abyssailia logo.png",
     "Septus/Dungeons/Dakavestress/DKV Minidungeon 1/DKV Minidungeon 1.canvas",
