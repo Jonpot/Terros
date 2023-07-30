@@ -23,3 +23,5 @@ A man, of average height, with long black hair. He has a gaunt face, his eyes so
 Vecna is a title. By birth he was named Cassius. In [[the Northern Realms]] he was called Mazrim. In the Illyrian Imperial Province of Northumbria, which included what is today the Northern Realms, the adjunct [representative, second in command] to the Empress was hailed by the name of Mazrim after he slew a dragon, in honor of the old king Mazrim, who was called the Dragon of the North.
 
 The war between [[Netheril]], [[Cormyr]], and the Northern Realms was entirely the responsibility of the agents of the[[ Prince Lothair]], not Vecna.
+
+Vibed with Gotts Chalk in a box for a while.
