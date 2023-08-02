@@ -3,7 +3,7 @@ icon: place
 ---
 #location #building 
 
-A library beneath an estate in [[Westfall]]. Owned by [[Vasilis]] and [[Sevilla]].
+A library beneath an estate in [[Westfall]]. Owned by [[Vasilis]] and [[Sevilla de Castelle]].
 
 [[Theo Stonewall]] woke up in this library.
 

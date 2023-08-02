@@ -7,5 +7,5 @@ A city on the Western Continent.
 
 Known Residents:
 - [[Vasilis]]
-- [[Sevilla]]
+- [[Sevilla de Castelle]]
 - 

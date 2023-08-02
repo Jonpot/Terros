@@ -6,7 +6,7 @@
     "compendium",
     "callouts"
   ],
-  "baseFontSize": 16,
+  "baseFontSize": 15,
   "translucency": false,
   "accentColor": "#8b6dee",
   "theme": "obsidian"
