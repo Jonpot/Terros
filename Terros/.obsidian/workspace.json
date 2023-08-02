@@ -8,20 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "812c1b440b550b2e",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
             "id": "7ec93d096200b3ce",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lore/Mordred's Report on Isabel.md",
+                "file": "Lore/The History of Terros, Volume 12.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -103,6 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Lore/The History of Terros, Volume 12.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,6 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Lore/The History of Terros, Volume 12.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +134,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Lore/The History of Terros, Volume 12.md"
+              }
             }
           },
           {
@@ -179,6 +175,7 @@
             "state": {
               "type": "localgraph",
               "state": {
+                "file": "Lore/The History of Terros, Volume 12.md",
                 "options": {
                   "collapse-filter": false,
                   "search": "",
@@ -287,17 +284,18 @@
       "command-palette:Open command palette": false,
       "markdown-importer:Open format converter": false,
       "random-note:Open random note": false,
+      "initiative-tracker:Intiative Tracker Encounter Builder": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "homepage:Open homepage": false,
-      "open-vscode:VSCode": false,
-      "omnisearch:Omnisearch": false,
       "obsidian-leaflet-plugin:Open Leaflet Map": false,
+      "homepage:Open homepage": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "initiative-tracker:Intiative Tracker Encounter Builder": false
+      "omnisearch:Omnisearch": false,
+      "open-vscode:VSCode": false
     }
   },
-  "active": "812c1b440b550b2e",
+  "active": "7ec93d096200b3ce",
   "lastOpenFiles": [
+    "Lore/Mordred's Report on Isabel.md",
     "The Centerlands.md",
     "Delos.md",
     "Tel Dorac.md",
@@ -306,7 +304,6 @@
     "People/Cadmus.md",
     "Gods/Ishivan.md",
     "People/Isabel.md",
-    "Lore/Mordred's Report on Isabel.md",
     "Locations/Terros/Cormyr.md",
     "People/Organizations/The Order of the Red Rose/The Order of the Red Rose.md",
     "People/Organizations/The Order of the Red Rose",
