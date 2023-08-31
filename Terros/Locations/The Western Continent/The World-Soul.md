@@ -1,6 +1,3 @@
----
-icon: place 
----
 #location 
 
 Very little is known about the World-Soul. This is where Telam channeled the God of Time to the material plane and subdued it as part of [[The Time War]].

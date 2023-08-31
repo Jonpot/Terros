@@ -1,6 +1,3 @@
----
-icon: item 
----
 #item #magic-item #codex
 
 The Book of Space, written by [[Eudoxus]].

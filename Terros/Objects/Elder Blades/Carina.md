@@ -1,6 +1,3 @@
----
-icon: item
----
 #item #magic-item #elder-blade
 # Carina, Sword of the Deep
 

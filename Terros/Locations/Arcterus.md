@@ -1,6 +1,3 @@
----
-icon: place 
----
 #planet #location 
 
 The Second Moon of [[Terros]].

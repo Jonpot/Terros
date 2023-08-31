@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "People/Organizations/The League of Sorcerers/Emric.md",
+                "file": "People/Emperor Maximilian.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,22 +21,28 @@
             }
           },
           {
-            "id": "268cc17b2a2d1372",
+            "id": "2ff0d83525f71e44",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "54b60ccfd7f50757",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
               "state": {
-                "file": "The Planes.canvas",
-                "viewState": {
-                  "x": 844.8798999683977,
-                  "y": 418.9114308289435,
-                  "zoom": -0.9918494641869391
-                }
+                "file": "Planets.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -110,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Locations/Terros/Illyria/Illyria.md",
+                "file": "Planets.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +133,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Locations/Terros/Illyria/Illyria.md",
+                "file": "Planets.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Locations/Terros/Illyria/Illyria.md"
+                "file": "Planets.md"
               }
             }
           },
@@ -190,9 +196,9 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Locations/Terros/Illyria/Illyria.md",
+                "file": "Planets.md",
                 "options": {
-                  "collapse-filter": false,
+                  "collapse-filter": true,
                   "search": "",
                   "localJumps": 1,
                   "localBacklinks": true,
@@ -267,7 +273,7 @@
                       }
                     }
                   ],
-                  "collapse-display": true,
+                  "collapse-display": false,
                   "showArrow": false,
                   "textFadeMultiplier": -1.9,
                   "nodeSizeMultiplier": 1,
@@ -277,7 +283,7 @@
                   "repelStrength": 19.469320066335,
                   "linkStrength": 0.993366500829187,
                   "linkDistance": 30,
-                  "scale": 0.25104611555618184,
+                  "scale": 0.9698942160501268,
                   "close": true
                 }
               }
@@ -287,8 +293,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 347.5,
-    "collapsed": true
+    "width": 380.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -308,37 +313,38 @@
       "open-vscode:VSCode": false
     }
   },
-  "active": "268cc17b2a2d1372",
+  "active": "54b60ccfd7f50757",
   "lastOpenFiles": [
+    "Planets.md",
+    "People/Emperor Maximilian.md",
+    "People/Emperor Caius.md",
+    "People/Mordred Van Delzig.md",
+    "The Winter Plane.md",
+    "The Tyrant.md",
+    "The Planes.canvas",
+    "The Plane of Fire.md",
+    "The Bird Creatures.md",
+    "Nicephoros.md",
+    "Mithrin.md",
+    "Isle of Faith.md",
+    "General Useful Information.md",
+    "Locations/Telam's Castle.md",
+    "Locations/The Ceon Sea.md",
+    "Locations/The Demon Plane.md",
+    "Lore/Address Concerning the Fundamental Questions of Humanity.md",
+    "Lore/Appendix C- Rebellion in Illyria.md",
+    "Lore/Letter to Lord Cadmus.md",
+    "Lore/Mordred's Report on Isabel.md",
+    "Lore/Record from the Court of the Attish King in the 6th Year of Time's Sleep.md",
+    "Lore/The History of Terros, Volume 12.md",
+    "Lore/The Journal of Caerys Blackstar.md",
+    "Lore/The Ten Blades of Terros.md",
+    "Lore/To your eminence Prof. Friedrich Redding.md",
+    "Lore/Vampires.md",
+    "Objects/Codexes/Codex de Caelus.md",
     "_attachments",
     "_attachments/terros_newmap.png",
-    "Locations/Terros/Corytha.md",
-    "The Planes.canvas",
-    "People/Organizations/The League of Sorcerers/Emric.md",
-    "Lore/Appendix C- Rebellion in Illyria.md",
-    "Locations/The Demon Plane.md",
-    "The Tyrant.md",
-    "People/Olena.md",
-    "People/Organizations/The League of Sorcerers/Sevilla de Castelle.md",
-    "People/Organizations/The League of Sorcerers/Sevilla de Castelle.md",
-    "Lore/Vampires.md",
-    "Locations/Alos/Mycene.md",
-    "Lore/The History of Terros, Volume 12.md",
-    "Lore/Mordred's Report on Isabel.md",
-    "Locations/Terros/The Centerlands.md",
-    "Locations/Delos.md",
-    "Locations/Alos/Tel Dorac.md",
-    "Gods/God of Winter.md",
-    "Gods/The God of Time.md",
-    "People/Cadmus.md",
-    "Gods/Ishivan.md",
-    "People/Isabel.md",
-    "Locations/Terros/Cormyr.md",
-    "People/Organizations/The Order of the Red Rose/The Order of the Red Rose.md",
     "People/Organizations/The Order of the Red Rose",
-    "Objects/Codexes/Codex de Natura.md",
-    "Objects/Codexes/Codex de Caelus.md",
-    "Objects/Codexes/Codex de Gnosis.md",
     "Objects/Codexes",
     "People/Organizations/The Holy League",
     "People/Organizations/The Order of the Magi",
@@ -347,7 +353,6 @@
     "People/Organizations/The Blue Company",
     "People/Organizations/Blackstar",
     "Locations/Alos/Centas",
-    "Locations/The Western Continent/Westfall/Untitled",
     "_attachments/the crates logo.png",
     "_attachments/abyssailia logo.png",
     "Septus/Dungeons/Dakavestress/DKV Minidungeon 1/DKV Minidungeon 1.canvas",

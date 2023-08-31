@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore
 
 # Journal Pages of [[Caerys Blackstar]]

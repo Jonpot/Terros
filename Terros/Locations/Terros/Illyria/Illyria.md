@@ -1,6 +1,3 @@
----
-icon: place 
----
 #city #location 
 
 An ancient city that still booms with life. Fell to [[The Empire]] some 300 years ago.

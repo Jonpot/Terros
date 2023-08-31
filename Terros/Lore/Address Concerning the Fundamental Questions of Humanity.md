@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore 
 # Address Concerning the Fundamental Questions of Humanity
 

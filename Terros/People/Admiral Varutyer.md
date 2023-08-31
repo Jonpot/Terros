@@ -1,6 +1,3 @@
----
-icon: person 
----
 #person #human 
 
 An admiral for [[The Empire]]. Knows about [[Theo Stonewall]] as "the legendary bard."

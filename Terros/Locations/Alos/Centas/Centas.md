@@ -1,6 +1,3 @@
----
-icon: place 
----
 #city #location 
 
 The Captial of [[Alos]].

@@ -1,5 +1,4 @@
 ---
-icon: person
 aliases: ["Edwin", "Theo"]
 ---
 #person #half-elf #mage #the-league-of-sorcerers

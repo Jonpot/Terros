@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore #family 
 
 Modern day, they are a secretive family living in [[Micenia]].

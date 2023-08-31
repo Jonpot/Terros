@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["The Great Flame of the West"]
 ---
 #person #human 

@@ -1,6 +1,3 @@
----
-icon: monster 
----
 #monster 
 
 ## *Legend Lore* Reveals:

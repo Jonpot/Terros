@@ -1,4 +1,1 @@
----
-icon: lore 
----
-#organization 
+#lore #organization 

@@ -1,6 +1,3 @@
----
-icon: person 
----
 #person #mage #blackstar #human #blue-company 
 
 From a very long time ago.

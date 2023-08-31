@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore #organization 
 
 A group of 12 mages (not including [[Theo Stonewall]] or [[Tameran Vacilio]]) organized by [[Illian Everguard|Illian]] as a resistance to [[The Empire]].

@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore #organization 
 
 [[Cassius Vecna]]'s spellcasting unit.

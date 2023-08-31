@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["General Cadmus"]
 ---
 #person #human 

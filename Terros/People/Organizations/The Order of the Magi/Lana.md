@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Lana Stormlord"]
 ---
 #person #human #mage #order-of-the-magi

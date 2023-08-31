@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Sevilla"]
 ---
 #person #human #mage #the-league-of-sorcerers

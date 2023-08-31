@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Ezrien Dragonlord"]
 ---
 #person #human #mage #order-of-the-magi

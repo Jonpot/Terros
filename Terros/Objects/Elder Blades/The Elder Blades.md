@@ -1,6 +1,3 @@
----
-icon: lore
----
 #lore
 
 A group of 10 blades crafted by [[Telam]] (and one by [[Casia]]), designed to slay and capture the Gods of [[Terros]].

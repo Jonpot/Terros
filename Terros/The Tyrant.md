@@ -1,6 +1,4 @@
----
-icon: monster 
----
+#monster 
 
 The entity that demons fear the most. Turns demons into devils.
 

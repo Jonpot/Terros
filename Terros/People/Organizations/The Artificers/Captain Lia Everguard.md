@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Lia"]
 ---
 #person #human #mage #the-artificers

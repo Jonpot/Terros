@@ -1,6 +1,3 @@
----
-icon: person 
----
 #person #devil
 
 - A person wearing the rest of the armor. Gray black hair. Unrotted, doesn’t appear to be dead. Maybe sequestered?

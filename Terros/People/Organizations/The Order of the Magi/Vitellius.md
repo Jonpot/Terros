@@ -1,6 +1,3 @@
----
-icon: person 
----
 #person #human #mage #order-of-the-magi
 
 From a very very long time ago.

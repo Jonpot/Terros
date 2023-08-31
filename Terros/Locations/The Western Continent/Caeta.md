@@ -1,5 +1,4 @@
 ---
-icon: place 
 aliases: ["Telam's Gate"]
 ---
 #location 

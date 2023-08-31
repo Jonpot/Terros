@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Cerinthus"]
 ---
 #person #human #mage #order-of-the-magi

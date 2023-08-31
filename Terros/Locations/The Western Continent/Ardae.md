@@ -1,6 +1,3 @@
----
-icon: place 
----
 #location #city 
 
 A city north of [[Westfall]]. Founded 179 years ago.

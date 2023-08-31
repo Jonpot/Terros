@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Illian"]
 ---
 #person #human #mage #the-league-of-sorcerers

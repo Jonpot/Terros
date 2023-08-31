@@ -1,6 +1,3 @@
----
-icon: person 
----
 #person #human 
 
 From a very long time ago.

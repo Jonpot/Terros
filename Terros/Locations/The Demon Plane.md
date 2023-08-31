@@ -1,6 +1,3 @@
----
-icon: place 
----
 #location #plane 
 
 - When entered, it looked like [[Mycene]], but we see a battle raging.

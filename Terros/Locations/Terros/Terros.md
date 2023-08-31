@@ -1,6 +1,3 @@
----
-icon: place 
----
 #planet #plane #country
 
 The world upon which the game takes place. 

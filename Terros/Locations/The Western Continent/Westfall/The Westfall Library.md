@@ -1,6 +1,3 @@
----
-icon: place 
----
 #location #building 
 
 A library beneath an estate in [[Westfall]]. Owned by [[Vasilis]] and [[Sevilla de Castelle]].

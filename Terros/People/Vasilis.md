@@ -1,6 +1,3 @@
----
-icon: person
----
 #person #human
 
 Married to [[Sevilla de Castelle]] 

@@ -1,6 +1,3 @@
----
-icon: person 
----
 #person #mage #blackstar #human
 
 From a very long time ago, around 284.

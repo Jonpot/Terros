@@ -1,6 +1,3 @@
----
-icon: item 
----
 #item #magic-item #elder-blade
 # Corvus, Sword of Death 
 Sword of Nul, Death, and the Void. Golden handle and hilt with black raven as a pommel. The blade is straight and silver. 

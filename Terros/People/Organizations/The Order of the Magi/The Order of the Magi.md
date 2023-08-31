@@ -1,8 +1,7 @@
 ---
-icon: lore 
 aliases: ["Magi"]
 ---
-#organization 
+#organization #lore
 
 The group of mages led by [[Telam]].
 

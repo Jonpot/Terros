@@ -1,6 +1,3 @@
----
-icon: place 
----
 #location 
 
 [[Illian Everguard|Illian]] maintains a pocket dimension hidden from Scrying magic in his room. It is a good place to get work done in secret, and it's where he is developing his phylactery.

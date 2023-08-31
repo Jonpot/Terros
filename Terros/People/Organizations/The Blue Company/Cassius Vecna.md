@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["The Lich King", "Cassius", "Vecna", "Mazrim"]
 ---
 #person #human #mage #blue-company

@@ -1,12 +1,10 @@
----
-icon: place 
----
 #location #building 
 
 A floating castle once owned by the mage [[Telam]].
 
 Now floating over [[Centas]], occupied by a mysterious man who claims to be "The Forgemaster", who is helping the church.
 
+Occupied by [[Mithrin]]
 
 ## *Legend Lore* Reveals:
 - Scene shifts to a castle floating in the sky

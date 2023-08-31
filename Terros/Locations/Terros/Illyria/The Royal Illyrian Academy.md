@@ -1,6 +1,3 @@
----
-icon: place 
----
 #building #location 
 
 A cathedral-esque building in [[Illyria]] with a stone fence surrounding it. Replaced the Library/Tower of Illyria.

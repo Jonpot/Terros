@@ -1,6 +1,3 @@
----
-icon: place 
----
 #building #location 
 
 The grand temple of [[Alos]], located in [[Centas]].

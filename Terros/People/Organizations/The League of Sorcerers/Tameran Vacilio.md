@@ -1,5 +1,4 @@
 ---
-icon: person
 aliases: ["Tameran"]
 ---
 #person #human #mage #the-league-of-sorcerers

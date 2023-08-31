@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore 
 
 I received this document from a Kaedish Tribesman who found it in the home of a travelling scholar after a raid on the settlement at [[Aquilea]]. I am basing my translation on the esteemed work of the Illyrian scholar Maximius. I dedicate this work to our most esteemed Empress [[Xaira]] and Adjunct [[Cassius Vecna]], in the 5,012th Year of Time's Sleep.

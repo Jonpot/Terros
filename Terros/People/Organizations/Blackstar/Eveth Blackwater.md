@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Eveth Blackstar"]
 ---
 #person #mage #blackstar #human

@@ -1,6 +1,3 @@
----
-icon: person 
----
 #person #vampire 
 
 Wife of [[Elrin]].

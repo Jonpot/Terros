@@ -1,6 +1,3 @@
----
-icon: person 
----
 #god 
 
 May be a pseudonym for [[Ishivan]].

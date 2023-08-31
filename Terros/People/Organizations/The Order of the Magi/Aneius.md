@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Aveuis"]
 ---
 #person #human #mage #order-of-the-magi

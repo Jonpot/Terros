@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore #organization
 
 - A group of spellcasters employed by [[The Empire]].

@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore #song
 
 [F#m]

@@ -1,5 +1,4 @@
 ---
-icon: person 
 aliases: ["Isabel De Roya","Princess Isabel"]
 ---
 #person #human 

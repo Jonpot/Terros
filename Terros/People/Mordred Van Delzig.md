@@ -1,5 +1,5 @@
 ---
-icon: person 
+aliases: ["The Forgemaster","The Imoran"]
 ---
 #person #mage 
 

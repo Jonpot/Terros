@@ -1,6 +1,3 @@
----
-icon: lore 
----
 #lore
 
 Continuing with a summary of the story of [[the Kingdom of the Dawn]]:

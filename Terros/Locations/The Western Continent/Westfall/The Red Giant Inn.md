@@ -1,6 +1,3 @@
----
-icon: place 
----
 #building #location
 
 A tavern/inn in [[Westfall]].

@@ -1,7 +1,4 @@
----
-icon: utility
----
-
+#utility
 # Setting Information
 - **Current Date:** June 19th, 895 of the New Empire
 - There's currently a civil war on the Western Islands became some tribes survive on the Western side of the continent.
