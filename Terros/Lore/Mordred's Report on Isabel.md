@@ -1,5 +1,5 @@
 #lore
-
+Written by [[Mordred Van Delzig|Mordred]] 
 # Subject: [[Isabel]] de Roya
 
 **Completed**: Mental and Physical Report (Page 1), Information Report (Pages 1 and 2, also copied into the Index of Reports on the Netherese Empire)

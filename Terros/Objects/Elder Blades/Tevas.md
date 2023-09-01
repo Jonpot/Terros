@@ -5,3 +5,5 @@ Sword of time and age and the fading of all things. The blade is glass-like and 
 One of [[The Elder Blades]].
 
 Previously held by [[Telam]].
+
+Currently held by [[Mordred Van Delzig]]

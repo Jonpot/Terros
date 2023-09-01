@@ -1,3 +1,3 @@
 #god 
 
-The God of Winter. Lives on [[the winter plane]].
+The God of Winter. Lives on [[The Winter Plane]].

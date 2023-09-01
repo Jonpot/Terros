@@ -3,4 +3,4 @@ aliases: ["General Cadmus"]
 ---
 #person #human 
 
-A general in [[the Kingdom of the Dawn]]. Sent to [[the winter plane]] by [[Telam]] with [[Henly]] to slay the [[God of Winter]].
+A general in [[the Kingdom of the Dawn]]. Sent to [[The Winter Plane]] by [[Telam]] with [[Henly]] to slay the [[God of Winter]].

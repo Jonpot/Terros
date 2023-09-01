@@ -120,7 +120,7 @@ So I guess I’ll drink his share!
 
 Prince [[Henly]] was the Maker’s son,
 A spoiled errand boy,
-But he still reigned on [[the winter plane]]
+But he still reigned on [[The Winter Plane]]
 [[Croxeor]] was no simple toy.
 And the winter’s wrath was kind this year,
 So a drink seems only fair,

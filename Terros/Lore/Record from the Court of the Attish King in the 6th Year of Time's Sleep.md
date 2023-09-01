@@ -8,6 +8,6 @@ _The rest of the document is too hard for me to read. I believe he continues wit
 
 There were then six who remained. They bid farewell to the the people remaining. They each of them were secretive. Their motives were unknown to us at the time. I saw [[Lana]] who wielded the sword [[Carina]] speak to... with the death of Je.. she looked to be their leader.
 
-The six of them gave their destination as the Isle of [[Caeta]] when people begged for them to stay. They said their affairs were of great consequence. The Isle was somewhere off [[the Ceon Sea|the Western Sea]]. She said that it would only be
+The six of them gave their destination as the Isle of [[Caeta]] when people begged for them to stay. They said their affairs were of great consequence. The Isle was somewhere off [[The Ceon Sea|the Western Sea]]. She said that it would only be
 found again if [[Carina]] willed that it would. Then they were gone. There are reports that Letus *(maybe [[Cetus]]?)* was seen again, and a few less credulous reports of the others. But [[Lana]] never returned.
 _[The rest of the document is gone]_

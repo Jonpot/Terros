@@ -24,8 +24,26 @@
             "id": "2ff0d83525f71e44",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Lore/Address Concerning the Fundamental Questions of Humanity.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e5620c72db943290",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "People/Mordred Van Delzig.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
             }
           },
           {
@@ -34,7 +52,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Planets.md",
+                "file": "Objects/Elder Blades/Carina.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -42,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -116,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Planets.md",
+                "file": "Objects/Elder Blades/Carina.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Planets.md",
+                "file": "Objects/Elder Blades/Carina.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Planets.md"
+                "file": "Objects/Elder Blades/Carina.md"
               }
             }
           },
@@ -196,7 +214,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Planets.md",
+                "file": "Objects/Elder Blades/Carina.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -283,7 +301,7 @@
                   "repelStrength": 19.469320066335,
                   "linkStrength": 0.993366500829187,
                   "linkDistance": 30,
-                  "scale": 0.9698942160501268,
+                  "scale": 0.35196236056289154,
                   "close": true
                 }
               }
@@ -316,32 +334,34 @@
   "active": "54b60ccfd7f50757",
   "lastOpenFiles": [
     "Planets.md",
-    "People/Emperor Maximilian.md",
-    "People/Emperor Caius.md",
+    "Nicephoros.md",
+    "People/Vesa van Delzig.md",
+    "Lore/Mordred's Report on Isabel.md",
     "People/Mordred Van Delzig.md",
-    "The Winter Plane.md",
+    "Lore/Address Concerning the Fundamental Questions of Humanity.md",
+    "People/Emperor Maximilian.md",
+    "Objects/Elder Blades/Tevas.md",
+    "Locations/The Plane of Delos/Delos.md",
+    "Locations/The Plane of Delos",
+    "Locations/The Plane of Ideas.md",
+    "Locations/The Plane of Fire.md",
+    "Locations/The Plane of Terros/Isle of Faith.md",
+    "People/Mithrin.md",
+    "Locations/The Plane of Terros",
+    "People/Emperor Caius.md",
+    "Locations/The Winter Plane.md",
     "The Tyrant.md",
     "The Planes.canvas",
-    "The Plane of Fire.md",
     "The Bird Creatures.md",
-    "Nicephoros.md",
-    "Mithrin.md",
-    "Isle of Faith.md",
     "General Useful Information.md",
     "Locations/Telam's Castle.md",
-    "Locations/The Ceon Sea.md",
+    "Locations/The Plane of Terros/The Ceon Sea.md",
     "Locations/The Demon Plane.md",
-    "Lore/Address Concerning the Fundamental Questions of Humanity.md",
     "Lore/Appendix C- Rebellion in Illyria.md",
     "Lore/Letter to Lord Cadmus.md",
-    "Lore/Mordred's Report on Isabel.md",
     "Lore/Record from the Court of the Attish King in the 6th Year of Time's Sleep.md",
     "Lore/The History of Terros, Volume 12.md",
     "Lore/The Journal of Caerys Blackstar.md",
-    "Lore/The Ten Blades of Terros.md",
-    "Lore/To your eminence Prof. Friedrich Redding.md",
-    "Lore/Vampires.md",
-    "Objects/Codexes/Codex de Caelus.md",
     "_attachments",
     "_attachments/terros_newmap.png",
     "People/Organizations/The Order of the Red Rose",
@@ -351,8 +371,6 @@
     "Lore",
     "Gods",
     "People/Organizations/The Blue Company",
-    "People/Organizations/Blackstar",
-    "Locations/Alos/Centas",
     "_attachments/the crates logo.png",
     "_attachments/abyssailia logo.png",
     "Septus/Dungeons/Dakavestress/DKV Minidungeon 1/DKV Minidungeon 1.canvas",

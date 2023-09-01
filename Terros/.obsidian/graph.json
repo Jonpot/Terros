@@ -1,5 +1,5 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "-path:\"_5e\"",
   "showTags": false,
   "showAttachments": false,
@@ -74,6 +74,6 @@
   "repelStrength": 15.8947368421053,
   "linkStrength": 0.81592039800995,
   "linkDistance": 30,
-  "scale": 0.1428550101541174,
-  "close": true
+  "scale": 0.2807895288607724,
+  "close": false
 }

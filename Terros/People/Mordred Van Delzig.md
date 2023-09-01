@@ -1,5 +1,5 @@
 ---
-aliases: ["The Forgemaster","The Imoran"]
+aliases: ["The Forgemaster","The Imoran","Mordred"]
 ---
 #person #mage 
 
