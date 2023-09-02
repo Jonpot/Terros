@@ -187,7 +187,7 @@
             }
           },
           {
-            "id": "f137cd67422a33a3",
+            "id": "19f98d23887e99b1",
             "type": "leaf",
             "state": {
               "type": "DICE_ROLLER_VIEW",
@@ -195,7 +195,7 @@
             }
           },
           {
-            "id": "00f381799b465824",
+            "id": "74c671d046290108",
             "type": "leaf",
             "state": {
               "type": "initiative-tracker-view",
@@ -322,13 +322,14 @@
       "command-palette:Open command palette": false,
       "markdown-importer:Open format converter": false,
       "random-note:Open random note": false,
-      "initiative-tracker:Intiative Tracker Encounter Builder": false,
+      "omnisearch:Omnisearch": false,
+      "open-vscode:VSCode": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-leaflet-plugin:Open Leaflet Map": false,
-      "homepage:Open homepage": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "omnisearch:Omnisearch": false,
-      "open-vscode:VSCode": false
+      "obsidian-5e-statblocks:Open Creature Pane": false,
+      "initiative-tracker:Initiative Tracker Encounter Builder": false,
+      "homepage:Open homepage": false
     }
   },
   "active": "54b60ccfd7f50757",

@@ -24,6 +24,8 @@ Has been known to, in the past, be able to sink entire cities below the waves (s
 
 Can summon the God of Water.
 
+Adds +10ft movement speed when upgraded to level 2.
+
 ## Conversations
 - [[Lana]] was away from the rest of the magi very often. Very good friends with [[Casia]]. Fought in [[The Time War]].
 

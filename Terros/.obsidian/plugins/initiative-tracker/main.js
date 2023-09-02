@@ -34,6 +34,19 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
+var __accessCheck = (obj, member, msg) => {
+  if (!member.has(obj))
+    throw TypeError("Cannot " + msg);
+};
+var __privateAdd = (obj, member, value) => {
+  if (member.has(obj))
+    throw TypeError("Cannot add the same private member more than once");
+  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+};
+var __privateMethod = (obj, member, method) => {
+  __accessCheck(obj, member, "access private method");
+  return method;
+};
 
 // node_modules/uri-js/dist/es5/uri.all.js
 var require_uri_all = __commonJS({
@@ -6374,7 +6387,7 @@ __export(main_exports, {
   default: () => InitiativeTracker
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian52 = require("obsidian");
+var import_obsidian53 = require("obsidian");
 
 // src/utils/constants.ts
 var import_obsidian = require("obsidian");
@@ -6464,7 +6477,7 @@ var Conditions = [
 ];
 
 // src/utils/constants.ts
-var INTIATIVE_TRACKER_VIEW = "initiative-tracker-view";
+var INITIATIVE_TRACKER_VIEW = "initiative-tracker-view";
 var PLAYER_VIEW_VIEW = "initiative-tracker-player-view";
 var CREATURE_TRACKER_VIEW = "initiative-tracker-creature-view";
 var DEFAULT_UNDEFINED = "\u2013";
@@ -6481,7 +6494,6 @@ var DEFAULT_SETTINGS = {
   initiative: "1d20 + %mod%",
   modifier: null,
   sync: false,
-  leafletIntegration: false,
   playerMarker: "default",
   monsterMarker: "default",
   state: {
@@ -6508,60 +6520,32 @@ var DEFAULT_SETTINGS = {
   },
   hpOverflow: "ignore",
   additiveTemp: false,
+  rpgSystem: "dnd5e",
   logging: false,
   logFolder: "/",
   useLegacy: false,
   diplayPlayerHPValues: true,
   rollHP: false,
+  descending: true,
   builder: {
     showParty: true,
     showXP: true,
     sidebarIcon: true
   }
 };
-var XP_PER_CR = {
-  "0": 0,
-  "0.125": 25,
-  "1/8": 25,
-  "0.25": 50,
-  "1/4": 50,
-  "0.5": 100,
-  "1/2": 100,
-  "1": 200,
-  "2": 450,
-  "3": 700,
-  "4": 1100,
-  "5": 1800,
-  "6": 2300,
-  "7": 2900,
-  "8": 3900,
-  "9": 5e3,
-  "10": 5900,
-  "11": 7200,
-  "12": 8400,
-  "13": 1e4,
-  "14": 11500,
-  "15": 13e3,
-  "16": 15e3,
-  "17": 18e3,
-  "18": 2e4,
-  "19": 22e3,
-  "20": 25e3,
-  "21": 33e3,
-  "22": 41e3,
-  "23": 5e4,
-  "24": 62e3,
-  "25": 75e3,
-  "26": 9e4,
-  "27": 105e3,
-  "28": 12e4,
-  "29": 135e3,
-  "30": 155e3
-};
 var OVERFLOW_TYPE = {
   ignore: "ignore",
   current: "current",
   temp: "temp"
+};
+var DECIMAL_TO_VULGAR_FRACTION = {
+  0.125: "\u215B",
+  0.25: "\xBC",
+  0.375: "\u215C",
+  0.5: "\xBD",
+  0.625: "\u215D",
+  0.75: "\xBE",
+  0.875: "\u215E"
 };
 
 // src/utils/icons.ts
@@ -6615,7 +6599,6 @@ function registerIcons() {
   (0, import_obsidian2.addIcon)(NEW, NEW_ICON);
   (0, import_obsidian2.addIcon)(DICE, DICE_ICON);
   (0, import_obsidian2.addIcon)(START_ENCOUNTER, START_ENCOUNTER_ICON);
-  (0, import_obsidian2.addIcon)(MAP, MAP_ICON);
   (0, import_obsidian2.addIcon)(COPY, COPY_ICON);
   (0, import_obsidian2.addIcon)(
     GROUP,
@@ -6628,10 +6611,6 @@ function registerIcons() {
   (0, import_obsidian2.addIcon)(
     ACTIVE,
     `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" viewBox="0 0 256 512"><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg>`
-  );
-  (0, import_obsidian2.addIcon)(
-    MAPMARKER,
-    `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" class="svg-inline--fa fa-map-marker-alt fa-w-12" role="img" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/></svg>`
   );
   (0, import_obsidian2.addIcon)(
     CREATURE,
@@ -6648,7 +6627,6 @@ function registerIcons() {
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-a-z"><path d="m3 16 4 4 4-4"></path><path d="M7 20V4"></path><path d="M20 8h-5"></path><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"></path><path d="M15 14h5l-5 6h5"></path></svg>`
   );
 }
-var MAPMARKER = "tracker-map-marker";
 var EXPAND = "expand-creatures";
 var GROUP = "group-creatures";
 var ACTIVE = "initiative-tracker-active";
@@ -6659,8 +6637,6 @@ var SORT_STRING = "ARROW_DOWN_A-Z";
 var SORT_NUMBER = "ARROW_DOWN_0-1";
 var BASE = "initiative-tracker";
 var ICON = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dice-d20" class="svg-inline--fa fa-dice-d20 fa-w-15" role="img" viewBox="0 0 480 512"><path fill="currentColor" d="M106.75 215.06L1.2 370.95c-3.08 5 .1 11.5 5.93 12.14l208.26 22.07-108.64-190.1zM7.41 315.43L82.7 193.08 6.06 147.1c-2.67-1.6-6.06.32-6.06 3.43v162.81c0 4.03 5.29 5.53 7.41 2.09zM18.25 423.6l194.4 87.66c5.3 2.45 11.35-1.43 11.35-7.26v-65.67l-203.55-22.3c-4.45-.5-6.23 5.59-2.2 7.57zm81.22-257.78L179.4 22.88c4.34-7.06-3.59-15.25-10.78-11.14L17.81 110.35c-2.47 1.62-2.39 5.26.13 6.78l81.53 48.69zM240 176h109.21L253.63 7.62C250.5 2.54 245.25 0 240 0s-10.5 2.54-13.63 7.62L130.79 176H240zm233.94-28.9l-76.64 45.99 75.29 122.35c2.11 3.44 7.41 1.94 7.41-2.1V150.53c0-3.11-3.39-5.03-6.06-3.43zm-93.41 18.72l81.53-48.7c2.53-1.52 2.6-5.16.13-6.78l-150.81-98.6c-7.19-4.11-15.12 4.08-10.78 11.14l79.93 142.94zm79.02 250.21L256 438.32v65.67c0 5.84 6.05 9.71 11.35 7.26l194.4-87.66c4.03-1.97 2.25-8.06-2.2-7.56zm-86.3-200.97l-108.63 190.1 208.26-22.07c5.83-.65 9.01-7.14 5.93-12.14L373.25 215.06zM240 208H139.57L240 383.75 340.43 208H240z"/></svg>`;
-var MAP = "initiative-tracker-map";
-var MAP_ICON = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marked-alt" class="svg-inline--fa fa-map-marked-alt fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"/></svg>`;
 var START_ENCOUNTER = "crossed-swords";
 var START_ENCOUNTER_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path fill="currentColor" d="M27.43 918.8l30.374-30.374 80.793 80.793-30.374 30.374L27.43 918.8zm422.393-253.815c0-48.521-39.36-87.882-87.882-87.882s-87.88 39.36-87.88 87.88c0 48.521 39.338 87.859 87.882 87.882s87.902-39.338 87.88-87.88zm-175.351 8.401l-.807-.807-166.337 166.336 80.794 80.794 166.337-166.337-.92-.92c-41.832-3.986-75.099-37.253-79.067-79.065zm-.411-8.402c0-45.507 34.621-82.952 78.95-87.431-46.731-53.121-88.214-110.883-123.852-172.613L117.593 516.506 274.47 673.383a88.927 88.927 0 0 1-.409-8.399zm175.315 8.962c-4.472 44.334-41.914 78.942-87.433 78.92a89.137 89.137 0 0 1-8.406-.413l157.058 157.058 111.566-111.566c-62.063-35.842-119.841-77.405-172.785-123.999zM815.497 74.632L392.493 497.636c6.535 9.622 10.729 21.41 10.729 33.817 0 19.234-9.188 36.441-23.375 47.483 34.711 7.191 61.918 34.869 68.453 69.814 11.013-14.625 28.5-24.14 48.078-24.14 12.407 0 23.51 3.51 32.978 9.891l423.002-423.002 29.691-166.555-166.553 29.688zM41.964 872.58l112.539 112.539 49.514-49.514L91.478 823.066 41.964 872.58z"/></svg>';
 var SAVE = "initiative-tracker-save";
@@ -6709,8 +6685,380 @@ var PLAYER_VIEW_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512
 var BUILDER_VIEW = "intiative-tracker-encounter-builder";
 var BUILDER_ICON = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/></svg>`;
 
+// src/utils/rpg-system/rpgSystem.ts
+var RpgSystem = class {
+  constructor() {
+    __publicField(this, "displayName", DEFAULT_UNDEFINED);
+    __publicField(this, "valueUnit", "XP");
+  }
+  getCreatureDifficulty(creature, playerLevels) {
+    return 0;
+  }
+  getAdditionalCreatureDifficultyStats(creature, playerLevels) {
+    return [];
+  }
+  getEncounterDifficulty(creatures, playerLevels) {
+    return {
+      displayName: DEFAULT_UNDEFINED,
+      cssClass: "",
+      value: 0,
+      title: "Total XP",
+      summary: DEFAULT_UNDEFINED,
+      intermediateValues: []
+    };
+  }
+  getDifficultyThresholds(playerLevels) {
+    return [];
+  }
+  formatDifficultyValue(value, withUnits) {
+    if (isNaN(value))
+      return DEFAULT_UNDEFINED;
+    return withUnits ? `${value.toLocaleString()} ${this.valueUnit}` : value.toLocaleString();
+  }
+  getAdditionalDifficultyBudgets(playerLevels) {
+    return [];
+  }
+};
+
+// src/utils/rpg-system/dnd5e.ts
+var XP_THRESHOLDS_PER_LEVEL = {
+  1: { daily: 300, easy: 25, medium: 50, hard: 75, deadly: 100 },
+  2: { daily: 600, easy: 50, medium: 100, hard: 150, deadly: 200 },
+  3: { daily: 1200, easy: 75, medium: 150, hard: 225, deadly: 400 },
+  4: { daily: 1700, easy: 125, medium: 250, hard: 375, deadly: 500 },
+  5: { daily: 3500, easy: 250, medium: 500, hard: 750, deadly: 1100 },
+  6: { daily: 4e3, easy: 300, medium: 600, hard: 900, deadly: 1400 },
+  7: { daily: 5e3, easy: 350, medium: 750, hard: 1100, deadly: 1700 },
+  8: { daily: 6e3, easy: 450, medium: 900, hard: 1400, deadly: 2100 },
+  9: { daily: 7500, easy: 550, medium: 1100, hard: 1600, deadly: 2400 },
+  10: { daily: 9e3, easy: 600, medium: 1200, hard: 1900, deadly: 2800 },
+  11: { daily: 10500, easy: 800, medium: 1600, hard: 2400, deadly: 3600 },
+  12: { daily: 11500, easy: 1e3, medium: 2e3, hard: 3e3, deadly: 4500 },
+  13: { daily: 13500, easy: 1100, medium: 2200, hard: 3400, deadly: 5100 },
+  14: { daily: 15e3, easy: 1250, medium: 2500, hard: 3800, deadly: 5700 },
+  15: { daily: 18e3, easy: 1400, medium: 2800, hard: 4300, deadly: 6400 },
+  16: { daily: 2e4, easy: 1600, medium: 3200, hard: 4800, deadly: 7200 },
+  17: { daily: 25e3, easy: 2e3, medium: 3900, hard: 5900, deadly: 8800 },
+  18: { daily: 27e3, easy: 2100, medium: 4200, hard: 6300, deadly: 9500 },
+  19: { daily: 3e4, easy: 2400, medium: 4900, hard: 7300, deadly: 10900 },
+  20: { daily: 4e4, easy: 2800, medium: 5700, hard: 8500, deadly: 12700 }
+};
+var XP_PER_CR = {
+  "0": 0,
+  "0.125": 25,
+  "1/8": 25,
+  "0.25": 50,
+  "1/4": 50,
+  "0.5": 100,
+  "1/2": 100,
+  "1": 200,
+  "2": 450,
+  "3": 700,
+  "4": 1100,
+  "5": 1800,
+  "6": 2300,
+  "7": 2900,
+  "8": 3900,
+  "9": 5e3,
+  "10": 5900,
+  "11": 7200,
+  "12": 8400,
+  "13": 1e4,
+  "14": 11500,
+  "15": 13e3,
+  "16": 15e3,
+  "17": 18e3,
+  "18": 2e4,
+  "19": 22e3,
+  "20": 25e3,
+  "21": 33e3,
+  "22": 41e3,
+  "23": 5e4,
+  "24": 62e3,
+  "25": 75e3,
+  "26": 9e4,
+  "27": 105e3,
+  "28": 12e4,
+  "29": 135e3,
+  "30": 155e3
+};
+var _getXpMult, getXpMult_fn;
+var Dnd5eRpgSystem = class extends RpgSystem {
+  constructor(plugin) {
+    super();
+    __privateAdd(this, _getXpMult);
+    __publicField(this, "plugin");
+    __publicField(this, "systemDifficulties", [
+      "Easy",
+      "Medium",
+      "Hard",
+      "Deadly"
+    ]);
+    this.plugin = plugin;
+    this.displayName = "DnD 5e";
+  }
+  getCreatureDifficulty(creature, _) {
+    const xp = getFromCreatureOrBestiary(this.plugin, creature, (c) => c?.xp ?? 0);
+    if (xp)
+      return xp;
+    const cr = getFromCreatureOrBestiary(this.plugin, creature, (c) => c?.cr ?? "0");
+    return XP_PER_CR[cr] ?? 0;
+  }
+  getAdditionalCreatureDifficultyStats(creature, _) {
+    const cr = getFromCreatureOrBestiary(
+      this.plugin,
+      creature,
+      (c) => c?.cr ?? 0
+    );
+    return [`${crToString(cr)} CR`];
+  }
+  getEncounterDifficulty(creatures, playerLevels) {
+    const creatureXp = [...creatures].reduce(
+      (acc, [creature, count]) => acc + this.getCreatureDifficulty(creature) * count,
+      0
+    );
+    const creatureCount = [...creatures.values()].reduce((acc, cur2) => acc + cur2, 0);
+    const mult = __privateMethod(this, _getXpMult, getXpMult_fn).call(this, creatureCount);
+    const adjustedXp = playerLevels.length == 0 || creatureCount == 0 ? 0 : creatureXp * mult;
+    const thresholds = this.getDifficultyThresholds(playerLevels);
+    const displayName = thresholds.reverse().find((threshold) => adjustedXp >= threshold.minValue)?.displayName ?? "Trivial";
+    const thresholdSummary = thresholds.map((threshold) => `${threshold.displayName}: ${threshold.minValue}`).join("\n");
+    const summary = `Encounter is ${displayName}
+Total XP: ${creatureXp}
+Adjusted XP: ${adjustedXp} (x${mult})
+
+Threshold
+${thresholdSummary}`;
+    return {
+      displayName,
+      summary,
+      cssClass: displayName.toLowerCase(),
+      value: adjustedXp,
+      title: "Adjusted XP",
+      intermediateValues: [{ label: "Total XP", value: creatureXp }]
+    };
+  }
+  getDifficultyThresholds(playerLevels) {
+    const budget = {
+      easy: 0,
+      medium: 0,
+      hard: 0,
+      deadly: 0
+    };
+    const clampedLevels = playerLevels.map((lv) => Math.max(1, Math.min(lv, 20)));
+    Object.keys(budget).forEach((key) => {
+      budget[key] += clampedLevels.reduce(
+        (acc, lv) => acc + XP_THRESHOLDS_PER_LEVEL[lv][key],
+        0
+      );
+    });
+    return Object.entries(budget).map(([name3, value]) => ({
+      displayName: name3.charAt(0).toUpperCase() + name3.slice(1),
+      minValue: value
+    })).sort((a, b) => a.minValue - b.minValue);
+  }
+  getAdditionalDifficultyBudgets(playerLevels) {
+    return [{
+      displayName: "Daily Budget",
+      minValue: playerLevels.reduce(
+        (acc, lv) => acc + XP_THRESHOLDS_PER_LEVEL[Math.max(1, Math.min(lv, 20))].daily,
+        0
+      )
+    }];
+  }
+};
+_getXpMult = new WeakSet();
+getXpMult_fn = function(creatureCount) {
+  if (creatureCount >= 15)
+    return 4;
+  if (creatureCount >= 11)
+    return 3;
+  if (creatureCount >= 7)
+    return 2.5;
+  if (creatureCount >= 3)
+    return 2;
+  if (creatureCount >= 2)
+    return 1.5;
+  return 1;
+};
+
+// src/utils/rpg-system/dnd5e-lazygm.ts
+var Dnd5eLazyGmRpgSystem = class extends RpgSystem {
+  constructor(plugin) {
+    super();
+    __publicField(this, "plugin");
+    __publicField(this, "dnd5eRpgSystem");
+    __publicField(this, "systemDifficulties", [
+      "Not Deadly",
+      "Deadly"
+    ]);
+    this.plugin = plugin;
+    this.valueUnit = "CR";
+    this.displayName = "DnD 5e Lazy GM";
+    this.dnd5eRpgSystem = new Dnd5eRpgSystem(plugin);
+  }
+  getCreatureDifficulty(creature, _) {
+    return convertFraction(
+      getFromCreatureOrBestiary(this.plugin, creature, (c) => c?.cr ?? 0)
+    );
+  }
+  getAdditionalCreatureDifficultyStats(creature, _) {
+    const xp = this.dnd5eRpgSystem.getCreatureDifficulty(creature);
+    return [this.dnd5eRpgSystem.formatDifficultyValue(xp, true)];
+  }
+  getDifficultyThresholds(playerLevels) {
+    const totalLevels = playerLevels.reduce((acc, lv) => acc + lv, 0);
+    const avgLevel = playerLevels.length > 0 ? totalLevels / playerLevels.length : 0;
+    return [
+      {
+        displayName: "Deadly",
+        minValue: totalLevels / (avgLevel > 4 ? 2 : 4)
+      }
+    ];
+  }
+  getEncounterDifficulty(creatures, playerLevels) {
+    const crSum = [...creatures].reduce(
+      (acc, [creature, count]) => acc + this.getCreatureDifficulty(creature) * count,
+      0
+    );
+    const deadlyThreshold = this.getDifficultyThresholds(playerLevels).first()?.minValue ?? 0;
+    const displayName = crSum > deadlyThreshold ? "Deadly" : "Not Deadly";
+    const xp = [...creatures].reduce(
+      (acc, [creature, count]) => acc + this.dnd5eRpgSystem.getCreatureDifficulty(creature) * count,
+      0
+    );
+    const summary = `Encounter is ${displayName}
+Total XP: ${xp}
+Total CR: ${crSum}
+Total levels: ${playerLevels.reduce((acc, lv) => acc + lv, 0)}
+Deadly Threshold: ${deadlyThreshold}`;
+    return {
+      displayName,
+      summary,
+      cssClass: displayName == "Deadly" ? "deadly" : "easy",
+      value: crSum,
+      title: "Total CR",
+      intermediateValues: [{ label: "Total XP", value: xp }]
+    };
+  }
+  formatDifficultyValue(value, withUnits) {
+    if (!value)
+      return DEFAULT_UNDEFINED;
+    return crToString(value) + (withUnits ? " CR" : "");
+  }
+};
+
+// src/utils/rpg-system/pf2e.ts
+var XP_CREATURE_DIFFERENCES = {
+  "-4": 10,
+  "-3": 15,
+  "-2": 20,
+  "-1": 30,
+  "0": 40,
+  "1": 60,
+  "2": 80,
+  "3": 120,
+  "4": 160
+};
+var PF2E_DND5E_DIFFICULTY_MAPPING = {
+  "trivial": "trivial",
+  "low": "easy",
+  "moderate": "medium",
+  "severe": "hard",
+  "extreme": "deadly"
+};
+var Pathfinder2eRpgSystem = class extends RpgSystem {
+  constructor(plugin) {
+    super();
+    __publicField(this, "plugin");
+    __publicField(this, "systemDifficulties", [
+      "Trivial",
+      "Low",
+      "Moderate",
+      "Severe",
+      "Extreme"
+    ]);
+    this.plugin = plugin;
+    this.displayName = "Pathfinder 2e";
+  }
+  getCreatureDifficulty(creature, playerLevels) {
+    const lvl = getFromCreatureOrBestiary(
+      this.plugin,
+      creature,
+      (c) => c?.level
+    )?.toString().split(" ").slice(-1);
+    if (lvl == null || lvl == void 0)
+      return 0;
+    const partyLvl = playerLevels?.length ?? 0 > 0 ? playerLevels.reduce((a, b) => a + b) / playerLevels.length : 0;
+    const creature_differences = String(
+      lvl - partyLvl
+    );
+    return XP_CREATURE_DIFFERENCES[creature_differences] ?? 0;
+  }
+  getDifficultyThresholds(playerLevels) {
+    const budget = playerLevels.length * 20;
+    const encounterBudget = {
+      trivial: Math.floor(budget * 0.5),
+      low: Math.floor(budget * 0.75),
+      moderate: budget,
+      severe: Math.floor(budget * 1.5),
+      extreme: Math.floor(budget * 2)
+    };
+    return Object.entries(encounterBudget).map(([name3, value]) => ({
+      displayName: name3.charAt(0).toUpperCase() + name3.slice(1),
+      minValue: value
+    })).sort((a, b) => a.minValue - b.minValue);
+  }
+  getEncounterDifficulty(creatures, playerLevels) {
+    const creatureXp = [...creatures].reduce(
+      (acc, [creature, count]) => acc + this.getCreatureDifficulty(creature, playerLevels) * count,
+      0
+    );
+    const thresholds = this.getDifficultyThresholds(playerLevels);
+    const displayName = thresholds.find((threshold) => creatureXp <= threshold.minValue)?.displayName ?? "Trivial";
+    const thresholdSummary = thresholds.map((threshold) => `${threshold.displayName}: ${threshold.minValue}`).join("\n");
+    const summary = `Encounter is ${displayName}
+    Total XP: ${creatureXp}
+    Threshold
+    ${thresholdSummary}`;
+    return {
+      displayName,
+      summary,
+      cssClass: PF2E_DND5E_DIFFICULTY_MAPPING[displayName.toLowerCase()] ?? "trivial",
+      value: creatureXp,
+      title: "Total XP",
+      intermediateValues: [{ label: "Total XP", value: creatureXp }]
+    };
+  }
+};
+
+// src/utils/rpg-system/index.ts
+var RpgSystemSetting = /* @__PURE__ */ ((RpgSystemSetting2) => {
+  RpgSystemSetting2["Dnd5e"] = "dnd5e";
+  RpgSystemSetting2["Dnd5eLazyGm"] = "dnd5e-lazygm";
+  RpgSystemSetting2["Pathfinder2e"] = "pathfinder2e";
+  return RpgSystemSetting2;
+})(RpgSystemSetting || {});
+var UndefinedRpgSystem = class extends RpgSystem {
+  constructor() {
+    super(...arguments);
+    __publicField(this, "systemDifficulties", [DEFAULT_UNDEFINED, DEFAULT_UNDEFINED]);
+  }
+};
+function getRpgSystem(plugin, settingId) {
+  switch (settingId ? settingId : plugin.data.rpgSystem) {
+    case "dnd5e" /* Dnd5e */:
+      return new Dnd5eRpgSystem(plugin);
+    case "dnd5e-lazygm" /* Dnd5eLazyGm */:
+      return new Dnd5eLazyGmRpgSystem(plugin);
+    case "pathfinder2e" /* Pathfinder2e */:
+      return new Pathfinder2eRpgSystem(plugin);
+  }
+  return new UndefinedRpgSystem();
+}
+
 // src/utils/index.ts
-var convertFraction = (s) => {
+function convertFraction(s) {
   if (typeof s == "number")
     return s;
   if (typeof s != "string")
@@ -6725,7 +7073,30 @@ var convertFraction = (s) => {
     return Number(s);
   }
   return Number(split[0]) / Number(split[1]);
-};
+}
+function crToString(cr) {
+  if (typeof cr == "string")
+    cr = convertFraction(cr);
+  if (cr == 0)
+    return "0";
+  const decimalPart = cr % 1;
+  const wholePart = Math.floor(cr);
+  if (decimalPart == 0)
+    return wholePart.toString();
+  let str = wholePart == 0 ? "" : wholePart.toString();
+  if (decimalPart in DECIMAL_TO_VULGAR_FRACTION) {
+    str += DECIMAL_TO_VULGAR_FRACTION[decimalPart];
+  } else {
+    str += decimalPart.toString().slice(1);
+  }
+  return str;
+}
+function getFromCreatureOrBestiary(plugin, creature, getter) {
+  const fromBase = getter(creature);
+  if (fromBase)
+    return fromBase;
+  return getter(plugin.getCreatureFromBestiary(creature.name));
+}
 
 // src/settings/settings.ts
 var import_obsidian9 = require("obsidian");
@@ -8319,6 +8690,7 @@ var Creature = class {
     __publicField(this, "modifier");
     __publicField(this, "hp");
     __publicField(this, "hit_dice");
+    __publicField(this, "rollHP");
     __publicField(this, "temp");
     __publicField(this, "ac");
     __publicField(this, "current_ac");
@@ -8348,13 +8720,14 @@ var Creature = class {
     this.display = creature.display;
     this.initiative = "initiative" in creature ? creature.initiative : Number(initiative ?? 0);
     this.static = creature.static ?? false;
-    this.modifier = Number(creature.modifier ?? 0);
+    this.setModifier(creature.modifier);
     this.current_ac = this.ac = creature.ac ?? void 0;
     this.dirty_ac = false;
     this.max = this.current_max = creature.hp ? Number(creature.hp) : 0;
     this.note = creature.note;
     this.level = creature.level;
     this.player = creature.player;
+    this.rollHP = creature.rollHP;
     this.marker = creature.marker;
     this.hp = this.max;
     this.temp = 0;
@@ -8364,11 +8737,7 @@ var Creature = class {
     this.hidden = creature.hidden ?? false;
     this.note = creature.note;
     this.path = creature.path;
-    if ("xp" in creature) {
-      this.xp = creature.xp;
-    } else if ("cr" in creature) {
-      this.xp = XP_PER_CR[`${creature.cr}`];
-    }
+    this.xp = creature.xp;
     this.cr = creature.cr;
     this.id = creature.id ?? getId();
     if ("statblock-link" in creature) {
@@ -8378,16 +8747,16 @@ var Creature = class {
       this.hit_dice = creature.hit_dice;
     }
   }
-  getXP(plugin) {
-    if (this.xp)
-      return this.xp;
-    if (this.creature.cr) {
-      return XP_PER_CR[this.creature.cr] ?? 0;
+  setModifier(modifier2) {
+    if (modifier2) {
+      if (Array.isArray(modifier2)) {
+        this.modifier = [...modifier2];
+      }
+      if (!isNaN(Number(modifier2))) {
+        this.modifier = Number(modifier2);
+      }
     }
-    const base2 = plugin.getBaseCreatureFromBestiary(this.name);
-    if (base2 && base2.cr) {
-      return XP_PER_CR[base2.cr] ?? 0;
-    }
+    this.modifier = this.modifier ?? 0;
   }
   get hpDisplay() {
     if (this.current_max) {
@@ -8426,6 +8795,7 @@ var Creature = class {
     yield this.hidden;
     yield this.hit_dice;
     yield this.current_ac;
+    yield this.rollHP;
   }
   static new(creature) {
     return new Creature(
@@ -8447,7 +8817,7 @@ var Creature = class {
   }
   update(creature) {
     this.name = creature.name;
-    this.modifier = Number(creature.modifier ?? 0);
+    this.setModifier(creature.modifier);
     this.current_max = this.max = creature.hp ? Number(creature.hp) : 0;
     if (this.hp > this.max)
       this.hp = this.max;
@@ -8489,7 +8859,8 @@ var Creature = class {
       hidden: this.hidden,
       friendly: this.friendly,
       "statblock-link": this["statblock-link"],
-      hit_dice: this.hit_dice
+      hit_dice: this.hit_dice,
+      rollHP: this.rollHP
     };
   }
   static fromJSON(state, plugin) {
@@ -8805,28 +9176,30 @@ var SRDMonsterSuggestionModal = class extends SuggestionModal {
   }
   onChooseItem(item) {
     this.inputEl.value = item.name;
-    this.creature = this.plugin.getBaseCreatureFromBestiary(item.name);
+    this.creature = this.plugin.getCreatureFromBestiaryByDefinition(item);
     this.onClose();
     this.close();
   }
   selectSuggestion({ item }) {
     this.inputEl.value = item.name;
-    this.creature = this.plugin.getBaseCreatureFromBestiary(item.name);
+    this.creature = this.plugin.getCreatureFromBestiaryByDefinition(item);
     this.onClose();
     this.close();
   }
   renderSuggestion(result, el) {
     let { item, match: matches } = result || {};
-    el.addClass("initiative-tracker");
-    if (item.player) {
-      (0, import_obsidian3.setIcon)(el, "user");
-    }
+    el.addClasses(["initiative-tracker", "mod-complex"]);
     let content2 = el.createDiv({
       cls: "suggestion-content icon initiative-tracker"
     });
+    let name3 = content2.createDiv("name");
+    if (item.player) {
+      (0, import_obsidian3.setIcon)(name3, "user");
+    }
+    let text2 = name3.createDiv("name-text");
     if (!item) {
       this.suggester.selectedItem = null;
-      content2.setText(this.emptyStateText);
+      text2.setText(this.emptyStateText);
       content2.parentElement.addClass("is-selected");
       return;
     }
@@ -8837,14 +9210,14 @@ var SRDMonsterSuggestionModal = class extends SuggestionModal {
       let match = matches.matches.find((m) => m[0] === i);
       if (match) {
         let element2 = matchElements[matches.matches.indexOf(match)];
-        content2.appendChild(element2);
+        text2.appendChild(element2);
         element2.appendText(item.name.substring(match[0], match[1]));
         i += match[1] - match[0] - 1;
         continue;
       }
-      content2.appendText(item.name[i]);
+      text2.appendText(item.name[i]);
     }
-    el.createDiv({
+    content2.createDiv({
       cls: "suggestion-note",
       text: [item.source].flat().join(", ")
     });
@@ -9762,7 +10135,7 @@ function fix_and_outro_and_destroy_block(block, lookup) {
   block.f();
   outro_and_destroy_block(block, lookup);
 }
-function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block24, next2, get_context) {
+function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block25, next2, get_context) {
   let o = old_blocks.length;
   let n = list.length;
   let i = o;
@@ -9778,7 +10151,7 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
     const key = get_key(child_ctx);
     let block = lookup.get(key);
     if (!block) {
-      block = create_each_block24(key, child_ctx);
+      block = create_each_block25(key, child_ctx);
       block.c();
     } else if (dynamic) {
       block.p(child_ctx, dirty);
@@ -10125,107 +10498,6 @@ var import_obsidian7 = require("obsidian");
 // src/encounter/ui/Encounter.svelte
 var import_obsidian5 = require("obsidian");
 
-// src/utils/encounter-difficulty.ts
-var getCreatureXP = (plugin, creature) => {
-  if (creature.xp)
-    return creature.xp;
-  let existing = plugin.bestiary.find((c) => c.name == creature.name);
-  if (existing && existing.cr && existing.cr in XP_PER_CR) {
-    return XP_PER_CR[existing.cr];
-  }
-  return 0;
-};
-var tresholds = {
-  1: { easy: 25, medium: 50, hard: 75, deadly: 100 },
-  2: { easy: 50, medium: 100, hard: 150, deadly: 200 },
-  3: { easy: 75, medium: 150, hard: 225, deadly: 400 },
-  4: { easy: 125, medium: 250, hard: 375, deadly: 500 },
-  5: { easy: 250, medium: 500, hard: 750, deadly: 1100 },
-  6: { easy: 300, medium: 600, hard: 900, deadly: 1400 },
-  7: { easy: 350, medium: 750, hard: 1100, deadly: 1700 },
-  8: { easy: 450, medium: 900, hard: 1400, deadly: 2100 },
-  9: { easy: 550, medium: 1100, hard: 1600, deadly: 2400 },
-  10: { easy: 600, medium: 1200, hard: 1900, deadly: 2800 },
-  11: { easy: 800, medium: 1600, hard: 2400, deadly: 3600 },
-  12: { easy: 1e3, medium: 2e3, hard: 3e3, deadly: 4500 },
-  13: { easy: 1100, medium: 2200, hard: 3400, deadly: 5100 },
-  14: { easy: 1250, medium: 2500, hard: 3800, deadly: 5700 },
-  15: { easy: 1400, medium: 2800, hard: 4300, deadly: 6400 },
-  16: { easy: 1600, medium: 3200, hard: 4800, deadly: 7200 },
-  17: { easy: 2e3, medium: 3900, hard: 5900, deadly: 8800 },
-  18: { easy: 2100, medium: 4200, hard: 6300, deadly: 9500 },
-  19: { easy: 2400, medium: 4900, hard: 7300, deadly: 10900 },
-  20: { easy: 2800, medium: 5700, hard: 8500, deadly: 12700 }
-};
-function xpBudget(characterLevels) {
-  const easy = characterLevels.reduce(
-    (acc, lvl) => acc + (tresholds[lvl]?.easy ?? 0),
-    0
-  );
-  const medium = characterLevels.reduce(
-    (acc, lvl) => acc + (tresholds[lvl]?.medium ?? 0),
-    0
-  );
-  const hard = characterLevels.reduce(
-    (acc, lvl) => acc + (tresholds[lvl]?.hard ?? 0),
-    0
-  );
-  const deadly = characterLevels.reduce(
-    (acc, lvl) => acc + (tresholds[lvl]?.deadly ?? 0),
-    0
-  );
-  return { easy, medium, hard, deadly };
-}
-function formatDifficultyReport(report) {
-  return `${[
-    `Encounter is ${report.difficulty}`,
-    `Total XP: ${report.totalXp}`,
-    `Adjusted XP: ${report.adjustedXp} (x${report.multiplier})`,
-    ` `,
-    `Threshold`,
-    `Easy: ${report.budget.easy}`,
-    `Medium: ${report.budget.medium}`,
-    `Hard: ${report.budget.hard}`,
-    `Deadly: ${report.budget.deadly}`
-  ].join("\n")}`;
-}
-function encounterDifficulty(characterLevels, xp, numberOfMonsters) {
-  if (!characterLevels?.length || xp == 0 || numberOfMonsters == 0)
-    return null;
-  let numberMultiplier;
-  if (numberOfMonsters === 1) {
-    numberMultiplier = 1;
-  } else if (numberOfMonsters === 2) {
-    numberMultiplier = 1.5;
-  } else if (numberOfMonsters < 7) {
-    numberMultiplier = 2;
-  } else if (numberOfMonsters < 11) {
-    numberMultiplier = 2.5;
-  } else if (numberOfMonsters < 15) {
-    numberMultiplier = 3;
-  } else {
-    numberMultiplier = 4;
-  }
-  const adjustedXp = numberMultiplier * xp;
-  const budget = xpBudget(characterLevels);
-  let difficulty = "Easy";
-  if (adjustedXp >= budget.deadly) {
-    difficulty = "Deadly";
-  } else if (adjustedXp >= budget.hard) {
-    difficulty = "Hard";
-  } else if (adjustedXp >= budget.medium) {
-    difficulty = "Medium";
-  }
-  let result = {
-    difficulty,
-    totalXp: xp,
-    adjustedXp,
-    multiplier: numberMultiplier,
-    budget
-  };
-  return result;
-}
-
 // src/encounter/ui/Creature.svelte
 var import_obsidian4 = require("obsidian");
 function add_css(target) {
@@ -10244,7 +10516,7 @@ function create_if_block_4(ctx) {
     m(target, anchor) {
       insert(target, span, anchor);
       if (!mounted) {
-        dispose = action_destroyer(friendly_action = ctx[6].call(null, span));
+        dispose = action_destroyer(friendly_action = ctx[7].call(null, span));
         mounted = true;
       }
     },
@@ -10269,7 +10541,7 @@ function create_if_block_3(ctx) {
     m(target, anchor) {
       insert(target, span, anchor);
       if (!mounted) {
-        dispose = action_destroyer(hidden_action = ctx[7].call(null, span));
+        dispose = action_destroyer(hidden_action = ctx[8].call(null, span));
         mounted = true;
       }
     },
@@ -10379,7 +10651,7 @@ function create_if_block_1(ctx) {
     m(target, anchor) {
       insert(target, span, anchor);
       if (!mounted) {
-        dispose = action_destroyer(rollEl_action = ctx[5].call(null, span));
+        dispose = action_destroyer(rollEl_action = ctx[6].call(null, span));
         mounted = true;
       }
     },
@@ -10397,6 +10669,7 @@ function create_if_block(ctx) {
   let t1;
   let span3;
   let span1;
+  let t2_value = ctx[5].formatDifficultyValue(ctx[2]) + "";
   let t2;
   let t3;
   let span2;
@@ -10410,10 +10683,10 @@ function create_if_block(ctx) {
       t1 = space();
       span3 = element("span");
       span1 = element("span");
-      t2 = text(ctx[2]);
+      t2 = text(t2_value);
       t3 = space();
       span2 = element("span");
-      span2.textContent = "XP";
+      span2.textContent = `${ctx[5].valueUnit}`;
       t5 = space();
       span4 = element("span");
       span4.textContent = ")";
@@ -10437,8 +10710,8 @@ function create_if_block(ctx) {
       append(span5, span4);
     },
     p(ctx2, dirty) {
-      if (dirty & 4)
-        set_data(t2, ctx2[2]);
+      if (dirty & 4 && t2_value !== (t2_value = ctx2[5].formatDifficultyValue(ctx2[2]) + ""))
+        set_data(t2, t2_value);
     },
     d(detaching) {
       if (detaching)
@@ -10457,8 +10730,8 @@ function create_fragment(ctx) {
   let current;
   let mounted;
   let dispose;
-  const default_slot_template = ctx[9].default;
-  const default_slot = create_slot(default_slot_template, ctx, ctx[8], null);
+  const default_slot_template = ctx[10].default;
+  const default_slot = create_slot(default_slot_template, ctx, ctx[9], null);
   let if_block0 = ctx[0].friendly && create_if_block_4(ctx);
   let if_block1 = ctx[0].hidden && create_if_block_3(ctx);
   function select_block_type(ctx2, dirty) {
@@ -10515,19 +10788,19 @@ function create_fragment(ctx) {
         if_block4.m(div, null);
       current = true;
       if (!mounted) {
-        dispose = listen(span, "click", ctx[10]);
+        dispose = listen(span, "click", ctx[11]);
         mounted = true;
       }
     },
     p(ctx2, [dirty]) {
       if (default_slot) {
-        if (default_slot.p && (!current || dirty & 256)) {
+        if (default_slot.p && (!current || dirty & 512)) {
           update_slot_base(
             default_slot,
             default_slot_template,
             ctx2,
-            ctx2[8],
-            !current ? get_all_dirty_from_scope(ctx2[8]) : get_slot_changes(default_slot_template, ctx2[8], dirty, null),
+            ctx2[9],
+            !current ? get_all_dirty_from_scope(ctx2[9]) : get_slot_changes(default_slot_template, ctx2[9], dirty, null),
             null
           );
         }
@@ -10622,6 +10895,7 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   const plugin = getContext("plugin");
+  const rpgSystem = getRpgSystem(plugin);
   let { creature } = $$props;
   let { count } = $$props;
   let { xp } = $$props;
@@ -10646,7 +10920,7 @@ function instance($$self, $$props, $$invalidate) {
     if ("shouldShowRoll" in $$props2)
       $$invalidate(3, shouldShowRoll = $$props2.shouldShowRoll);
     if ("$$scope" in $$props2)
-      $$invalidate(8, $$scope = $$props2.$$scope);
+      $$invalidate(9, $$scope = $$props2.$$scope);
   };
   return [
     creature,
@@ -10654,6 +10928,7 @@ function instance($$self, $$props, $$invalidate) {
     xp,
     shouldShowRoll,
     plugin,
+    rpgSystem,
     rollEl,
     friendly,
     hidden,
@@ -10685,7 +10960,7 @@ var Creature_default = Creature2;
 
 // src/encounter/ui/Encounter.svelte
 function add_css2(target) {
-  append_styles(target, "svelte-e1kfxz", ".encounter-name.svelte-e1kfxz.svelte-e1kfxz{display:flex;justify-content:flex-start;align-items:center}.encounter-name.svelte-e1kfxz .initiative-tracker-name.svelte-e1kfxz{margin:0}.encounter-instance.svelte-e1kfxz>.creatures-container>.encounter-creatures:first-of-type h4.svelte-e1kfxz,.encounter-creatures.svelte-e1kfxz>ul.svelte-e1kfxz{margin-top:0}.creature-li.svelte-e1kfxz.svelte-e1kfxz{width:fit-content}.xp-parent.svelte-e1kfxz.svelte-e1kfxz{display:inline-flex}.difficulty.svelte-e1kfxz.svelte-e1kfxz{width:fit-content}.deadly.svelte-e1kfxz .difficulty-label.svelte-e1kfxz{color:red}.hard.svelte-e1kfxz .difficulty-label.svelte-e1kfxz{color:orange}.medium.svelte-e1kfxz .difficulty-label.svelte-e1kfxz{color:yellow}.easy.svelte-e1kfxz .difficulty-label.svelte-e1kfxz{color:green}.icons.svelte-e1kfxz.svelte-e1kfxz{display:flex}.icons.svelte-e1kfxz>div.svelte-e1kfxz:first-child .clickable-icon{margin-right:0}.creature-name.svelte-e1kfxz.svelte-e1kfxz{display:inline-flex;align-items:center;gap:0.25rem}.has-icon.svelte-e1kfxz.svelte-e1kfxz{display:flex;align-items:center}");
+  append_styles(target, "svelte-s37km9", ".encounter-name.svelte-s37km9.svelte-s37km9{display:flex;justify-content:flex-start;align-items:center}.encounter-name.svelte-s37km9 .initiative-tracker-name.svelte-s37km9{margin:0}.encounter-instance.svelte-s37km9>.creatures-container>.encounter-creatures:first-of-type h4.svelte-s37km9,.encounter-creatures.svelte-s37km9>ul.svelte-s37km9{margin-top:0}.creature-li.svelte-s37km9.svelte-s37km9{width:fit-content}.xp-parent.svelte-s37km9.svelte-s37km9{display:inline-flex}.difficulty.svelte-s37km9.svelte-s37km9{width:fit-content}.deadly.svelte-s37km9 .difficulty-label.svelte-s37km9{color:red}.hard.svelte-s37km9 .difficulty-label.svelte-s37km9{color:orange}.medium.svelte-s37km9 .difficulty-label.svelte-s37km9{color:yellow}.easy.svelte-s37km9 .difficulty-label.svelte-s37km9{color:green}.trivial.svelte-s37km9 .difficulty-label.svelte-s37km9{color:#aaaaaa}.icons.svelte-s37km9.svelte-s37km9{display:flex}.icons.svelte-s37km9>div.svelte-s37km9:first-child .clickable-icon{margin-right:0}.creature-name.svelte-s37km9.svelte-s37km9{display:inline-flex;align-items:center;gap:0.25rem}.has-icon.svelte-s37km9.svelte-s37km9{display:flex;align-items:center}");
 }
 function get_each_context(ctx, list, i) {
   const child_ctx = ctx.slice();
@@ -10698,13 +10973,13 @@ function get_each_context_1(ctx, list, i) {
   child_ctx[25] = list[i];
   return child_ctx;
 }
-function create_if_block_5(ctx) {
+function create_if_block_6(ctx) {
   let if_block_anchor;
   function select_block_type(ctx2, dirty) {
     if (ctx2[3] instanceof Array && ctx2[3].length)
-      return create_if_block_6;
-    if (!ctx2[3])
       return create_if_block_7;
+    if (!ctx2[3])
+      return create_if_block_8;
   }
   let current_block_type = select_block_type(ctx, -1);
   let if_block = current_block_type && current_block_type(ctx);
@@ -10741,12 +11016,12 @@ function create_if_block_5(ctx) {
     }
   };
 }
-function create_if_block_7(ctx) {
+function create_if_block_8(ctx) {
   let div;
   return {
     c() {
       div = element("div");
-      div.innerHTML = `<h4 class="svelte-e1kfxz">No Players</h4>`;
+      div.innerHTML = `<h4 class="svelte-s37km9">No Players</h4>`;
       attr(div, "class", "encounter-creatures encounter-players");
     },
     m(target, anchor) {
@@ -10759,7 +11034,7 @@ function create_if_block_7(ctx) {
     }
   };
 }
-function create_if_block_6(ctx) {
+function create_if_block_7(ctx) {
   let div;
   let h4;
   let t0_value = (ctx[4] ? ctx[4] : "Players") + "";
@@ -10781,9 +11056,9 @@ function create_if_block_6(ctx) {
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      attr(h4, "class", "svelte-e1kfxz");
-      attr(ul, "class", "svelte-e1kfxz");
-      attr(div, "class", "encounter-creatures encounter-players svelte-e1kfxz");
+      attr(h4, "class", "svelte-s37km9");
+      attr(ul, "class", "svelte-s37km9");
+      attr(div, "class", "encounter-creatures encounter-players svelte-s37km9");
     },
     m(target, anchor) {
       insert(target, div, anchor);
@@ -10853,7 +11128,7 @@ function create_each_block_1(ctx) {
     }
   };
 }
-function create_if_block_22(ctx) {
+function create_if_block_32(ctx) {
   let h4;
   let t0;
   let t1;
@@ -10861,8 +11136,8 @@ function create_if_block_22(ctx) {
   let if_block1;
   let if_block1_anchor;
   let current;
-  let if_block0 = ctx[10] && create_if_block_42(ctx);
-  const if_block_creators = [create_if_block_32, create_else_block2];
+  let if_block0 = ctx[8] && create_if_block_5(ctx);
+  const if_block_creators = [create_if_block_42, create_else_block2];
   const if_blocks = [];
   function select_block_type_1(ctx2, dirty) {
     if (ctx2[2].size)
@@ -10880,7 +11155,7 @@ function create_if_block_22(ctx) {
       t1 = space();
       if_block1.c();
       if_block1_anchor = empty();
-      attr(h4, "class", "creatures-header svelte-e1kfxz");
+      attr(h4, "class", "creatures-header svelte-s37km9");
     },
     m(target, anchor) {
       insert(target, h4, anchor);
@@ -10893,10 +11168,10 @@ function create_if_block_22(ctx) {
       current = true;
     },
     p(ctx2, dirty) {
-      if (ctx2[10]) {
+      if (ctx2[8]) {
         if (if_block0) {
         } else {
-          if_block0 = create_if_block_42(ctx2);
+          if_block0 = create_if_block_5(ctx2);
           if_block0.c();
           if_block0.m(h4, null);
         }
@@ -10948,7 +11223,7 @@ function create_if_block_22(ctx) {
     }
   };
 }
-function create_if_block_42(ctx) {
+function create_if_block_5(ctx) {
   let span;
   let rollEl_action;
   let mounted;
@@ -10956,7 +11231,7 @@ function create_if_block_42(ctx) {
   return {
     c() {
       span = element("span");
-      attr(span, "class", "has-icon svelte-e1kfxz");
+      attr(span, "class", "has-icon svelte-s37km9");
       attr(span, "aria-label", "Rolling for HP");
     },
     m(target, anchor) {
@@ -10993,7 +11268,7 @@ function create_else_block2(ctx) {
     }
   };
 }
-function create_if_block_32(ctx) {
+function create_if_block_42(ctx) {
   let ul;
   let current;
   let each_value = [...ctx[2]];
@@ -11010,7 +11285,7 @@ function create_if_block_32(ctx) {
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      attr(ul, "class", "svelte-e1kfxz");
+      attr(ul, "class", "svelte-s37km9");
     },
     m(target, anchor) {
       insert(target, ul, anchor);
@@ -11020,7 +11295,7 @@ function create_if_block_32(ctx) {
       current = true;
     },
     p(ctx2, dirty) {
-      if (dirty & 66884) {
+      if (dirty & 67012) {
         each_value = [...ctx2[2]];
         let i;
         for (i = 0; i < each_value.length; i += 1) {
@@ -11103,8 +11378,8 @@ function create_each_block(ctx) {
   creaturecomponent = new Creature_default({
     props: {
       creature: ctx[21],
-      xp: ctx[21].xp * ctx[8].get(ctx[21]),
-      shouldShowRoll: !ctx[10] && ctx[6],
+      xp: ctx[10].getCreatureDifficulty(ctx[21], ctx[7]),
+      shouldShowRoll: !ctx[8] && ctx[6],
       count: ctx[22],
       $$slots: { default: [create_default_slot] },
       $$scope: { ctx }
@@ -11116,7 +11391,7 @@ function create_each_block(ctx) {
       create_component(creaturecomponent.$$.fragment);
       t2 = space();
       attr(li, "aria-label", li_aria_label_value = ctx[16](ctx[21]));
-      attr(li, "class", "creature-li svelte-e1kfxz");
+      attr(li, "class", "creature-li svelte-s37km9");
     },
     m(target, anchor) {
       insert(target, li, anchor);
@@ -11128,10 +11403,10 @@ function create_each_block(ctx) {
       const creaturecomponent_changes = {};
       if (dirty & 4)
         creaturecomponent_changes.creature = ctx2[21];
-      if (dirty & 260)
-        creaturecomponent_changes.xp = ctx2[21].xp * ctx2[8].get(ctx2[21]);
-      if (dirty & 1088)
-        creaturecomponent_changes.shouldShowRoll = !ctx2[10] && ctx2[6];
+      if (dirty & 132)
+        creaturecomponent_changes.xp = ctx2[10].getCreatureDifficulty(ctx2[21], ctx2[7]);
+      if (dirty & 320)
+        creaturecomponent_changes.shouldShowRoll = !ctx2[8] && ctx2[6];
       if (dirty & 4)
         creaturecomponent_changes.count = ctx2[22];
       if (dirty & 268435460) {
@@ -11161,13 +11436,13 @@ function create_each_block(ctx) {
 }
 function create_if_block2(ctx) {
   let div;
-  let if_block = ctx[7] > 0 && ctx[9] && create_if_block_12(ctx);
+  let if_block = ctx[9] && create_if_block_12(ctx);
   return {
     c() {
       div = element("div");
       if (if_block)
         if_block.c();
-      attr(div, "class", "encounter-xp difficulty svelte-e1kfxz");
+      attr(div, "class", "encounter-xp difficulty svelte-s37km9");
     },
     m(target, anchor) {
       insert(target, div, anchor);
@@ -11175,7 +11450,7 @@ function create_if_block2(ctx) {
         if_block.m(div, null);
     },
     p(ctx2, dirty) {
-      if (ctx2[7] > 0 && ctx2[9]) {
+      if (ctx2[9]) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
@@ -11197,83 +11472,121 @@ function create_if_block2(ctx) {
   };
 }
 function create_if_block_12(ctx) {
-  let span6;
+  let span4;
   let strong;
-  let t0_value = ctx[9].difficulty + "";
+  let t0_value = ctx[9].displayName + "";
   let t0;
   let t1;
-  let span5;
+  let span3;
   let span0;
   let t3;
-  let span3;
   let span1;
   let t4;
-  let t5;
   let span2;
-  let t7;
-  let span4;
-  let span6_aria_label_value;
-  let span6_class_value;
+  let span4_aria_label_value;
+  let span4_class_value;
+  let if_block = ctx[9].value > 0 && create_if_block_22(ctx);
   return {
     c() {
-      span6 = element("span");
+      span4 = element("span");
       strong = element("strong");
       t0 = text(t0_value);
       t1 = space();
-      span5 = element("span");
+      span3 = element("span");
       span0 = element("span");
       span0.textContent = "(";
       t3 = space();
-      span3 = element("span");
       span1 = element("span");
-      t4 = text(ctx[7]);
-      t5 = space();
+      if (if_block)
+        if_block.c();
+      t4 = space();
       span2 = element("span");
-      span2.textContent = "XP";
-      t7 = space();
-      span4 = element("span");
-      span4.textContent = ")";
-      attr(strong, "class", "difficulty-label svelte-e1kfxz");
+      span2.textContent = ")";
+      attr(strong, "class", "difficulty-label svelte-s37km9");
       attr(span0, "class", "paren left");
-      attr(span1, "class", "xp number");
-      attr(span2, "class", "xp text");
-      attr(span3, "class", "xp-container");
-      attr(span4, "class", "paren right");
-      attr(span5, "class", "xp-parent difficulty svelte-e1kfxz");
-      attr(span6, "aria-label", span6_aria_label_value = formatDifficultyReport(ctx[9]));
-      attr(span6, "class", span6_class_value = null_to_empty(ctx[9].difficulty.toLowerCase()) + " svelte-e1kfxz");
+      attr(span1, "class", "xp-container");
+      attr(span2, "class", "paren right");
+      attr(span3, "class", "xp-parent difficulty svelte-s37km9");
+      attr(span4, "aria-label", span4_aria_label_value = ctx[9].summary);
+      attr(span4, "class", span4_class_value = null_to_empty(ctx[9].cssClass) + " svelte-s37km9");
     },
     m(target, anchor) {
-      insert(target, span6, anchor);
-      append(span6, strong);
+      insert(target, span4, anchor);
+      append(span4, strong);
       append(strong, t0);
-      append(span6, t1);
-      append(span6, span5);
-      append(span5, span0);
-      append(span5, t3);
-      append(span5, span3);
+      append(span4, t1);
+      append(span4, span3);
+      append(span3, span0);
+      append(span3, t3);
       append(span3, span1);
-      append(span1, t4);
-      append(span3, t5);
+      if (if_block)
+        if_block.m(span1, null);
+      append(span3, t4);
       append(span3, span2);
-      append(span5, t7);
-      append(span5, span4);
     },
     p(ctx2, dirty) {
-      if (dirty & 512 && t0_value !== (t0_value = ctx2[9].difficulty + ""))
+      if (dirty & 512 && t0_value !== (t0_value = ctx2[9].displayName + ""))
         set_data(t0, t0_value);
-      if (dirty & 128)
-        set_data(t4, ctx2[7]);
-      if (dirty & 512 && span6_aria_label_value !== (span6_aria_label_value = formatDifficultyReport(ctx2[9]))) {
-        attr(span6, "aria-label", span6_aria_label_value);
+      if (ctx2[9].value > 0) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block = create_if_block_22(ctx2);
+          if_block.c();
+          if_block.m(span1, null);
+        }
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
       }
-      if (dirty & 512 && span6_class_value !== (span6_class_value = null_to_empty(ctx2[9].difficulty.toLowerCase()) + " svelte-e1kfxz")) {
-        attr(span6, "class", span6_class_value);
+      if (dirty & 512 && span4_aria_label_value !== (span4_aria_label_value = ctx2[9].summary)) {
+        attr(span4, "aria-label", span4_aria_label_value);
+      }
+      if (dirty & 512 && span4_class_value !== (span4_class_value = null_to_empty(ctx2[9].cssClass) + " svelte-s37km9")) {
+        attr(span4, "class", span4_class_value);
       }
     },
     d(detaching) {
       if (detaching)
-        detach(span6);
+        detach(span4);
+      if (if_block)
+        if_block.d();
+    }
+  };
+}
+function create_if_block_22(ctx) {
+  let span0;
+  let t0_value = ctx[10].formatDifficultyValue(ctx[9].value) + "";
+  let t0;
+  let t1;
+  let span1;
+  return {
+    c() {
+      span0 = element("span");
+      t0 = text(t0_value);
+      t1 = space();
+      span1 = element("span");
+      span1.textContent = `${ctx[10].valueUnit}`;
+      attr(span0, "class", "xp number");
+      attr(span1, "class", "xp text");
+    },
+    m(target, anchor) {
+      insert(target, span0, anchor);
+      append(span0, t0);
+      insert(target, t1, anchor);
+      insert(target, span1, anchor);
+    },
+    p(ctx2, dirty) {
+      if (dirty & 512 && t0_value !== (t0_value = ctx2[10].formatDifficultyValue(ctx2[9].value) + ""))
+        set_data(t0, t0_value);
+    },
+    d(detaching) {
+      if (detaching)
+        detach(span0);
+      if (detaching)
+        detach(t1);
+      if (detaching)
+        detach(span1);
     }
   };
 }
@@ -11299,8 +11612,8 @@ function create_fragment2(ctx) {
   let current;
   let mounted;
   let dispose;
-  let if_block0 = show_if_1 && create_if_block_5(ctx);
-  let if_block1 = show_if && create_if_block_22(ctx);
+  let if_block0 = show_if_1 && create_if_block_6(ctx);
+  let if_block1 = show_if && create_if_block_32(ctx);
   let if_block2 = ctx[0].data.displayDifficulty && create_if_block2(ctx);
   return {
     c() {
@@ -11325,16 +11638,16 @@ function create_fragment2(ctx) {
       if (if_block2)
         if_block2.c();
       attr(h3, "data-heading", ctx[1]);
-      attr(h3, "class", "initiative-tracker-name svelte-e1kfxz");
+      attr(h3, "class", "initiative-tracker-name svelte-s37km9");
       attr(div0, "aria-label", "Start Encounter");
-      attr(div0, "class", "svelte-e1kfxz");
+      attr(div0, "class", "svelte-s37km9");
       attr(div1, "aria-label", "Add to Encounter");
-      attr(div1, "class", "svelte-e1kfxz");
-      attr(div2, "class", "icons svelte-e1kfxz");
-      attr(div3, "class", "encounter-name svelte-e1kfxz");
-      attr(div4, "class", "encounter-creatures svelte-e1kfxz");
+      attr(div1, "class", "svelte-s37km9");
+      attr(div2, "class", "icons svelte-s37km9");
+      attr(div3, "class", "encounter-name svelte-s37km9");
+      attr(div4, "class", "encounter-creatures svelte-s37km9");
       attr(div5, "class", "creatures-container");
-      attr(div6, "class", "encounter-instance svelte-e1kfxz");
+      attr(div6, "class", "encounter-instance svelte-s37km9");
     },
     m(target, anchor) {
       insert(target, div6, anchor);
@@ -11380,7 +11693,7 @@ function create_fragment2(ctx) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
         } else {
-          if_block0 = create_if_block_5(ctx2);
+          if_block0 = create_if_block_6(ctx2);
           if_block0.c();
           if_block0.m(div5, t4);
         }
@@ -11397,7 +11710,7 @@ function create_fragment2(ctx) {
             transition_in(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block_22(ctx2);
+          if_block1 = create_if_block_32(ctx2);
           if_block1.c();
           transition_in(if_block1, 1);
           if_block1.m(div4, null);
@@ -11447,6 +11760,7 @@ function create_fragment2(ctx) {
   };
 }
 function instance2($$self, $$props, $$invalidate) {
+  let difficulty;
   let allRolling;
   let $tracker;
   component_subscribe($$self, tracker, ($$value) => $$invalidate(19, $tracker = $$value));
@@ -11459,17 +11773,16 @@ function instance2($$self, $$props, $$invalidate) {
   let { hide: hide2 = [] } = $$props;
   let { rollHP = plugin.data.rollHP } = $$props;
   let { playerLevels } = $$props;
-  let totalXP;
   let creatureMap = /* @__PURE__ */ new Map();
   const rollerMap = /* @__PURE__ */ new Map();
+  const rpgSystem = getRpgSystem(plugin);
   for (let [creature, count] of creatures) {
     let number2 = Number(count);
     if (plugin.canUseDiceRoller) {
       let roller = plugin.getRoller(`${count}`);
       roller.on("new-result", () => {
         creatureMap.set(creature, roller.result);
-        $$invalidate(8, creatureMap);
-        $$invalidate(7, totalXP = [...creatureMap].reduce((a, c) => a + getCreatureXP(plugin, c[0]) * c[1], 0));
+        $$invalidate(18, creatureMap);
       });
       rollerMap.set(creature, roller);
       roller.roll();
@@ -11477,8 +11790,6 @@ function instance2($$self, $$props, $$invalidate) {
       creatureMap.set(creature, number2);
     }
   }
-  totalXP = [...creatureMap].reduce((a, c) => a + getCreatureXP(plugin, c[0]) * c[1], 0);
-  let difficulty;
   const openButton = (node) => {
     new import_obsidian5.ExtraButtonComponent(node).setIcon(START_ENCOUNTER);
   };
@@ -11493,7 +11804,12 @@ function instance2($$self, $$props, $$invalidate) {
       return [...Array(number2).keys()].map((v) => Creature.new(creature));
     }).flat();
     const transformedCreatures = [];
-    for (const creature of [...plugin.getPlayersForParty(party), ...creatures2]) {
+    const combinedPlayers = [...plugin.getPlayerNamesForParty(party), ...players2];
+    const playersForEncounter = [];
+    for (const name4 of new Set(combinedPlayers)) {
+      playersForEncounter.push(plugin.getPlayerByName(name4));
+    }
+    for (const creature of [...playersForEncounter, ...creatures2]) {
       transformedCreatures.push(creature.toJSON());
     }
     tracker.new(plugin, {
@@ -11567,19 +11883,16 @@ function instance2($$self, $$props, $$invalidate) {
     if ("rollHP" in $$props2)
       $$invalidate(6, rollHP = $$props2.rollHP);
     if ("playerLevels" in $$props2)
-      $$invalidate(18, playerLevels = $$props2.playerLevels);
+      $$invalidate(7, playerLevels = $$props2.playerLevels);
   };
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & 262528) {
-      $: {
-        if (!isNaN(totalXP)) {
-          $$invalidate(9, difficulty = encounterDifficulty(playerLevels, totalXP, [...creatureMap.values()].reduce((acc, curr) => acc + curr, 0)));
-        }
-      }
+    if ($$self.$$.dirty & 262272) {
+      $:
+        $$invalidate(9, difficulty = rpgSystem.getEncounterDifficulty(creatureMap, playerLevels));
     }
     if ($$self.$$.dirty & 68) {
       $:
-        $$invalidate(10, allRolling = rollHP && [...creatures.keys()].filter((c) => c.hit_dice?.length).length == creatures.size);
+        $$invalidate(8, allRolling = rollHP && [...creatures.keys()].filter((c) => c.hit_dice?.length).length == creatures.size);
     }
   };
   return [
@@ -11590,10 +11903,10 @@ function instance2($$self, $$props, $$invalidate) {
     party,
     hide2,
     rollHP,
-    totalXP,
-    creatureMap,
-    difficulty,
+    playerLevels,
     allRolling,
+    difficulty,
+    rpgSystem,
     openButton,
     open,
     addButton,
@@ -11601,7 +11914,7 @@ function instance2($$self, $$props, $$invalidate) {
     rollerEl,
     label,
     rollEl,
-    playerLevels
+    creatureMap
   ];
 }
 var Encounter = class extends SvelteComponent {
@@ -11621,7 +11934,7 @@ var Encounter = class extends SvelteComponent {
         party: 4,
         hide: 5,
         rollHP: 6,
-        playerLevels: 18
+        playerLevels: 7
       },
       add_css2
     );
@@ -11632,7 +11945,7 @@ var Encounter_default = Encounter;
 // src/encounter/ui/EncounterRow.svelte
 var import_obsidian6 = require("obsidian");
 function add_css3(target) {
-  append_styles(target, "svelte-bf6d6a", ".deadly.svelte-bf6d6a .difficulty-label.svelte-bf6d6a{color:red}.hard.svelte-bf6d6a .difficulty-label.svelte-bf6d6a{color:orange}.medium.svelte-bf6d6a .difficulty-label.svelte-bf6d6a{color:yellow}.easy.svelte-bf6d6a .difficulty-label.svelte-bf6d6a{color:green}.icons.svelte-bf6d6a.svelte-bf6d6a{display:flex}.icons.svelte-bf6d6a>div.svelte-bf6d6a:first-child .clickable-icon{margin-right:0}ul.svelte-bf6d6a.svelte-bf6d6a{margin:0}");
+  append_styles(target, "svelte-9nyuhm", ".deadly.svelte-9nyuhm .difficulty-label.svelte-9nyuhm{color:red}.hard.svelte-9nyuhm .difficulty-label.svelte-9nyuhm{color:orange}.medium.svelte-9nyuhm .difficulty-label.svelte-9nyuhm{color:yellow}.easy.svelte-9nyuhm .difficulty-label.svelte-9nyuhm{color:green}.trivial.svelte-9nyuhm .difficulty-label.svelte-9nyuhm{color:#AAAAAA}.icons.svelte-9nyuhm.svelte-9nyuhm{display:flex}.icons.svelte-9nyuhm>div.svelte-9nyuhm:first-child .clickable-icon{margin-right:0}ul.svelte-9nyuhm.svelte-9nyuhm{margin:0}");
 }
 function get_each_context2(ctx, list, i) {
   const child_ctx = ctx.slice();
@@ -11670,7 +11983,7 @@ function create_if_block_43(ctx) {
       td = element("td");
       ul = element("ul");
       if_block.c();
-      attr(ul, "class", "encounter-creatures encounter-list svelte-bf6d6a");
+      attr(ul, "class", "encounter-creatures encounter-list svelte-9nyuhm");
     },
     m(target, anchor) {
       insert(target, td, anchor);
@@ -11761,7 +12074,7 @@ function create_if_block_52(ctx) {
       current = true;
     },
     p(ctx2, dirty) {
-      if (dirty & 16706) {
+      if (dirty & 17042) {
         each_value_1 = [...ctx2[1]];
         let i;
         for (i = 0; i < each_value_1.length; i += 1) {
@@ -11844,8 +12157,8 @@ function create_each_block_12(ctx) {
   creaturecomponent = new Creature_default({
     props: {
       creature: ctx[22],
-      xp: ctx[22].xp * ctx[8].get(ctx[22]),
-      shouldShowRoll: ctx[6],
+      xp: ctx[9].getCreatureDifficulty(ctx[22], ctx[4]),
+      shouldShowRoll: ctx[7],
       count: ctx[23],
       $$slots: { default: [create_default_slot2] },
       $$scope: { ctx }
@@ -11868,10 +12181,10 @@ function create_each_block_12(ctx) {
       const creaturecomponent_changes = {};
       if (dirty & 2)
         creaturecomponent_changes.creature = ctx2[22];
-      if (dirty & 258)
-        creaturecomponent_changes.xp = ctx2[22].xp * ctx2[8].get(ctx2[22]);
-      if (dirty & 64)
-        creaturecomponent_changes.shouldShowRoll = ctx2[6];
+      if (dirty & 18)
+        creaturecomponent_changes.xp = ctx2[9].getCreatureDifficulty(ctx2[22], ctx2[4]);
+      if (dirty & 128)
+        creaturecomponent_changes.shouldShowRoll = ctx2[7];
       if (dirty & 2)
         creaturecomponent_changes.count = ctx2[23];
       if (dirty & 67108866) {
@@ -11919,7 +12232,7 @@ function create_if_block_23(ctx) {
       td = element("td");
       ul = element("ul");
       if_block.c();
-      attr(ul, "class", "encounter-players encounter-list svelte-bf6d6a");
+      attr(ul, "class", "encounter-players encounter-list svelte-9nyuhm");
     },
     m(target, anchor) {
       insert(target, td, anchor);
@@ -12038,7 +12351,7 @@ function create_if_block3(ctx) {
   let td;
   let div;
   function select_block_type_2(ctx2, dirty) {
-    if (ctx2[7] > 0 && ctx2[9])
+    if (ctx2[8].value)
       return create_if_block_13;
     return create_else_block3;
   }
@@ -12079,7 +12392,7 @@ function create_else_block3(ctx) {
   let t2;
   return {
     c() {
-      t2 = text("-");
+      t2 = text(DEFAULT_UNDEFINED);
     },
     m(target, anchor) {
       insert(target, t2, anchor);
@@ -12094,7 +12407,7 @@ function create_else_block3(ctx) {
 function create_if_block_13(ctx) {
   let span;
   let strong;
-  let t_value = ctx[9].difficulty + "";
+  let t_value = ctx[8].displayName + "";
   let t2;
   let span_aria_label_value;
   let span_class_value;
@@ -12103,9 +12416,9 @@ function create_if_block_13(ctx) {
       span = element("span");
       strong = element("strong");
       t2 = text(t_value);
-      attr(strong, "class", "difficulty-label svelte-bf6d6a");
-      attr(span, "aria-label", span_aria_label_value = formatDifficultyReport(ctx[9]));
-      attr(span, "class", span_class_value = null_to_empty(ctx[9].difficulty.toLowerCase()) + " svelte-bf6d6a");
+      attr(strong, "class", "difficulty-label svelte-9nyuhm");
+      attr(span, "aria-label", span_aria_label_value = ctx[8].summary);
+      attr(span, "class", span_class_value = null_to_empty(ctx[8].cssClass) + " svelte-9nyuhm");
     },
     m(target, anchor) {
       insert(target, span, anchor);
@@ -12113,12 +12426,12 @@ function create_if_block_13(ctx) {
       append(strong, t2);
     },
     p(ctx2, dirty) {
-      if (dirty & 512 && t_value !== (t_value = ctx2[9].difficulty + ""))
+      if (dirty & 256 && t_value !== (t_value = ctx2[8].displayName + ""))
         set_data(t2, t_value);
-      if (dirty & 512 && span_aria_label_value !== (span_aria_label_value = formatDifficultyReport(ctx2[9]))) {
+      if (dirty & 256 && span_aria_label_value !== (span_aria_label_value = ctx2[8].summary)) {
         attr(span, "aria-label", span_aria_label_value);
       }
-      if (dirty & 512 && span_class_value !== (span_class_value = null_to_empty(ctx2[9].difficulty.toLowerCase()) + " svelte-bf6d6a")) {
+      if (dirty & 256 && span_class_value !== (span_class_value = null_to_empty(ctx2[8].cssClass) + " svelte-9nyuhm")) {
         attr(span, "class", span_class_value);
       }
     },
@@ -12133,9 +12446,9 @@ function create_fragment3(ctx) {
   let td0;
   let t0;
   let t1;
-  let show_if_1 = ctx[5].includes("creatures");
+  let show_if_1 = ctx[6].includes("creatures");
   let t2;
-  let show_if = ctx[5].includes("players");
+  let show_if = ctx[6].includes("players");
   let t3;
   let t4;
   let td1;
@@ -12150,7 +12463,7 @@ function create_fragment3(ctx) {
   let dispose;
   let if_block0 = show_if_1 && create_if_block_43(ctx);
   let if_block1 = show_if && create_if_block_23(ctx);
-  let if_block2 = ctx[4].data.displayDifficulty && create_if_block3(ctx);
+  let if_block2 = ctx[5].data.displayDifficulty && create_if_block3(ctx);
   return {
     c() {
       tr = element("tr");
@@ -12171,10 +12484,10 @@ function create_fragment3(ctx) {
       div0 = element("div");
       t5 = space();
       div1 = element("div");
-      attr(div0, "class", "svelte-bf6d6a");
+      attr(div0, "class", "svelte-9nyuhm");
       attr(div1, "aria-label", "Add to Encounter");
-      attr(div1, "class", "svelte-bf6d6a");
-      attr(div2, "class", "icons svelte-bf6d6a");
+      attr(div1, "class", "svelte-9nyuhm");
+      attr(div2, "class", "icons svelte-9nyuhm");
       attr(tr, "class", "encounter-row");
     },
     m(target, anchor) {
@@ -12209,12 +12522,12 @@ function create_fragment3(ctx) {
     p(ctx2, [dirty]) {
       if (!current || dirty & 1)
         set_data(t0, ctx2[0]);
-      if (dirty & 32)
-        show_if_1 = ctx2[5].includes("creatures");
+      if (dirty & 64)
+        show_if_1 = ctx2[6].includes("creatures");
       if (show_if_1) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
-          if (dirty & 32) {
+          if (dirty & 64) {
             transition_in(if_block0, 1);
           }
         } else {
@@ -12230,8 +12543,8 @@ function create_fragment3(ctx) {
         });
         check_outros();
       }
-      if (dirty & 32)
-        show_if = ctx2[5].includes("players");
+      if (dirty & 64)
+        show_if = ctx2[6].includes("players");
       if (show_if) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
@@ -12244,7 +12557,7 @@ function create_fragment3(ctx) {
         if_block1.d(1);
         if_block1 = null;
       }
-      if (ctx2[4].data.displayDifficulty) {
+      if (ctx2[5].data.displayDifficulty) {
         if (if_block2) {
           if_block2.p(ctx2, dirty);
         } else {
@@ -12282,6 +12595,7 @@ function create_fragment3(ctx) {
   };
 }
 function instance3($$self, $$props, $$invalidate) {
+  let difficulty;
   let { name: name3 = "Encounter" } = $$props;
   let { creatures } = $$props;
   let { players: players2 } = $$props;
@@ -12291,17 +12605,16 @@ function instance3($$self, $$props, $$invalidate) {
   setContext("plugin", plugin);
   let { headers } = $$props;
   let { rollHP = plugin.data.rollHP } = $$props;
-  let totalXP;
   let creatureMap = /* @__PURE__ */ new Map();
   const rollerMap = /* @__PURE__ */ new Map();
+  const rpgSystem = getRpgSystem(plugin);
   for (let [creature, count] of creatures) {
     let number2 = Number(count);
     if (plugin.canUseDiceRoller) {
       let roller = plugin.getRoller(`${count}`);
       roller.on("new-result", () => {
         creatureMap.set(creature, roller.result);
-        $$invalidate(8, creatureMap);
-        $$invalidate(7, totalXP = [...creatureMap].reduce((a, c) => a + c[0].xp * c[1], 0));
+        $$invalidate(15, creatureMap);
       });
       rollerMap.set(creature, roller);
       roller.roll();
@@ -12309,8 +12622,6 @@ function instance3($$self, $$props, $$invalidate) {
       creatureMap.set(creature, number2);
     }
   }
-  totalXP = [...creatureMap].reduce((a, c) => a + c[0].xp * c[1], 0);
-  let difficulty;
   const open = (node) => {
     new import_obsidian6.ExtraButtonComponent(node).setIcon(START_ENCOUNTER).setTooltip("Begin Encounter").onClick(async () => {
       if (!plugin.view) {
@@ -12393,21 +12704,18 @@ function instance3($$self, $$props, $$invalidate) {
     if ("hide" in $$props2)
       $$invalidate(3, hide2 = $$props2.hide);
     if ("playerLevels" in $$props2)
-      $$invalidate(15, playerLevels = $$props2.playerLevels);
+      $$invalidate(4, playerLevels = $$props2.playerLevels);
     if ("plugin" in $$props2)
-      $$invalidate(4, plugin = $$props2.plugin);
+      $$invalidate(5, plugin = $$props2.plugin);
     if ("headers" in $$props2)
-      $$invalidate(5, headers = $$props2.headers);
+      $$invalidate(6, headers = $$props2.headers);
     if ("rollHP" in $$props2)
-      $$invalidate(6, rollHP = $$props2.rollHP);
+      $$invalidate(7, rollHP = $$props2.rollHP);
   };
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & 33152) {
-      $: {
-        if (!isNaN(totalXP)) {
-          $$invalidate(9, difficulty = encounterDifficulty(playerLevels, totalXP, [...creatureMap.values()].reduce((acc, curr) => acc + curr)));
-        }
-      }
+    if ($$self.$$.dirty & 32784) {
+      $:
+        $$invalidate(8, difficulty = rpgSystem.getEncounterDifficulty(creatureMap, playerLevels));
     }
   };
   return [
@@ -12415,18 +12723,18 @@ function instance3($$self, $$props, $$invalidate) {
     creatures,
     players2,
     hide2,
+    playerLevels,
     plugin,
     headers,
     rollHP,
-    totalXP,
-    creatureMap,
     difficulty,
+    rpgSystem,
     open,
     addButton,
     add2,
     rollerEl,
     label,
-    playerLevels
+    creatureMap
   ];
 }
 var EncounterRow = class extends SvelteComponent {
@@ -12443,10 +12751,10 @@ var EncounterRow = class extends SvelteComponent {
         creatures: 1,
         players: 2,
         hide: 3,
-        playerLevels: 15,
-        plugin: 4,
-        headers: 5,
-        rollHP: 6
+        playerLevels: 4,
+        plugin: 5,
+        headers: 6,
+        rollHP: 7
       },
       add_css3
     );
@@ -12743,8 +13051,8 @@ var EncounterParser = class {
     const players2 = this.parsePlayers(params);
     const hide2 = this.parseHide(params);
     const rawMonsters = params.creatures ?? [];
-    const rollHP = params.rollHP;
-    let creatures = await this.parseRawCreatures(rawMonsters);
+    const rollHP = params.rollHP ?? this.plugin.data.rollHP;
+    let creatures = await this.parseRawCreatures(rawMonsters, rollHP);
     const xp = params.xp ?? null;
     const playerLevels = players2.map((p) => this.plugin.getPlayerByName(p)).map((p) => p.level).filter((p) => p && !isNaN(Number(p)));
     return {
@@ -12799,11 +13107,11 @@ var EncounterParser = class {
     }
     return Array.from(new Set(playersToReturn));
   }
-  async parseRawCreatures(rawMonsters) {
+  async parseRawCreatures(rawMonsters, rollHP) {
     const creatureMap = /* @__PURE__ */ new Map();
     if (rawMonsters && Array.isArray(rawMonsters)) {
       for (const raw of rawMonsters) {
-        const { creature, number: number2 = 1 } = this.parseRawCreature(raw) ?? {};
+        const { creature, number: number2 = 1 } = this.parseRawCreature(raw, rollHP) ?? {};
         if (!creature)
           continue;
         const stats = {
@@ -12814,7 +13122,8 @@ var EncounterParser = class {
           modifier: creature.modifier,
           xp: creature.xp,
           hidden: creature.hidden,
-          friendly: creature.friendly
+          friendly: creature.friendly,
+          rollHP: creature.rollHP
         };
         const existing = [...creatureMap].find(
           ([c]) => equivalent(c, stats)
@@ -12834,7 +13143,7 @@ var EncounterParser = class {
     }
     return creatureMap;
   }
-  parseRawCreature(raw) {
+  parseRawCreature(raw, globalRollHP) {
     if (!raw)
       return {};
     let monster, number2 = 1;
@@ -12858,7 +13167,7 @@ var EncounterParser = class {
       number2 = Number(number2);
     if (!number2 || typeof number2 == "number" && number2 < 1)
       number2 = 1;
-    let name3, display, hp, ac, mod, xp, hidden = false, friendly = false;
+    let name3, display, hp, ac, mod, xp, hidden = false, friendly = false, rollHP = globalRollHP;
     if (typeof monster == "string") {
       if (monster.match(/,\s+hidden/)) {
         hidden = true;
@@ -12870,6 +13179,9 @@ var EncounterParser = class {
       }
       name3 = monster.split(/,\s?/)[0];
       [hp, ac, mod, xp] = monster.split(/,\s?/).slice(1).map((v) => isNaN(Number(v)) ? null : Number(v));
+      if (hp) {
+        rollHP = false;
+      }
     } else if (Array.isArray(monster)) {
       if (typeof monster[0] == "string") {
         name3 = monster[0];
@@ -12892,7 +13204,7 @@ var EncounterParser = class {
     }
     if (!name3 || typeof name3 != "string")
       return {};
-    let existing = this.plugin.bestiary.find((c) => c.name == name3);
+    let existing = this.plugin.getCreatureFromBestiary(name3);
     let creature = existing ? Creature.from(existing) : new Creature({ name: name3 });
     creature.display = display;
     creature.hp = hp ?? creature.hp;
@@ -12901,6 +13213,7 @@ var EncounterParser = class {
     creature.xp = xp ?? creature.xp;
     creature.hidden = hidden ?? creature.hidden;
     creature.friendly = friendly ?? creature.friendly;
+    creature.rollHP = rollHP ?? globalRollHP ?? creature.rollHP;
     return { creature, number: number2 };
   }
 };
@@ -13062,6 +13375,9 @@ function createTracker() {
   const $name = writable();
   const $party = writable();
   const data = writable();
+  const descending = derived(data, (data2) => {
+    return data2.descending;
+  });
   let _settings;
   const condensed = derived(creatures, (values) => {
     if (_settings.condense) {
@@ -13077,10 +13393,10 @@ function createTracker() {
     return values;
   });
   let current_order = [];
-  const ordered = derived(condensed, (values) => {
+  const ordered = derived([condensed, data], ([values, data2]) => {
     const sort = [...values];
     sort.sort((a, b) => {
-      return b.initiative - a.initiative;
+      return data2.descending ? b.initiative - a.initiative : a.initiative - b.initiative;
     });
     current_order = sort;
     return sort;
@@ -13420,6 +13736,7 @@ function createTracker() {
     }),
     round: $round,
     name: $name,
+    sort: descending,
     party: $party,
     setParty: (party, plugin) => updateAndSave((creatures2) => {
       const players2 = plugin.getPlayersForParty(party);
@@ -13510,14 +13827,14 @@ function createTracker() {
     ordered,
     add: async (plugin, roll = plugin.data.rollHP, ...items) => updateAndSave((creatures2) => {
       if (plugin.canUseDiceRoller && roll) {
-        for (const creature of items) {
-          if (!creature?.hit_dice?.length)
-            continue;
-          let roller = plugin.getRoller(
-            creature.hit_dice
-          );
-          creature.hp = creature.max = creature.current_max = roller.rollSync();
-        }
+        setCreatureHP(items, plugin);
+      }
+      for (let creature of items) {
+        if (creature.static)
+          continue;
+        creature.initiative = plugin.getInitiativeValue(
+          creature.modifier
+        );
       }
       creatures2.push(...items);
       _logger?.log(
@@ -13572,14 +13889,7 @@ function createTracker() {
       }
       setNumbers(creatures2);
       if (plugin.canUseDiceRoller && (state?.rollHP ?? plugin.data.rollHP)) {
-        for (const creature of creatures2) {
-          if (creature.hit_dice?.length) {
-            let roller = plugin.getRoller(
-              creature.hit_dice
-            );
-            creature.hp = creature.max = creature.current_max = roller.rollSync();
-          }
-        }
+        setCreatureHP(creatures2, plugin);
       }
       if (state?.logFile) {
         _logger?.new(state.logFile).then(() => {
@@ -13652,33 +13962,58 @@ function createTracker() {
     logFile: $logFile,
     getEncounterState,
     updateState: () => update2((c) => c),
-    difficulty: (plugin) => derived(
-      creatures,
-      (values) => {
-        const players2 = [];
-        let xp = 0;
-        let amount = 0;
-        for (const creature of values) {
-          if (!creature.enabled)
-            continue;
-          if (creature.friendly)
-            continue;
-          if (creature.player && creature.level) {
-            players2.push(creature.level);
-            continue;
-          }
-          const creatureXP = creature.getXP(plugin);
-          if (creatureXP) {
-            xp += creatureXP;
-            amount++;
-          }
+    difficulty: (plugin) => derived(creatures, (values) => {
+      const players2 = [];
+      const creatureMap = /* @__PURE__ */ new Map();
+      const rpgSystem = getRpgSystem(plugin);
+      for (const creature of values) {
+        if (!creature.enabled)
+          continue;
+        if (creature.friendly)
+          continue;
+        if (creature.player && creature.level) {
+          players2.push(creature.level);
+          continue;
         }
-        return encounterDifficulty(players2, xp, amount);
+        const stats = {
+          name: creature.name,
+          display: creature.display,
+          ac: creature.ac,
+          hp: creature.hp,
+          modifier: creature.modifier,
+          xp: creature.xp,
+          hidden: creature.hidden
+        };
+        const existing = [...creatureMap].find(
+          ([c]) => equivalent(c, stats)
+        );
+        if (!existing) {
+          creatureMap.set(creature, 1);
+          continue;
+        }
+        creatureMap.set(existing[0], existing[1] + 1);
       }
-    )
+      return {
+        difficulty: rpgSystem.getEncounterDifficulty(
+          creatureMap,
+          players2
+        ),
+        thresholds: rpgSystem.getDifficultyThresholds(players2)
+      };
+    })
   };
 }
 var tracker = createTracker();
+function setCreatureHP(creatures, plugin) {
+  for (const creature of creatures) {
+    if (!creature.rollHP)
+      continue;
+    if (!creature.hit_dice?.length)
+      continue;
+    let roller = plugin.getRoller(creature.hit_dice);
+    creature.hp = creature.max = creature.current_max = roller.rollSync();
+  }
+}
 
 // src/settings/settings.ts
 var InitiativeTrackerSettings = class extends import_obsidian9.PluginSettingTab {
@@ -13770,7 +14105,7 @@ var InitiativeTrackerSettings = class extends import_obsidian9.PluginSettingTab 
     containerEl.empty();
     new import_obsidian9.Setting(containerEl).setHeading().setName("Basic Settings");
     new import_obsidian9.Setting(containerEl).setName("Display Beginner Tips").setDesc(
-      "Display instructions in the intiative tracker, helping you get used to the workflow."
+      "Display instructions in the initiative tracker, helping you get used to the workflow."
     ).addToggle((t2) => {
       t2.setValue(this.plugin.data.beginnerTips).onChange(
         async (v) => {
@@ -14044,7 +14379,7 @@ var InitiativeTrackerSettings = class extends import_obsidian9.PluginSettingTab 
           };
         });
         new import_obsidian9.ExtraButtonComponent(icons.createDiv()).setIcon("trash").setTooltip("Delete").onClick(async () => {
-          this.plugin.data.players = this.plugin.data.players.filter((p) => p != player);
+          this.plugin.deletePlayer(player);
           await this.plugin.saveSettings();
           this._displayPlayers(additionalContainer);
         });
@@ -14104,6 +14439,21 @@ var InitiativeTrackerSettings = class extends import_obsidian9.PluginSettingTab 
           this.plugin.setBuilderIcon();
         }
       );
+    });
+    new import_obsidian9.Setting(additionalContainer).setName("XP System").setDesc("XP system to use for encounters").addDropdown((d) => {
+      Object.values(RpgSystemSetting).forEach(
+        (system) => d.addOption(
+          system,
+          getRpgSystem(this.plugin, system).displayName
+        )
+      );
+      d.setValue(
+        this.plugin.data.rpgSystem ?? "dnd5e" /* Dnd5e */
+      );
+      d.onChange(async (v) => {
+        this.plugin.data.rpgSystem = v;
+        this.plugin.saveSettings();
+      });
     });
     const additional = additionalContainer.createDiv("additional");
     new import_obsidian9.Setting(additional).setHeading().setName("Saved Encounters");
@@ -14520,95 +14870,6 @@ var InitiativeTrackerSettings = class extends import_obsidian9.PluginSettingTab 
         await this.plugin.saveSettings();
       };
     });
-    new import_obsidian9.Setting(containerEl).setName("Integrate with Obsidian Leaflet").setDesc(
-      createFragment((e) => {
-        e.createSpan({
-          text: "Integrate with the Obsidian Leaflet plugin and display combats on a map."
-        });
-        if (!this.plugin.canUseLeaflet) {
-          e.createEl("br");
-          e.createEl("br");
-          e.createSpan({
-            attr: {
-              style: `color: var(--text-error);`
-            },
-            text: "Requires  "
-          });
-          e.createEl("a", {
-            text: "Obsidian Leaflet",
-            href: "https://github.com/valentine195/obsidian-leaflet-plugin",
-            cls: "external-link"
-          });
-          e.createSpan({
-            attr: {
-              style: `color: var(--text-error);`
-            },
-            text: " version 4.0.0 to modify."
-          });
-        }
-      })
-    ).addToggle((t2) => {
-      if (!this.plugin.canUseLeaflet) {
-        t2.setDisabled(true);
-        this.plugin.data.leafletIntegration = false;
-      }
-      t2.setValue(this.plugin.data.leafletIntegration);
-      t2.onChange(async (v) => {
-        this.plugin.data.leafletIntegration = v;
-        await this.plugin.saveSettings();
-        this._displayIntegrations(containerEl);
-      });
-    });
-    if (this.plugin.canUseLeaflet && this.plugin.data.leafletIntegration) {
-      new import_obsidian9.Setting(containerEl).setName("Default Player Marker Type").setDesc(
-        createFragment((e) => {
-          if (this.plugin.data.playerMarker) {
-            const div = e.createDiv("marker-type-display");
-            const inner = div.createDiv("marker-icon-display");
-            const marker = this.plugin.leaflet.markerIcons.find(
-              (icon) => icon.type == this.plugin.data.playerMarker
-            );
-            if (marker) {
-              inner.innerHTML = marker.html;
-            }
-          }
-        })
-      ).addDropdown((drop) => {
-        for (let marker of this.plugin.leaflet.markerIcons) {
-          drop.addOption(marker.type, marker.type);
-        }
-        drop.setValue(this.plugin.data.playerMarker ?? "default");
-        drop.onChange(async (v) => {
-          this.plugin.data.playerMarker = v;
-          await this.plugin.saveSettings();
-          this._displayIntegrations(containerEl);
-        });
-      });
-      new import_obsidian9.Setting(containerEl).setName("Default Monster Marker Type").setDesc(
-        createFragment((e) => {
-          if (this.plugin.data.monsterMarker) {
-            const div = e.createDiv("marker-type-display");
-            const inner = div.createDiv("marker-icon-display");
-            const marker = this.plugin.leaflet.markerIcons.find(
-              (icon) => icon.type == this.plugin.data.monsterMarker
-            );
-            if (marker) {
-              inner.innerHTML = marker.html;
-            }
-          }
-        })
-      ).addDropdown((drop) => {
-        for (let marker of this.plugin.leaflet.markerIcons) {
-          drop.addOption(marker.type, marker.type);
-        }
-        drop.setValue(this.plugin.data.monsterMarker);
-        drop.onChange(async (v) => {
-          this.plugin.data.monsterMarker = v;
-          await this.plugin.saveSettings();
-          this._displayIntegrations(containerEl);
-        });
-      });
-    }
   }
 };
 var NewPlayerModal = class extends import_obsidian10.Modal {
@@ -14643,11 +14904,11 @@ var NewPlayerModal = class extends import_obsidian10.Modal {
         if (!metaData || !metaData.frontmatter)
           return;
         const { ac, hp, modifier: modifier2, level, name: name3 } = metaData.frontmatter;
-        this.player.name = name3 ? name3 : this.player.name;
-        this.player.ac = ac;
-        this.player.hp = hp;
-        this.player.level = level;
-        this.player.modifier = modifier2;
+        this.player.name = name3 ?? this.player.name;
+        this.player.ac = ac ?? this.player.ac;
+        this.player.hp = hp ?? this.player.hp;
+        this.player.level = level ?? this.player.level;
+        this.player.modifier = modifier2 ?? this.player.modifier;
         this.player["statblock-link"] = metaData.frontmatter["statblock-link"];
         this.display();
       };
@@ -14730,31 +14991,6 @@ var NewPlayerModal = class extends import_obsidian10.Modal {
         this.player.modifier = Number(v);
       });
     });
-    if (this.plugin.canUseLeaflet) {
-      const markerSetting = new import_obsidian9.Setting(contentEl).setName("Leaflet Marker").addDropdown((drop) => {
-        for (let marker of this.plugin.leaflet.markerIcons) {
-          drop.addOption(marker.type, marker.type);
-        }
-        drop.setValue(
-          this.player.marker ?? this.plugin.data.playerMarker ?? "default"
-        );
-        drop.onChange(async (v) => {
-          this.player.marker = v;
-          this.display();
-        });
-      });
-      if (this.player.marker) {
-        const div = createDiv("marker-type-display");
-        const inner = div.createDiv("marker-icon-display");
-        const marker = this.plugin.leaflet.markerIcons.find(
-          (icon) => icon.type == this.player.marker
-        );
-        if (marker) {
-          inner.innerHTML = marker.html;
-          markerSetting.descEl.appendChild(div);
-        }
-      }
-    }
     let footerEl = contentEl.createDiv();
     let footerButtons = new import_obsidian9.Setting(footerEl);
     footerButtons.addButton((b) => {
@@ -15441,7 +15677,7 @@ function create_else_block5(ctx) {
     m(target, anchor) {
       insert(target, div, anchor);
       if (!mounted) {
-        dispose = action_destroyer(playButton_action = ctx[6].call(null, div));
+        dispose = action_destroyer(playButton_action = ctx[7].call(null, div));
         mounted = true;
       }
     },
@@ -15483,9 +15719,9 @@ function create_if_block_25(ctx) {
       insert(target, div2, anchor);
       if (!mounted) {
         dispose = [
-          action_destroyer(stopButton_action = ctx[7].call(null, div0)),
-          action_destroyer(prevButton_action = ctx[9].call(null, div1)),
-          action_destroyer(nextButton_action = ctx[8].call(null, div2))
+          action_destroyer(stopButton_action = ctx[8].call(null, div0)),
+          action_destroyer(prevButton_action = ctx[10].call(null, div1)),
+          action_destroyer(nextButton_action = ctx[9].call(null, div2))
         ];
         mounted = true;
       }
@@ -15521,8 +15757,8 @@ function create_if_block_16(ctx) {
       insert(target, div, anchor);
       if (!mounted) {
         dispose = [
-          action_destroyer(logFileButton_action = ctx[14].call(null, div)),
-          listen(div, "click", ctx[15])
+          action_destroyer(logFileButton_action = ctx[15].call(null, div)),
+          listen(div, "click", ctx[16])
         ];
         mounted = true;
       }
@@ -15551,8 +15787,8 @@ function create_if_block6(ctx) {
       insert(target, div, anchor);
       if (!mounted) {
         dispose = [
-          action_destroyer(playerView_action = ctx[13].call(null, div)),
-          listen(div, "click", ctx[16])
+          action_destroyer(playerView_action = ctx[14].call(null, div)),
+          listen(div, "click", ctx[17])
         ];
         mounted = true;
       }
@@ -15585,7 +15821,7 @@ function create_fragment6(ctx) {
   let current_block_type = select_block_type(ctx, -1);
   let if_block0 = current_block_type(ctx);
   let if_block1 = ctx[0] && create_if_block_16(ctx);
-  let if_block2 = ctx[5] && create_if_block6(ctx);
+  let if_block2 = ctx[6] && create_if_block6(ctx);
   return {
     c() {
       div3 = element("div");
@@ -15620,8 +15856,8 @@ function create_fragment6(ctx) {
       append(div2, div1);
       if (!mounted) {
         dispose = [
-          action_destroyer(menuIcon_action = ctx[12].call(null, div1)),
-          listen(div1, "click", ctx[17])
+          action_destroyer(menuIcon_action = ctx[13].call(null, div1)),
+          listen(div1, "click", ctx[18])
         ];
         mounted = true;
       }
@@ -15647,7 +15883,7 @@ function create_fragment6(ctx) {
         if_block1.d(1);
         if_block1 = null;
       }
-      if (ctx2[5])
+      if (ctx2[6])
         if_block2.p(ctx2, dirty);
     },
     i: noop,
@@ -15667,12 +15903,14 @@ function create_fragment6(ctx) {
 }
 function instance6($$self, $$props, $$invalidate) {
   let $logFile;
+  let $sort;
   let $data;
   let $state;
-  const { state, data, logFile } = tracker;
+  const { state, data, logFile, sort } = tracker;
   component_subscribe($$self, state, (value) => $$invalidate(1, $state = value));
-  component_subscribe($$self, data, (value) => $$invalidate(19, $data = value));
+  component_subscribe($$self, data, (value) => $$invalidate(21, $data = value));
   component_subscribe($$self, logFile, (value) => $$invalidate(0, $logFile = value));
+  component_subscribe($$self, sort, (value) => $$invalidate(20, $sort = value));
   const desktop = import_obsidian12.Platform.isDesktop;
   const playButton = (node) => {
     new import_obsidian12.ExtraButtonComponent(node).setIcon(PLAY).setTooltip("Play").onClick(() => tracker.setState(true));
@@ -15706,6 +15944,11 @@ function instance6($$self, $$props, $$invalidate) {
       menu.addItem((item) => {
         item.setIcon("switch").setTitle("Switch Party").onClick((evt2) => {
           const partyMenu = new import_obsidian13.Menu().setNoIcon();
+          partyMenu.addItem((item2) => {
+            item2.setTitle("None").onClick(() => {
+              tracker.setParty("", plugin);
+            });
+          });
           for (const party of $data.parties) {
             partyMenu.addItem((item2) => {
               item2.setTitle(party.name).onClick(() => {
@@ -15725,6 +15968,13 @@ function instance6($$self, $$props, $$invalidate) {
         item.setTitle(plugin.data.condense ? "Expand Creatures" : "Group Creatures");
       });
     });
+    menu.addItem((item) => {
+      item.setTitle($sort ? "Sort Ascending" : "Sort Descending").onClick(async () => {
+        plugin.data.descending = !plugin.data.descending;
+        await plugin.saveSettings();
+        item.setTitle(plugin.data.descending ? "Sort Ascending" : "Sort Descending");
+      });
+    });
     menu.addSeparator();
     menu.addItem((item) => {
       item.setIcon(SAVE).setTitle("Save Encounter").onClick(() => {
@@ -15737,12 +15987,6 @@ function instance6($$self, $$props, $$invalidate) {
         dispatch2("load");
       }).setDisabled(Object.keys(plugin.data.encounters).length == 0);
     });
-    if ($data.leafletIntegration) {
-      menu.addSeparator();
-      menu.addItem((item) => {
-        item.setIcon(MAP).setTitle("Open Leaflet Map").onClick(() => dispatch2("open-map"));
-      });
-    }
     menu.showAtMouseEvent(evt);
   };
   const menuIcon = (node) => {
@@ -15768,6 +16012,7 @@ function instance6($$self, $$props, $$invalidate) {
     state,
     data,
     logFile,
+    sort,
     desktop,
     playButton,
     stopButton,
@@ -16005,26 +16250,6 @@ function instance8($$self, $$props, $$invalidate) {
         menu.addItem((item) => {
           item.setIcon(ENABLE).setTitle("Enable").onClick(() => {
             tracker.updateCreatures({ creature, change: { enabled: true } });
-          });
-        });
-      }
-      if (plugin.data.leafletIntegration) {
-        menu.addItem((item) => {
-          item.setIcon(MAPMARKER).setTitle("Change Marker").onClick((evt2) => {
-            const markerMenu = new import_obsidian15.Menu();
-            markerMenu.setNoIcon();
-            for (let marker of plugin.leaflet.markerIcons) {
-              markerMenu.addItem((item2) => {
-                item2.setTitle(marker.type);
-                item2.onClick(() => {
-                  tracker.updateCreatures({
-                    creature,
-                    change: { marker: marker.type }
-                  });
-                });
-              });
-            }
-            markerMenu.showAtMouseEvent(evt2);
           });
         });
       }
@@ -19385,13 +19610,13 @@ function create_fragment12(ctx) {
     c() {
       div = element("div");
       span0 = element("span");
-      span0.textContent = "Easy";
+      span0.textContent = `${ctx[3].systemDifficulties[0]}`;
       t1 = space();
       span1 = element("span");
       meter = element("meter");
       t2 = space();
       span2 = element("span");
-      span2.textContent = "Deadly";
+      span2.textContent = `${ctx[3].systemDifficulties.slice(-1)}`;
       attr(meter, "class", "difficulty-bar svelte-137y560");
       attr(meter, "min", "0");
       attr(meter, "low", "0.33");
@@ -19427,27 +19652,30 @@ function create_fragment12(ctx) {
   };
 }
 function instance12($$self, $$props, $$invalidate) {
+  let summary;
   let $dif;
   let $difficultyBar;
   const { difficulty } = tracker;
   const plugin = getContext("plugin");
   const dif = difficulty(plugin);
-  component_subscribe($$self, dif, (value) => $$invalidate(4, $dif = value));
+  component_subscribe($$self, dif, (value) => $$invalidate(5, $dif = value));
+  const rpgSystem = getRpgSystem(plugin);
   const difficultyBar = tweened(0, { duration: 400, easing: cubicOut });
   component_subscribe($$self, difficultyBar, (value) => $$invalidate(1, $difficultyBar = value));
-  let report = "";
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & 16) {
+    if ($$self.$$.dirty & 32) {
       $: {
-        if ($dif) {
-          let progress = $dif.adjustedXp / $dif.budget.deadly > 1 ? 1 : $dif.adjustedXp / $dif.budget.deadly;
-          difficultyBar.set(progress);
-          $$invalidate(0, report = formatDifficultyReport($dif));
+        if ($dif.thresholds.last().minValue > 0) {
+          difficultyBar.set(Math.min($dif.difficulty.value / $dif.thresholds.last().minValue, 1));
         }
       }
     }
+    if ($$self.$$.dirty & 32) {
+      $:
+        $$invalidate(0, summary = $dif.difficulty.summary);
+    }
   };
-  return [report, $difficultyBar, dif, difficultyBar, $dif];
+  return [summary, $difficultyBar, dif, rpgSystem, difficultyBar, $dif];
 }
 var Difficulty = class extends SvelteComponent {
   constructor(options) {
@@ -19486,24 +19714,21 @@ function create_if_block_44(ctx) {
 }
 function create_if_block_35(ctx) {
   let span;
-  let t0_value = ctx[1]?.totalXp + "";
-  let t0;
-  let t1;
+  let t_value = ctx[9].formatDifficultyValue(ctx[1]?.difficulty?.value, true) + "";
+  let t2;
   return {
     c() {
       span = element("span");
-      t0 = text(t0_value);
-      t1 = text(" XP");
+      t2 = text(t_value);
       attr(span, "class", "initiative-tracker-xp encounter-xp");
     },
     m(target, anchor) {
       insert(target, span, anchor);
-      append(span, t0);
-      append(span, t1);
+      append(span, t2);
     },
     p(ctx2, dirty) {
-      if (dirty & 2 && t0_value !== (t0_value = ctx2[1]?.totalXp + ""))
-        set_data(t0, t0_value);
+      if (dirty & 2 && t_value !== (t_value = ctx2[9].formatDifficultyValue(ctx2[1]?.difficulty?.value, true) + ""))
+        set_data(t2, t_value);
     },
     d(detaching) {
       if (detaching)
@@ -19602,7 +19827,7 @@ function create_fragment13(ctx) {
   let t3;
   let current;
   let if_block0 = ctx[0] && ctx[0].length && create_if_block_44(ctx);
-  let if_block1 = ctx[1]?.totalXp > 0 && create_if_block_35(ctx);
+  let if_block1 = ctx[1]?.difficulty?.value > 0 && create_if_block_35(ctx);
   let if_block2 = ctx[1] && create_if_block_27(ctx);
   let if_block3 = ctx[2] && create_if_block_18(ctx);
   let if_block4 = ctx[3] && create_if_block10(ctx);
@@ -19659,7 +19884,7 @@ function create_fragment13(ctx) {
         if_block0.d(1);
         if_block0 = null;
       }
-      if (ctx2[1]?.totalXp > 0) {
+      if (ctx2[1]?.difficulty?.value > 0) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
         } else {
@@ -19752,9 +19977,10 @@ function instance13($$self, $$props, $$invalidate) {
   component_subscribe($$self, round2, (value) => $$invalidate(4, $round = value));
   component_subscribe($$self, party, (value) => $$invalidate(2, $party = value));
   const plugin = getContext("plugin");
+  const rpgSystem = getRpgSystem(plugin);
   const dif = difficulty(plugin);
   component_subscribe($$self, dif, (value) => $$invalidate(1, $dif = value));
-  return [$name, $dif, $party, $state, $round, state, name3, round2, party, dif];
+  return [$name, $dif, $party, $state, $round, state, name3, round2, party, rpgSystem, dif];
 }
 var Metadata = class extends SvelteComponent {
   constructor(options) {
@@ -21761,7 +21987,7 @@ function create_fragment17(ctx) {
   let div6;
   let diceButton_action;
   let t21;
-  let previous_key = ctx[5];
+  let previous_key = ctx[4];
   let t22;
   let div8;
   let label7;
@@ -21890,44 +22116,44 @@ function create_fragment17(ctx) {
       append(div0, t1);
       append(div0, input0);
       ctx[18](input0);
-      set_input_value(input0, ctx[5].name);
+      set_input_value(input0, ctx[4].name);
       append(div9, t2);
       append(div9, div1);
       append(div1, label1);
       append(div1, t4);
       append(div1, input1);
-      set_input_value(input1, ctx[5].display);
+      set_input_value(input1, ctx[4].display);
       ctx[22](input1);
       append(div9, t5);
       append(div9, div2);
       append(div2, label2);
       append(div2, t7);
       append(div2, input2);
-      set_input_value(input2, ctx[5].hp);
+      set_input_value(input2, ctx[4].hp);
       append(div9, t8);
       append(div9, div3);
       append(div3, label3);
       append(div3, t10);
       append(div3, input3);
-      set_input_value(input3, ctx[5].hit_dice);
+      set_input_value(input3, ctx[4].hit_dice);
       append(div9, t11);
       append(div9, div4);
       append(div4, label4);
       append(div4, t13);
       append(div4, input4);
-      set_input_value(input4, ctx[5].ac);
+      set_input_value(input4, ctx[4].ac);
       append(div9, t14);
       append(div9, div5);
       append(div5, label5);
       append(div5, t16);
       append(div5, input5);
-      set_input_value(input5, ctx[4]);
+      set_input_value(input5, ctx[8]);
       append(div9, t17);
       append(div9, div7);
       append(div7, label6);
       append(div7, t19);
       append(div7, input6);
-      set_input_value(input6, ctx[5].initiative);
+      set_input_value(input6, ctx[4].initiative);
       append(div7, t20);
       append(div7, div6);
       append(div9, t21);
@@ -21959,28 +22185,28 @@ function create_fragment17(ctx) {
       }
     },
     p(ctx2, dirty) {
-      if (dirty[0] & 32 && input0.value !== ctx2[5].name) {
-        set_input_value(input0, ctx2[5].name);
+      if (dirty[0] & 16 && input0.value !== ctx2[4].name) {
+        set_input_value(input0, ctx2[4].name);
       }
-      if (dirty[0] & 32 && input1.value !== ctx2[5].display) {
-        set_input_value(input1, ctx2[5].display);
+      if (dirty[0] & 16 && input1.value !== ctx2[4].display) {
+        set_input_value(input1, ctx2[4].display);
       }
-      if (dirty[0] & 32 && to_number(input2.value) !== ctx2[5].hp) {
-        set_input_value(input2, ctx2[5].hp);
+      if (dirty[0] & 16 && to_number(input2.value) !== ctx2[4].hp) {
+        set_input_value(input2, ctx2[4].hp);
       }
-      if (dirty[0] & 32 && input3.value !== ctx2[5].hit_dice) {
-        set_input_value(input3, ctx2[5].hit_dice);
+      if (dirty[0] & 16 && input3.value !== ctx2[4].hit_dice) {
+        set_input_value(input3, ctx2[4].hit_dice);
       }
-      if (dirty[0] & 32 && input4.value !== ctx2[5].ac) {
-        set_input_value(input4, ctx2[5].ac);
+      if (dirty[0] & 16 && input4.value !== ctx2[4].ac) {
+        set_input_value(input4, ctx2[4].ac);
       }
-      if (dirty[0] & 16 && input5.value !== ctx2[4]) {
-        set_input_value(input5, ctx2[4]);
+      if (dirty[0] & 256 && input5.value !== ctx2[8]) {
+        set_input_value(input5, ctx2[8]);
       }
-      if (dirty[0] & 32 && to_number(input6.value) !== ctx2[5].initiative) {
-        set_input_value(input6, ctx2[5].initiative);
+      if (dirty[0] & 16 && to_number(input6.value) !== ctx2[4].initiative) {
+        set_input_value(input6, ctx2[4].initiative);
       }
-      if (dirty[0] & 32 && safe_not_equal(previous_key, previous_key = ctx2[5])) {
+      if (dirty[0] & 16 && safe_not_equal(previous_key, previous_key = ctx2[4])) {
         key_block.d(1);
         key_block = create_key_block2(ctx2);
         key_block.c();
@@ -22020,6 +22246,7 @@ function create_fragment17(ctx) {
   };
 }
 function instance17($$self, $$props, $$invalidate) {
+  let modString;
   let $editing, $$unsubscribe_editing = noop, $$subscribe_editing = () => ($$unsubscribe_editing(), $$unsubscribe_editing = subscribe(editing, ($$value) => $$invalidate(9, $editing = $$value)), editing);
   let $adding, $$unsubscribe_adding = noop, $$subscribe_adding = () => ($$unsubscribe_adding(), $$unsubscribe_adding = subscribe(adding, ($$value) => $$invalidate(30, $adding = $$value)), adding);
   $$self.$$.on_destroy.push(() => $$unsubscribe_editing());
@@ -22035,7 +22262,7 @@ function instance17($$self, $$props, $$invalidate) {
   editing.subscribe((c) => {
     if (!c)
       return;
-    $$invalidate(5, creature = c);
+    $$invalidate(4, creature = c);
   });
   let modifier2 = JSON.stringify(creature.modifier ?? 0);
   const saveButton = (node) => {
@@ -22045,10 +22272,10 @@ function instance17($$self, $$props, $$invalidate) {
         return;
       }
       if (!creature.modifier) {
-        $$invalidate(5, creature.modifier = 0, creature);
+        $$invalidate(4, creature.modifier = 0, creature);
       }
       if (creature.initiative <= 0 || creature.initiative == null || isNaN(creature.initiative)) {
-        $$invalidate(5, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
+        $$invalidate(4, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
       }
       let existing = $adding.findIndex(([k]) => equivalent(k, creature));
       if (existing > -1) {
@@ -22058,7 +22285,7 @@ function instance17($$self, $$props, $$invalidate) {
       }
       adding.set($adding);
       set_store_value(editing, $editing = null, $editing);
-      $$invalidate(5, creature = new Creature({}));
+      $$invalidate(4, creature = new Creature({}));
     });
   };
   const editButton = (node) => {
@@ -22068,10 +22295,10 @@ function instance17($$self, $$props, $$invalidate) {
         return;
       }
       if (!creature.modifier) {
-        $$invalidate(5, creature.modifier = 0, creature);
+        $$invalidate(4, creature.modifier = 0, creature);
       }
       if (creature.initiative <= 0 || creature.initiative == null || isNaN(creature.initiative)) {
-        $$invalidate(5, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
+        $$invalidate(4, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
       }
       let existing = $adding.findIndex(([k]) => k != creature && equivalent(k, creature));
       if (existing > -1 && await confirmWithModal(app, `This will merge ${creature.name} with ${$adding[existing][0].name}.`)) {
@@ -22081,29 +22308,29 @@ function instance17($$self, $$props, $$invalidate) {
       }
       adding.set($adding);
       set_store_value(editing, $editing = null, $editing);
-      $$invalidate(5, creature = new Creature({}));
+      $$invalidate(4, creature = new Creature({}));
     });
   };
   const cancelButton = (node) => {
     new import_obsidian23.ExtraButtonComponent(node).setTooltip("Cancel").setIcon("reset").onClick(() => {
-      $$invalidate(5, creature = new Creature({}));
+      $$invalidate(4, creature = new Creature({}));
     });
   };
   const diceButton = (node) => {
     new import_obsidian23.ExtraButtonComponent(node).setIcon(DICE).setTooltip("Roll Initiative").onClick(async () => {
-      $$invalidate(5, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
+      $$invalidate(4, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
     });
   };
   let nameInput, displayNameInput;
   let modal;
   const createModal = () => {
-    $$invalidate(8, modal = new SRDMonsterSuggestionModal(plugin, nameInput));
+    $$invalidate(7, modal = new SRDMonsterSuggestionModal(plugin, nameInput));
     $$invalidate(
-      8,
+      7,
       modal.onClose = async () => {
         if (modal.creature) {
-          $$invalidate(5, creature = Creature.from(modal.creature));
-          $$invalidate(5, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
+          $$invalidate(4, creature = Creature.from(modal.creature));
+          $$invalidate(4, creature.initiative = await plugin.getInitiativeValue(creature.modifier), creature);
         }
       },
       modal
@@ -22120,23 +22347,23 @@ function instance17($$self, $$props, $$invalidate) {
     }
   });
   const hideToggle = (div) => {
-    new import_obsidian23.ToggleComponent(div).setValue(creature.hidden).onChange((v) => $$invalidate(5, creature.hidden = v, creature));
+    new import_obsidian23.ToggleComponent(div).setValue(creature.hidden).onChange((v) => $$invalidate(4, creature.hidden = v, creature));
   };
   const staticToggle = (div) => {
-    new import_obsidian23.ToggleComponent(div).setValue(creature.static).onChange((v) => $$invalidate(5, creature.static = v, creature));
+    new import_obsidian23.ToggleComponent(div).setValue(creature.static).onChange((v) => $$invalidate(4, creature.static = v, creature));
   };
   const friendToggle = (div) => {
-    new import_obsidian23.ToggleComponent(div).setValue(creature.friendly).onChange((v) => $$invalidate(5, creature.friendly = v, creature));
+    new import_obsidian23.ToggleComponent(div).setValue(creature.friendly).onChange((v) => $$invalidate(4, creature.friendly = v, creature));
   };
   function input0_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
       nameInput = $$value;
-      $$invalidate(6, nameInput);
+      $$invalidate(5, nameInput);
     });
   }
   function input0_input_handler() {
     creature.name = this.value;
-    $$invalidate(5, creature), $$invalidate(4, modifier2);
+    $$invalidate(4, creature), $$invalidate(31, modifier2);
   }
   const focus_handler = function() {
     if (modal)
@@ -22144,34 +22371,34 @@ function instance17($$self, $$props, $$invalidate) {
   };
   function input1_input_handler() {
     creature.display = this.value;
-    $$invalidate(5, creature), $$invalidate(4, modifier2);
+    $$invalidate(4, creature), $$invalidate(31, modifier2);
   }
   function input1_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
       displayNameInput = $$value;
-      $$invalidate(7, displayNameInput);
+      $$invalidate(6, displayNameInput);
     });
   }
   function input2_input_handler() {
     creature.hp = to_number(this.value);
-    $$invalidate(5, creature), $$invalidate(4, modifier2);
+    $$invalidate(4, creature), $$invalidate(31, modifier2);
   }
   function input3_input_handler() {
     creature.hit_dice = this.value;
-    $$invalidate(5, creature), $$invalidate(4, modifier2);
+    $$invalidate(4, creature), $$invalidate(31, modifier2);
   }
   function input4_input_handler() {
     creature.ac = this.value;
-    $$invalidate(5, creature), $$invalidate(4, modifier2);
+    $$invalidate(4, creature), $$invalidate(31, modifier2);
   }
-  const change_handler = () => $$invalidate(5, creature.dirty_ac = true, creature);
+  const change_handler = () => $$invalidate(4, creature.dirty_ac = true, creature);
   function input5_input_handler() {
-    modifier2 = this.value;
-    $$invalidate(4, modifier2);
+    modString = this.value;
+    $$invalidate(8, modString), $$invalidate(4, creature), $$invalidate(31, modifier2);
   }
   function input6_input_handler() {
     creature.initiative = to_number(this.value);
-    $$invalidate(5, creature), $$invalidate(4, modifier2);
+    $$invalidate(4, creature), $$invalidate(31, modifier2);
   }
   function input7_input_handler() {
     amount = to_number(this.value);
@@ -22191,24 +22418,26 @@ function instance17($$self, $$props, $$invalidate) {
   };
   $$self.$$.update = () => {
     if ($$self.$$.dirty[0] & 16) {
-      $: {
-        try {
-          $$invalidate(5, creature.modifier = JSON.parse(`${modifier2}`), creature);
-        } catch (e) {
-        }
-      }
+      $:
+        $$invalidate(8, modString = !isNaN(Number(creature.modifier)) ? creature.modifier : JSON.stringify(creature.modifier));
     }
   };
+  $: {
+    try {
+      $$invalidate(4, creature.modifier = JSON.parse(`${modifier2}`), creature);
+    } catch (e) {
+    }
+  }
   return [
     amount,
     adding,
     editing,
     isEditing,
-    modifier2,
     creature,
     nameInput,
     displayNameInput,
     modal,
+    modString,
     $editing,
     saveButton,
     editButton,
@@ -23971,10 +24200,9 @@ var TrackerView = class extends import_obsidian29.ItemView {
       }
     });
     this.ui.$on("player-view", () => this.openPlayerView());
-    this.ui.$on("open-map", () => this.openInitiativeView());
   }
   getViewType() {
-    return INTIATIVE_TRACKER_VIEW;
+    return INITIATIVE_TRACKER_VIEW;
   }
   getDisplayText() {
     return "Initiative Tracker";
@@ -23987,9 +24215,6 @@ var TrackerView = class extends import_obsidian29.ItemView {
   }
   get npcs() {
     return [];
-  }
-  openInitiativeView() {
-    this.plugin.leaflet.openInitiativeView(this.pcs, this.npcs);
   }
   getExistingPlayerView() {
     const existing = this.plugin.app.workspace.getLeavesOfType(PLAYER_VIEW_VIEW);
@@ -24120,38 +24345,6 @@ var CreatureView = class extends import_obsidian29.ItemView {
 // src/builder/view.ts
 var import_obsidian49 = require("obsidian");
 
-// src/builder/constants.ts
-var EXPERIENCE_PER_LEVEL = {
-  1: { daily: 300, easy: 25, medium: 50, hard: 75, deadly: 100 },
-  2: { daily: 600, easy: 50, medium: 100, hard: 150, deadly: 200 },
-  3: { daily: 1200, easy: 75, medium: 150, hard: 225, deadly: 400 },
-  4: { daily: 1700, easy: 125, medium: 250, hard: 375, deadly: 500 },
-  5: { daily: 3500, easy: 250, medium: 500, hard: 750, deadly: 1100 },
-  6: { daily: 4e3, easy: 300, medium: 600, hard: 900, deadly: 1400 },
-  7: { daily: 5e3, easy: 350, medium: 750, hard: 1100, deadly: 1700 },
-  8: { daily: 6e3, easy: 450, medium: 900, hard: 1400, deadly: 2100 },
-  9: { daily: 7500, easy: 550, medium: 1100, hard: 1600, deadly: 2400 },
-  10: { daily: 9e3, easy: 600, medium: 1200, hard: 1900, deadly: 2800 },
-  11: { daily: 10500, easy: 800, medium: 1600, hard: 2400, deadly: 3600 },
-  12: { daily: 11500, easy: 1e3, medium: 2e3, hard: 3e3, deadly: 4500 },
-  13: { daily: 13500, easy: 1100, medium: 2200, hard: 3400, deadly: 5100 },
-  14: { daily: 15e3, easy: 1250, medium: 2500, hard: 3800, deadly: 5700 },
-  15: { daily: 18e3, easy: 1400, medium: 2800, hard: 4300, deadly: 6400 },
-  16: { daily: 2e4, easy: 1600, medium: 3200, hard: 4800, deadly: 7200 },
-  17: { daily: 25e3, easy: 2e3, medium: 3900, hard: 5900, deadly: 8800 },
-  18: { daily: 27e3, easy: 2100, medium: 4200, hard: 6300, deadly: 9500 },
-  19: { daily: 3e4, easy: 2400, medium: 4900, hard: 7300, deadly: 10900 },
-  20: { daily: 4e4, easy: 2800, medium: 5700, hard: 8500, deadly: 12700 }
-};
-var MODIFIERS_BY_COUNT = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
-var MODIFIER_THRESHOLDS = [Infinity, 1, 2, 3, 7, 11, 15];
-var EXPERIENCE_THRESHOLDS = [
-  "Easy",
-  "Medium",
-  "Hard",
-  "Deadly"
-];
-
 // src/builder/stores/players.ts
 var playerCount = writable(0);
 function createPlayers() {
@@ -24173,31 +24366,6 @@ function createPlayers() {
     party,
     generics,
     count,
-    thresholds: derived(store, ($players) => {
-      const threshold = {
-        Easy: 0,
-        Medium: 0,
-        Hard: 0,
-        Deadly: 0,
-        Daily: 0
-      };
-      for (const player of $players) {
-        if (!player.level)
-          continue;
-        if (!player.enabled)
-          continue;
-        const level = player.level > 20 ? 20 : player.level;
-        const thresholds = EXPERIENCE_PER_LEVEL[level];
-        if (!thresholds)
-          continue;
-        threshold.Easy += thresholds.easy * player.count;
-        threshold.Medium += thresholds.medium * player.count;
-        threshold.Hard += thresholds.hard * player.count;
-        threshold.Deadly += thresholds.deadly * player.count;
-        threshold.Daily += thresholds.daily * player.count;
-      }
-      return threshold;
-    }),
     modifier: derived(
       count,
       ($count) => $count < 3 ? 1 : $count > 5 ? -1 : 0
@@ -26677,7 +26845,7 @@ function fallback_block_5(ctx) {
     }
   };
 }
-function create_if_block_8(ctx) {
+function create_if_block_82(ctx) {
   let button;
   let button_title_value;
   let current;
@@ -26792,7 +26960,7 @@ function create_each_block_14(ctx) {
   const selected_slot_template = ctx[55].selected;
   const selected_slot = create_slot(selected_slot_template, ctx, ctx[90], get_selected_slot_context);
   const selected_slot_or_fallback = selected_slot || fallback_block_5(ctx);
-  let if_block = !ctx[35] && create_if_block_8(ctx);
+  let if_block = !ctx[35] && create_if_block_82(ctx);
   return {
     c() {
       li = element("li");
@@ -26838,7 +27006,7 @@ function create_each_block_14(ctx) {
             transition_in(if_block, 1);
           }
         } else {
-          if_block = create_if_block_8(ctx2);
+          if_block = create_if_block_82(ctx2);
           if_block.c();
           transition_in(if_block, 1);
           if_block.m(li, null);
@@ -51860,6 +52028,11 @@ var import_obsidian46 = require("obsidian");
 function add_css37(target) {
   append_styles(target, "svelte-17aw8iw", ".encounter-creature-container.svelte-17aw8iw{display:grid;align-items:center;justify-content:center;grid-template-columns:min-content 1fr 10% 10% auto auto auto;gap:0.5rem}.encounter-creature.svelte-17aw8iw{display:flex;align-items:center;gap:0.5rem}.encounter-creature-context.svelte-17aw8iw{text-align:right}.encounter-creature-controls.svelte-17aw8iw{display:flex;align-items:center;gap:0.5rem}input.svelte-17aw8iw{text-align:center;width:40px}.contains-icon.svelte-17aw8iw{display:flex;align-items:center}");
 }
+function get_each_context20(ctx, list, i) {
+  const child_ctx = ctx.slice();
+  child_ctx[28] = list[i];
+  return child_ctx;
+}
 function create_if_block_310(ctx) {
   let div;
   let div_aria_label_value;
@@ -51875,7 +52048,7 @@ function create_if_block_310(ctx) {
     m(target, anchor) {
       insert(target, div, anchor);
       if (!mounted) {
-        dispose = action_destroyer(hideIcon_action = ctx[9].call(null, div));
+        dispose = action_destroyer(hideIcon_action = ctx[12].call(null, div));
         mounted = true;
       }
     },
@@ -51902,7 +52075,7 @@ function create_if_block_216(ctx) {
     m(target, anchor) {
       insert(target, div, anchor);
       if (!mounted) {
-        dispose = action_destroyer(friendIcon_action = ctx[11].call(null, div));
+        dispose = action_destroyer(friendIcon_action = ctx[14].call(null, div));
         mounted = true;
       }
     },
@@ -51929,7 +52102,7 @@ function create_if_block_120(ctx) {
     m(target, anchor) {
       insert(target, div, anchor);
       if (!mounted) {
-        dispose = action_destroyer(baby_action = ctx[13].call(null, div));
+        dispose = action_destroyer(baby_action = ctx[15].call(null, div));
         mounted = true;
       }
     },
@@ -51961,7 +52134,7 @@ function create_if_block28(ctx) {
     m(target, anchor) {
       insert(target, div, anchor);
       if (!mounted) {
-        dispose = action_destroyer(skull_action = ctx[14].call(null, div));
+        dispose = action_destroyer(skull_action = ctx[16].call(null, div));
         mounted = true;
       }
     },
@@ -51978,8 +52151,35 @@ function create_if_block28(ctx) {
     }
   };
 }
+function create_each_block20(ctx) {
+  let div;
+  let span;
+  let t_value = ctx[28] + "";
+  let t2;
+  return {
+    c() {
+      div = element("div");
+      span = element("span");
+      t2 = text(t_value);
+      attr(div, "class", "encounter-creature-context svelte-17aw8iw");
+    },
+    m(target, anchor) {
+      insert(target, div, anchor);
+      append(div, span);
+      append(span, t2);
+    },
+    p(ctx2, dirty) {
+      if (dirty & 5 && t_value !== (t_value = ctx2[28] + ""))
+        set_data(t2, t_value);
+    },
+    d(detaching) {
+      if (detaching)
+        detach(div);
+    }
+  };
+}
 function create_fragment45(ctx) {
-  let div10;
+  let div9;
   let div2;
   let div0;
   let remove_action;
@@ -51998,43 +52198,40 @@ function create_fragment45(ctx) {
   let t6;
   let t7;
   let t8;
-  let div4;
-  let span0;
-  let nullable0;
   let t9;
-  let div5;
-  let span1;
-  let nullable1;
+  let div4;
+  let span;
+  let nullable;
   let t10;
-  let div9;
-  let div6;
+  let div8;
+  let div5;
   let hide_action;
   let t11;
-  let div7;
+  let div6;
   let friend_action;
   let t12;
-  let div8;
+  let div7;
   let del_action;
   let current;
   let mounted;
   let dispose;
   let if_block0 = ctx[0].hidden && create_if_block_310(ctx);
   let if_block1 = ctx[0].friendly && create_if_block_216(ctx);
-  let if_block2 = ctx[3] && create_if_block_120(ctx);
-  let if_block3 = ctx[2] && create_if_block28(ctx);
-  nullable0 = new Nullable_default({
+  let if_block2 = ctx[4] && create_if_block_120(ctx);
+  let if_block3 = ctx[3] && create_if_block28(ctx);
+  let each_value = ctx[7].getAdditionalCreatureDifficultyStats(ctx[0], ctx[2]);
+  let each_blocks = [];
+  for (let i = 0; i < each_value.length; i += 1) {
+    each_blocks[i] = create_each_block20(get_each_context20(ctx, each_value, i));
+  }
+  nullable = new Nullable_default({
     props: {
-      str: `${ctx[12](ctx[0].cr)} CR`
-    }
-  });
-  nullable1 = new Nullable_default({
-    props: {
-      str: `${ctx[0].xp ?? XP_PER_CR[ctx[0].cr]?.toLocaleString() ?? DEFAULT_UNDEFINED} XP`
+      str: ctx[7].formatDifficultyValue(ctx[7].getCreatureDifficulty(ctx[0], ctx[2]), true)
     }
   });
   return {
     c() {
-      div10 = element("div");
+      div9 = element("div");
       div2 = element("div");
       div0 = element("div");
       t0 = space();
@@ -52058,20 +52255,20 @@ function create_fragment45(ctx) {
       if (if_block3)
         if_block3.c();
       t8 = space();
-      div4 = element("div");
-      span0 = element("span");
-      create_component(nullable0.$$.fragment);
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        each_blocks[i].c();
+      }
       t9 = space();
-      div5 = element("div");
-      span1 = element("span");
-      create_component(nullable1.$$.fragment);
+      div4 = element("div");
+      span = element("span");
+      create_component(nullable.$$.fragment);
       t10 = space();
-      div9 = element("div");
-      div6 = element("div");
-      t11 = space();
-      div7 = element("div");
-      t12 = space();
       div8 = element("div");
+      div5 = element("div");
+      t11 = space();
+      div6 = element("div");
+      t12 = space();
+      div7 = element("div");
       attr(input, "type", "number");
       attr(input, "min", "1");
       attr(input, "class", "svelte-17aw8iw");
@@ -52079,21 +52276,20 @@ function create_fragment45(ctx) {
       attr(strong, "class", "encounter-creature-name");
       attr(div3, "class", "encounter-creature svelte-17aw8iw");
       attr(div4, "class", "encounter-creature-context svelte-17aw8iw");
-      attr(div5, "class", "encounter-creature-context svelte-17aw8iw");
-      attr(div9, "class", "encounter-creature-controls svelte-17aw8iw");
-      attr(div10, "class", "encounter-creature-container svelte-17aw8iw");
+      attr(div8, "class", "encounter-creature-controls svelte-17aw8iw");
+      attr(div9, "class", "encounter-creature-container svelte-17aw8iw");
     },
     m(target, anchor) {
-      insert(target, div10, anchor);
-      append(div10, div2);
+      insert(target, div9, anchor);
+      append(div9, div2);
       append(div2, div0);
       append(div2, t0);
       append(div2, input);
       set_input_value(input, ctx[1]);
       append(div2, t1);
       append(div2, div1);
-      append(div10, t2);
-      append(div10, div3);
+      append(div9, t2);
+      append(div9, div3);
       if (if_block0)
         if_block0.m(div3, null);
       append(div3, t3);
@@ -52108,37 +52304,37 @@ function create_fragment45(ctx) {
       append(div3, t7);
       if (if_block3)
         if_block3.m(div3, null);
-      append(div10, t8);
-      append(div10, div4);
-      append(div4, span0);
-      mount_component(nullable0, span0, null);
-      append(div10, t9);
-      append(div10, div5);
-      append(div5, span1);
-      mount_component(nullable1, span1, null);
-      append(div10, t10);
-      append(div10, div9);
-      append(div9, div6);
-      append(div9, t11);
-      append(div9, div7);
-      append(div9, t12);
+      append(div9, t8);
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        each_blocks[i].m(div9, null);
+      }
+      append(div9, t9);
+      append(div9, div4);
+      append(div4, span);
+      mount_component(nullable, span, null);
+      append(div9, t10);
       append(div9, div8);
+      append(div8, div5);
+      append(div8, t11);
+      append(div8, div6);
+      append(div8, t12);
+      append(div8, div7);
       current = true;
       if (!mounted) {
         dispose = [
-          action_destroyer(remove_action = ctx[5].call(null, div0)),
-          listen(div0, "click", ctx[17]),
-          listen(input, "input", ctx[18]),
-          listen(input, "change", ctx[19]),
-          action_destroyer(add_action = ctx[6].call(null, div1)),
-          listen(div1, "click", ctx[20]),
-          listen(strong, "click", ctx[15]),
-          action_destroyer(hide_action = ctx[8].call(null, div6)),
-          listen(div6, "click", ctx[21]),
-          action_destroyer(friend_action = ctx[10].call(null, div7)),
-          listen(div7, "click", ctx[22]),
-          action_destroyer(del_action = ctx[7].call(null, div8)),
-          listen(div8, "click", ctx[23])
+          action_destroyer(remove_action = ctx[8].call(null, div0)),
+          listen(div0, "click", ctx[20]),
+          listen(input, "input", ctx[21]),
+          listen(input, "change", ctx[22]),
+          action_destroyer(add_action = ctx[9].call(null, div1)),
+          listen(div1, "click", ctx[23]),
+          listen(strong, "click", ctx[17]),
+          action_destroyer(hide_action = ctx[11].call(null, div5)),
+          listen(div5, "click", ctx[24]),
+          action_destroyer(friend_action = ctx[13].call(null, div6)),
+          listen(div6, "click", ctx[25]),
+          action_destroyer(del_action = ctx[10].call(null, div7)),
+          listen(div7, "click", ctx[26])
         ];
         mounted = true;
       }
@@ -52171,7 +52367,7 @@ function create_fragment45(ctx) {
       }
       if ((!current || dirty & 1) && t5_value !== (t5_value = ctx2[0].name + ""))
         set_data(t5, t5_value);
-      if (ctx2[3]) {
+      if (ctx2[4]) {
         if (if_block2) {
           if_block2.p(ctx2, dirty);
         } else {
@@ -52183,7 +52379,7 @@ function create_fragment45(ctx) {
         if_block2.d(1);
         if_block2 = null;
       }
-      if (ctx2[2]) {
+      if (ctx2[3]) {
         if (if_block3) {
           if_block3.p(ctx2, dirty);
         } else {
@@ -52195,30 +52391,42 @@ function create_fragment45(ctx) {
         if_block3.d(1);
         if_block3 = null;
       }
-      const nullable0_changes = {};
-      if (dirty & 1)
-        nullable0_changes.str = `${ctx2[12](ctx2[0].cr)} CR`;
-      nullable0.$set(nullable0_changes);
-      const nullable1_changes = {};
-      if (dirty & 1)
-        nullable1_changes.str = `${ctx2[0].xp ?? XP_PER_CR[ctx2[0].cr]?.toLocaleString() ?? DEFAULT_UNDEFINED} XP`;
-      nullable1.$set(nullable1_changes);
+      if (dirty & 133) {
+        each_value = ctx2[7].getAdditionalCreatureDifficultyStats(ctx2[0], ctx2[2]);
+        let i;
+        for (i = 0; i < each_value.length; i += 1) {
+          const child_ctx = get_each_context20(ctx2, each_value, i);
+          if (each_blocks[i]) {
+            each_blocks[i].p(child_ctx, dirty);
+          } else {
+            each_blocks[i] = create_each_block20(child_ctx);
+            each_blocks[i].c();
+            each_blocks[i].m(div9, t9);
+          }
+        }
+        for (; i < each_blocks.length; i += 1) {
+          each_blocks[i].d(1);
+        }
+        each_blocks.length = each_value.length;
+      }
+      const nullable_changes = {};
+      if (dirty & 5)
+        nullable_changes.str = ctx2[7].formatDifficultyValue(ctx2[7].getCreatureDifficulty(ctx2[0], ctx2[2]), true);
+      nullable.$set(nullable_changes);
     },
     i(local) {
       if (current)
         return;
-      transition_in(nullable0.$$.fragment, local);
-      transition_in(nullable1.$$.fragment, local);
+      transition_in(nullable.$$.fragment, local);
       current = true;
     },
     o(local) {
-      transition_out(nullable0.$$.fragment, local);
-      transition_out(nullable1.$$.fragment, local);
+      transition_out(nullable.$$.fragment, local);
       current = false;
     },
     d(detaching) {
       if (detaching)
-        detach(div10);
+        detach(div9);
       if (if_block0)
         if_block0.d();
       if (if_block1)
@@ -52227,8 +52435,8 @@ function create_fragment45(ctx) {
         if_block2.d();
       if (if_block3)
         if_block3.d();
-      destroy_component(nullable0);
-      destroy_component(nullable1);
+      destroy_each(each_blocks, detaching);
+      destroy_component(nullable);
       mounted = false;
       run_all(dispose);
     }
@@ -52237,11 +52445,15 @@ function create_fragment45(ctx) {
 function instance45($$self, $$props, $$invalidate) {
   let insignificant;
   let challenge;
+  let playerLevels;
+  let $players;
   let $average;
   const { players: players2 } = encounter;
+  component_subscribe($$self, players2, (value) => $$invalidate(18, $players = value));
   const { average } = players2;
-  component_subscribe($$self, average, (value) => $$invalidate(16, $average = value));
+  component_subscribe($$self, average, (value) => $$invalidate(19, $average = value));
   const plugin = getContext("plugin");
+  const rpgSystem = getRpgSystem(plugin);
   const remove2 = (node) => {
     new import_obsidian46.ExtraButtonComponent(node).setIcon("minus-circle");
   };
@@ -52265,20 +52477,6 @@ function instance45($$self, $$props, $$invalidate) {
   };
   let { count } = $$props;
   let { creature } = $$props;
-  const convertedCR = (cr) => {
-    if (cr == void 0)
-      return DEFAULT_UNDEFINED;
-    if (cr == "1/8") {
-      return "\u215B";
-    }
-    if (cr == "1/4") {
-      return "\xBC";
-    }
-    if (cr == "1/2") {
-      return "\xBD";
-    }
-    return cr;
-  };
   const baby = (node) => (0, import_obsidian46.setIcon)(node, "baby");
   const skull = (node) => (0, import_obsidian46.setIcon)(node, "skull");
   const open = () => {
@@ -52301,21 +52499,28 @@ function instance45($$self, $$props, $$invalidate) {
       $$invalidate(0, creature = $$props2.creature);
   };
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & 65537) {
+    if ($$self.$$.dirty & 524289) {
       $:
-        $$invalidate(3, insignificant = "cr" in creature && creature.cr && convertFraction(creature.cr) < $average - 3);
+        $$invalidate(4, insignificant = "cr" in creature && creature.cr && convertFraction(creature.cr) < $average - 3);
     }
-    if ($$self.$$.dirty & 65537) {
+    if ($$self.$$.dirty & 524289) {
       $:
-        $$invalidate(2, challenge = "cr" in creature && creature.cr && convertFraction(creature.cr) > $average + 3);
+        $$invalidate(3, challenge = "cr" in creature && creature.cr && convertFraction(creature.cr) > $average + 3);
+    }
+    if ($$self.$$.dirty & 262144) {
+      $:
+        $$invalidate(2, playerLevels = $players.filter((p) => p.enabled).map((p) => p.level));
     }
   };
   return [
     creature,
     count,
+    playerLevels,
     challenge,
     insignificant,
+    players2,
     average,
+    rpgSystem,
     remove2,
     add2,
     del,
@@ -52323,10 +52528,10 @@ function instance45($$self, $$props, $$invalidate) {
     hideIcon,
     friend,
     friendIcon,
-    convertedCR,
     baby,
     skull,
     open,
+    $players,
     $average,
     click_handler3,
     input_input_handler,
@@ -52349,10 +52554,10 @@ var Creature_default4 = Creature5;
 function add_css38(target) {
   append_styles(target, "svelte-1s1acwo", ".encounter-name.svelte-1s1acwo{display:flex;align-items:center}.encounter-header.svelte-1s1acwo{display:flex;align-items:center;justify-content:space-between}.encounter-creatures.svelte-1s1acwo{display:flex;gap:0.5rem;flex-flow:column nowrap}.encounter-header.svelte-1s1acwo .is-disabled{cursor:not-allowed}.encounter-controls.svelte-1s1acwo{display:flex;gap:0.5rem;align-items:center}");
 }
-function get_each_context20(ctx, list, i) {
+function get_each_context21(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[30] = list[i][0];
-  child_ctx[31] = list[i][1];
+  child_ctx[31] = list[i][0];
+  child_ctx[32] = list[i][1];
   return child_ctx;
 }
 function create_else_block_16(ctx) {
@@ -52379,7 +52584,7 @@ function create_else_block_16(ctx) {
       if (!mounted) {
         dispose = [
           action_destroyer(editIcon_action = ctx[11].call(null, div)),
-          listen(div, "click", ctx[25])
+          listen(div, "click", ctx[27])
         ];
         mounted = true;
       }
@@ -52429,7 +52634,7 @@ function create_if_block_121(ctx) {
       insert(target, div1, anchor);
       if (!mounted) {
         dispose = [
-          listen(input, "input", ctx[24]),
+          listen(input, "input", ctx[26]),
           action_destroyer(saveIcon_action = ctx[12].call(null, div0)),
           listen(div0, "click", ctx[8]),
           action_destroyer(cancelIcon_action = ctx[14].call(null, div1)),
@@ -52468,7 +52673,7 @@ function create_else_block18(ctx) {
   let each_value = ctx[0];
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block20(get_each_context20(ctx, each_value, i));
+    each_blocks[i] = create_each_block21(get_each_context21(ctx, each_value, i));
   }
   const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
     each_blocks[i] = null;
@@ -52493,12 +52698,12 @@ function create_else_block18(ctx) {
         each_value = ctx2[0];
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context20(ctx2, each_value, i);
+          const child_ctx = get_each_context21(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
             transition_in(each_blocks[i], 1);
           } else {
-            each_blocks[i] = create_each_block20(child_ctx);
+            each_blocks[i] = create_each_block21(child_ctx);
             each_blocks[i].c();
             transition_in(each_blocks[i], 1);
             each_blocks[i].m(div, null);
@@ -52552,13 +52757,13 @@ function create_if_block29(ctx) {
     }
   };
 }
-function create_each_block20(ctx) {
+function create_each_block21(ctx) {
   let creature;
   let current;
   creature = new Creature_default4({
     props: {
-      creature: ctx[30],
-      count: ctx[31]
+      creature: ctx[31],
+      count: ctx[32]
     }
   });
   return {
@@ -52572,9 +52777,9 @@ function create_each_block20(ctx) {
     p(ctx2, dirty) {
       const creature_changes = {};
       if (dirty[0] & 1)
-        creature_changes.creature = ctx2[30];
+        creature_changes.creature = ctx2[31];
       if (dirty[0] & 1)
-        creature_changes.count = ctx2[31];
+        creature_changes.count = ctx2[32];
       creature.$set(creature_changes);
     },
     i(local) {
@@ -52593,10 +52798,10 @@ function create_each_block20(ctx) {
   };
 }
 function create_fragment46(ctx) {
-  let div6;
+  let div7;
   let div0;
   let t0;
-  let div5;
+  let div6;
   let div1;
   let start_action;
   let t1;
@@ -52607,8 +52812,11 @@ function create_fragment46(ctx) {
   let loadIcon_action;
   let t3;
   let div4;
-  let clear_action;
+  let exp_action;
   let t4;
+  let div5;
+  let clear_action;
+  let t5;
   let current_block_type_index;
   let if_block1;
   let if_block1_anchor;
@@ -52633,11 +52841,11 @@ function create_fragment46(ctx) {
   if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
   return {
     c() {
-      div6 = element("div");
+      div7 = element("div");
       div0 = element("div");
       if_block0.c();
       t0 = space();
-      div5 = element("div");
+      div6 = element("div");
       div1 = element("div");
       t1 = space();
       div2 = element("div");
@@ -52646,26 +52854,30 @@ function create_fragment46(ctx) {
       t3 = space();
       div4 = element("div");
       t4 = space();
+      div5 = element("div");
+      t5 = space();
       if_block1.c();
       if_block1_anchor = empty();
       attr(div0, "class", "encounter-name svelte-1s1acwo");
-      attr(div5, "class", "encounter-controls svelte-1s1acwo");
-      attr(div6, "class", "encounter-header svelte-1s1acwo");
+      attr(div6, "class", "encounter-controls svelte-1s1acwo");
+      attr(div7, "class", "encounter-header svelte-1s1acwo");
     },
     m(target, anchor) {
-      insert(target, div6, anchor);
-      append(div6, div0);
+      insert(target, div7, anchor);
+      append(div7, div0);
       if_block0.m(div0, null);
-      append(div6, t0);
+      append(div7, t0);
+      append(div7, div6);
+      append(div6, div1);
+      append(div6, t1);
+      append(div6, div2);
+      append(div6, t2);
+      append(div6, div3);
+      append(div6, t3);
+      append(div6, div4);
+      append(div6, t4);
       append(div6, div5);
-      append(div5, div1);
-      append(div5, t1);
-      append(div5, div2);
-      append(div5, t2);
-      append(div5, div3);
-      append(div5, t3);
-      append(div5, div4);
-      insert(target, t4, anchor);
+      insert(target, t5, anchor);
       if_blocks[current_block_type_index].m(target, anchor);
       insert(target, if_block1_anchor, anchor);
       current = true;
@@ -52674,10 +52886,12 @@ function create_fragment46(ctx) {
           action_destroyer(start_action = ctx[10].call(null, div1)),
           action_destroyer(saveIcon_action = ctx[12].call(null, div2)),
           listen(div2, "click", ctx[13]),
-          action_destroyer(loadIcon_action = ctx[15].call(null, div3)),
-          listen(div3, "click", ctx[16]),
-          action_destroyer(clear_action = ctx[17].call(null, div4)),
-          listen(div4, "click", ctx[26])
+          action_destroyer(loadIcon_action = ctx[16].call(null, div3)),
+          listen(div3, "click", ctx[17]),
+          action_destroyer(exp_action = ctx[15].call(null, div4)),
+          listen(div4, "click", ctx[19]),
+          action_destroyer(clear_action = ctx[18].call(null, div5)),
+          listen(div5, "click", ctx[28])
         ];
         mounted = true;
       }
@@ -52726,10 +52940,10 @@ function create_fragment46(ctx) {
     },
     d(detaching) {
       if (detaching)
-        detach(div6);
+        detach(div7);
       if_block0.d();
       if (detaching)
-        detach(t4);
+        detach(t5);
       if_blocks[current_block_type_index].d(detaching);
       if (detaching)
         detach(if_block1_anchor);
@@ -52740,14 +52954,14 @@ function create_fragment46(ctx) {
 }
 function instance46($$self, $$props, $$invalidate) {
   let items;
-  let $name;
   let $encounter;
   let $players;
+  let $name;
   let $tempName;
   let $updatingName;
-  component_subscribe($$self, encounter, ($$value) => $$invalidate(23, $encounter = $$value));
+  component_subscribe($$self, encounter, ($$value) => $$invalidate(25, $encounter = $$value));
   const { players: players2 } = encounter;
-  component_subscribe($$self, players2, (value) => $$invalidate(27, $players = value));
+  component_subscribe($$self, players2, (value) => $$invalidate(29, $players = value));
   const plugin = getContext("plugin");
   let name3 = writable("Encounter");
   component_subscribe($$self, name3, (value) => $$invalidate(1, $name = value));
@@ -52767,7 +52981,7 @@ function instance46($$self, $$props, $$invalidate) {
   let rollHP = plugin.data.rollHP;
   let startIcon;
   const start2 = (node) => {
-    $$invalidate(19, startIcon = new import_obsidian47.ExtraButtonComponent(node).setIcon(START_ENCOUNTER).onClick(async () => {
+    $$invalidate(21, startIcon = new import_obsidian47.ExtraButtonComponent(node).setIcon(START_ENCOUNTER).onClick(async () => {
       if (!plugin.view) {
         await plugin.addTrackerView();
       }
@@ -52802,7 +53016,7 @@ function instance46($$self, $$props, $$invalidate) {
   };
   let saveButton;
   const saveIcon = (node) => {
-    $$invalidate(20, saveButton = new import_obsidian47.ExtraButtonComponent(node).setIcon("save"));
+    $$invalidate(22, saveButton = new import_obsidian47.ExtraButtonComponent(node).setIcon("save"));
   };
   const save = () => {
     const modal = new import_obsidian47.Modal(app);
@@ -52818,7 +53032,7 @@ function instance46($$self, $$props, $$invalidate) {
           ...[...$encounter.entries()].map((c) => [...Array(c[1]).keys()].map(() => Creature.from(c[0]))).flat()
         ];
         $$invalidate(
-          18,
+          20,
           plugin.data.encounters[encName] = {
             creatures: [...creatures.map((c) => c.toJSON())],
             state: false,
@@ -52863,11 +53077,11 @@ function instance46($$self, $$props, $$invalidate) {
   };
   let exportIcon;
   const exp = (node) => {
-    $$invalidate(21, exportIcon = new import_obsidian47.ExtraButtonComponent(node).setIcon("code"));
+    $$invalidate(23, exportIcon = new import_obsidian47.ExtraButtonComponent(node).setIcon("copy"));
   };
   let loadButton;
   const loadIcon = (node) => {
-    $$invalidate(22, loadButton = new import_obsidian47.ExtraButtonComponent(node).setIcon("upload").setTooltip("Load Encounter"));
+    $$invalidate(24, loadButton = new import_obsidian47.ExtraButtonComponent(node).setIcon("upload").setTooltip("Load Encounter"));
   };
   const load = (evt) => {
     const menu = new import_obsidian47.Menu();
@@ -52892,6 +53106,30 @@ function instance46($$self, $$props, $$invalidate) {
   const clear = (node) => {
     new import_obsidian47.ExtraButtonComponent(node).setIcon("eraser").setTooltip("Clear Encounter");
   };
+  const copy = async () => {
+    const enc = {};
+    if ($name?.length) {
+      enc.name = $name;
+    }
+    if ($players?.length) {
+      enc.players = $players.map((p) => p.name);
+    }
+    if ($encounter?.size) {
+      enc.creatures = [...$encounter.entries()].map(([c, v]) => {
+        return {
+          [Number(v)]: `${c.name}${c.friendly ? ", friendly" : ""}${c.hidden ? ", hidden" : ""}`
+        };
+      });
+    }
+    try {
+      await navigator.clipboard.writeText(`\`\`\`encounter
+${(0, import_obsidian47.stringifyYaml)(enc)}\`\`\``);
+      new import_obsidian47.Notice("Encounter saved to clipboard");
+    } catch (e) {
+      console.error(e);
+      new import_obsidian47.Notice("Could not save encounter, please check console for errors");
+    }
+  };
   function input_input_handler() {
     $tempName = this.value;
     tempName.set($tempName);
@@ -52902,11 +53140,11 @@ function instance46($$self, $$props, $$invalidate) {
     set_store_value(name3, $name = "Encounter", $name);
   };
   $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & 8388608) {
+    if ($$self.$$.dirty[0] & 33554432) {
       $:
         $$invalidate(0, items = [...$encounter.entries()]);
     }
-    if ($$self.$$.dirty[0] & 524289) {
+    if ($$self.$$.dirty[0] & 2097153) {
       $: {
         if (startIcon) {
           if (!items.length) {
@@ -52919,11 +53157,11 @@ function instance46($$self, $$props, $$invalidate) {
         }
       }
     }
-    if ($$self.$$.dirty[0] & 9437184) {
+    if ($$self.$$.dirty[0] & 37748736) {
       $:
         saveButton?.setDisabled($encounter.size == 0);
     }
-    if ($$self.$$.dirty[0] & 2097153) {
+    if ($$self.$$.dirty[0] & 8388609) {
       $: {
         if (exportIcon) {
           if (!items.length) {
@@ -52931,12 +53169,12 @@ function instance46($$self, $$props, $$invalidate) {
             exportIcon.setTooltip("");
           } else {
             exportIcon.setDisabled(false);
-            exportIcon.setTooltip("Export Encounter to Note");
+            exportIcon.setTooltip("Copy Encounter Block");
           }
         }
       }
     }
-    if ($$self.$$.dirty[0] & 4456448) {
+    if ($$self.$$.dirty[0] & 17825792) {
       $:
         loadButton?.setDisabled(Object.keys(plugin.data.encounters).length == 0);
     }
@@ -52957,9 +53195,11 @@ function instance46($$self, $$props, $$invalidate) {
     saveIcon,
     save,
     cancelIcon,
+    exp,
     loadIcon,
     load,
     clear,
+    copy,
     plugin,
     startIcon,
     saveButton,
@@ -53114,40 +53354,138 @@ var Collapsible_default = Collapsible;
 function add_css40(target) {
   append_styles(target, "svelte-1rh99dg", ".xp-container.svelte-1rh99dg{margin-left:auto}.xp.svelte-1rh99dg{display:flex;gap:1rem}.thresholds.svelte-1rh99dg{display:flex;flex-flow:column;gap:0.5rem}.experience-amount.svelte-1rh99dg{margin-left:auto}.encounter-difficulty.svelte-1rh99dg{display:flex;flex-flow:column nowrap;gap:0.5rem;margin-bottom:1rem}.container.svelte-1rh99dg{display:flex;flex-flow:column nowrap}.header.svelte-1rh99dg{text-transform:uppercase;font-weight:bolder}");
 }
-function get_each_context21(ctx, list, i) {
+function get_each_context22(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[14] = list[i];
+  child_ctx[8] = list[i];
   return child_ctx;
 }
-function create_title_slot(ctx) {
-  let h5;
+function get_each_context_16(ctx, list, i) {
+  const child_ctx = ctx.slice();
+  child_ctx[8] = list[i];
+  return child_ctx;
+}
+function get_each_context_2(ctx, list, i) {
+  const child_ctx = ctx.slice();
+  child_ctx[13] = list[i];
+  return child_ctx;
+}
+function create_if_block30(ctx) {
+  let t0;
+  let t1_value = ctx[4].displayName + "";
+  let t1;
+  let t2;
   return {
     c() {
-      h5 = element("h5");
-      h5.textContent = "Experience";
-      attr(h5, "slot", "title");
+      t0 = text("(");
+      t1 = text(t1_value);
+      t2 = text(")");
     },
     m(target, anchor) {
-      insert(target, h5, anchor);
+      insert(target, t0, anchor);
+      insert(target, t1, anchor);
+      insert(target, t2, anchor);
     },
     p: noop,
     d(detaching) {
       if (detaching)
-        detach(h5);
+        detach(t0);
+      if (detaching)
+        detach(t1);
+      if (detaching)
+        detach(t2);
     }
   };
 }
-function create_each_block21(ctx) {
+function create_title_slot(ctx) {
+  let h5;
+  let t2;
+  let if_block = ctx[1].data.rpgSystem != "dnd5e" /* Dnd5e */ && create_if_block30(ctx);
+  return {
+    c() {
+      h5 = element("h5");
+      t2 = text("Experience\n            ");
+      if (if_block)
+        if_block.c();
+      attr(h5, "slot", "title");
+    },
+    m(target, anchor) {
+      insert(target, h5, anchor);
+      append(h5, t2);
+      if (if_block)
+        if_block.m(h5, null);
+    },
+    p(ctx2, dirty) {
+      if (ctx2[1].data.rpgSystem != "dnd5e" /* Dnd5e */) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block = create_if_block30(ctx2);
+          if_block.c();
+          if_block.m(h5, null);
+        }
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
+      }
+    },
+    d(detaching) {
+      if (detaching)
+        detach(h5);
+      if (if_block)
+        if_block.d();
+    }
+  };
+}
+function create_each_block_2(ctx) {
   let div;
   let strong;
-  let t0_value = ctx[14] + "";
+  let t0_value = ctx[13].label + "";
   let t0;
   let t1;
   let span;
-  let t2_value = ctx[2][ctx[14]].toLocaleString() + "";
+  let t2_value = ctx[13].value.toLocaleString() + "";
+  let t2;
+  return {
+    c() {
+      div = element("div");
+      strong = element("strong");
+      t0 = text(t0_value);
+      t1 = space();
+      span = element("span");
+      t2 = text(t2_value);
+      attr(strong, "class", "header svelte-1rh99dg");
+      attr(div, "class", "adjusted container svelte-1rh99dg");
+    },
+    m(target, anchor) {
+      insert(target, div, anchor);
+      append(div, strong);
+      append(strong, t0);
+      append(div, t1);
+      append(div, span);
+      append(span, t2);
+    },
+    p(ctx2, dirty) {
+      if (dirty & 4 && t0_value !== (t0_value = ctx2[13].label + ""))
+        set_data(t0, t0_value);
+      if (dirty & 4 && t2_value !== (t2_value = ctx2[13].value.toLocaleString() + ""))
+        set_data(t2, t2_value);
+    },
+    d(detaching) {
+      if (detaching)
+        detach(div);
+    }
+  };
+}
+function create_each_block_16(ctx) {
+  let div;
+  let strong;
+  let t0_value = ctx[8].displayName + "";
+  let t0;
+  let t1;
+  let span;
+  let t2_value = ctx[4].formatDifficultyValue(ctx[8].minValue, true) + "";
   let t2;
   let t3;
-  let t4;
   let div_class_value;
   return {
     c() {
@@ -53157,11 +53495,10 @@ function create_each_block21(ctx) {
       t1 = space();
       span = element("span");
       t2 = text(t2_value);
-      t3 = text(" XP");
-      t4 = space();
+      t3 = space();
       attr(strong, "class", "experience-name header svelte-1rh99dg");
       attr(span, "class", "experience-amount svelte-1rh99dg");
-      attr(div, "class", div_class_value = "experience-threshold " + ctx[14].toLowerCase() + " container svelte-1rh99dg");
+      attr(div, "class", div_class_value = "experience-threshold " + ctx[8].displayName.toLowerCase() + " container svelte-1rh99dg");
     },
     m(target, anchor) {
       insert(target, div, anchor);
@@ -53170,12 +53507,16 @@ function create_each_block21(ctx) {
       append(div, t1);
       append(div, span);
       append(span, t2);
-      append(span, t3);
-      append(div, t4);
+      append(div, t3);
     },
     p(ctx2, dirty) {
-      if (dirty & 4 && t2_value !== (t2_value = ctx2[2][ctx2[14]].toLocaleString() + ""))
+      if (dirty & 1 && t0_value !== (t0_value = ctx2[8].displayName + ""))
+        set_data(t0, t0_value);
+      if (dirty & 1 && t2_value !== (t2_value = ctx2[4].formatDifficultyValue(ctx2[8].minValue, true) + ""))
         set_data(t2, t2_value);
+      if (dirty & 1 && div_class_value !== (div_class_value = "experience-threshold " + ctx2[8].displayName.toLowerCase() + " container svelte-1rh99dg")) {
+        attr(div, "class", div_class_value);
+      }
     },
     d(detaching) {
       if (detaching)
@@ -53183,154 +53524,222 @@ function create_each_block21(ctx) {
     }
   };
 }
+function create_each_block22(ctx) {
+  let h5;
+  let t0_value = ctx[8].displayName + "";
+  let t0;
+  let t1;
+  let span;
+  let t2_value = ctx[4].formatDifficultyValue(ctx[8].minValue, true) + "";
+  let t2;
+  let t3;
+  return {
+    c() {
+      h5 = element("h5");
+      t0 = text(t0_value);
+      t1 = space();
+      span = element("span");
+      t2 = text(t2_value);
+      t3 = space();
+      attr(h5, "class", "experience-name");
+      attr(span, "class", "experience-amount svelte-1rh99dg");
+    },
+    m(target, anchor) {
+      insert(target, h5, anchor);
+      append(h5, t0);
+      insert(target, t1, anchor);
+      insert(target, span, anchor);
+      append(span, t2);
+      append(span, t3);
+    },
+    p(ctx2, dirty) {
+      if (dirty & 1 && t0_value !== (t0_value = ctx2[8].displayName + ""))
+        set_data(t0, t0_value);
+      if (dirty & 1 && t2_value !== (t2_value = ctx2[4].formatDifficultyValue(ctx2[8].minValue, true) + ""))
+        set_data(t2, t2_value);
+    },
+    d(detaching) {
+      if (detaching)
+        detach(h5);
+      if (detaching)
+        detach(t1);
+      if (detaching)
+        detach(span);
+    }
+  };
+}
 function create_content_slot(ctx) {
-  let div7;
-  let div5;
-  let div3;
+  let div6;
+  let div4;
+  let div2;
   let div0;
   let strong0;
   let t1;
   let span0;
+  let t2_value = ctx[2].displayName + "";
   let t2;
   let t3;
+  let t4;
   let div1;
   let strong1;
+  let t5_value = ctx[2].title + "";
   let t5;
-  let span1;
-  let t6_value = (ctx[1] ? ctx[1].toLocaleString() : DEFAULT_UNDEFINED) + "";
   let t6;
+  let span1;
+  let t7_value = ctx[4].formatDifficultyValue(ctx[2].value) + "";
   let t7;
-  let div2;
-  let strong2;
+  let t8;
+  let div3;
   let t9;
-  let span2;
-  let t10_value = (ctx[0] ? ctx[0].toLocaleString() : DEFAULT_UNDEFINED) + "";
-  let t10;
-  let t11;
-  let div4;
-  let t12;
   let br;
-  let t13;
-  let div6;
-  let h5;
-  let t15;
-  let span3;
-  let t16_value = ctx[2].Daily.toLocaleString() + "";
-  let t16;
-  let t17;
-  let each_value = EXPERIENCE_THRESHOLDS;
+  let t10;
+  let div5;
+  let each_value_2 = ctx[2].intermediateValues;
+  let each_blocks_2 = [];
+  for (let i = 0; i < each_value_2.length; i += 1) {
+    each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+  }
+  let each_value_1 = ctx[4].getDifficultyThresholds(ctx[0]);
+  let each_blocks_1 = [];
+  for (let i = 0; i < each_value_1.length; i += 1) {
+    each_blocks_1[i] = create_each_block_16(get_each_context_16(ctx, each_value_1, i));
+  }
+  let each_value = ctx[4].getAdditionalDifficultyBudgets(ctx[0]);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block21(get_each_context21(ctx, each_value, i));
+    each_blocks[i] = create_each_block22(get_each_context22(ctx, each_value, i));
   }
   return {
     c() {
-      div7 = element("div");
-      div5 = element("div");
-      div3 = element("div");
+      div6 = element("div");
+      div4 = element("div");
+      div2 = element("div");
       div0 = element("div");
       strong0 = element("strong");
       strong0.textContent = "Difficulty";
       t1 = space();
       span0 = element("span");
-      t2 = text(ctx[4]);
+      t2 = text(t2_value);
       t3 = space();
+      for (let i = 0; i < each_blocks_2.length; i += 1) {
+        each_blocks_2[i].c();
+      }
+      t4 = space();
       div1 = element("div");
       strong1 = element("strong");
-      strong1.textContent = "XP";
-      t5 = space();
+      t5 = text(t5_value);
+      t6 = space();
       span1 = element("span");
-      t6 = text(t6_value);
-      t7 = space();
-      div2 = element("div");
-      strong2 = element("strong");
-      strong2.textContent = "Adjusted";
+      t7 = text(t7_value);
+      t8 = space();
+      div3 = element("div");
+      for (let i = 0; i < each_blocks_1.length; i += 1) {
+        each_blocks_1[i].c();
+      }
       t9 = space();
-      span2 = element("span");
-      t10 = text(t10_value);
-      t11 = space();
-      div4 = element("div");
+      br = element("br");
+      t10 = space();
+      div5 = element("div");
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      t12 = space();
-      br = element("br");
-      t13 = space();
-      div6 = element("div");
-      h5 = element("h5");
-      h5.textContent = "Daily budget";
-      t15 = space();
-      span3 = element("span");
-      t16 = text(t16_value);
-      t17 = text(" XP");
       attr(strong0, "class", "header svelte-1rh99dg");
       attr(div0, "class", "difficulty container svelte-1rh99dg");
       attr(strong1, "class", "header svelte-1rh99dg");
       attr(div1, "class", "total container svelte-1rh99dg");
-      attr(strong2, "class", "header svelte-1rh99dg");
-      attr(div2, "class", "adjusted container svelte-1rh99dg");
-      attr(div3, "class", "encounter-difficulty svelte-1rh99dg");
-      attr(div4, "class", "thresholds svelte-1rh99dg");
-      attr(div5, "class", "xp svelte-1rh99dg");
-      attr(h5, "class", "experience-name");
-      attr(span3, "class", "experience-amount svelte-1rh99dg");
-      attr(div6, "class", "budget");
-      attr(div7, "slot", "content");
+      attr(div2, "class", "encounter-difficulty svelte-1rh99dg");
+      attr(div3, "class", "thresholds svelte-1rh99dg");
+      attr(div4, "class", "xp svelte-1rh99dg");
+      attr(div5, "class", "budget");
+      attr(div6, "slot", "content");
     },
     m(target, anchor) {
-      insert(target, div7, anchor);
-      append(div7, div5);
-      append(div5, div3);
-      append(div3, div0);
+      insert(target, div6, anchor);
+      append(div6, div4);
+      append(div4, div2);
+      append(div2, div0);
       append(div0, strong0);
       append(div0, t1);
       append(div0, span0);
       append(span0, t2);
-      append(div3, t3);
-      append(div3, div1);
-      append(div1, strong1);
-      append(div1, t5);
-      append(div1, span1);
-      append(span1, t6);
-      append(div3, t7);
-      append(div3, div2);
-      append(div2, strong2);
-      append(div2, t9);
-      append(div2, span2);
-      append(span2, t10);
-      append(div5, t11);
-      append(div5, div4);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(div4, null);
+      append(div2, t3);
+      for (let i = 0; i < each_blocks_2.length; i += 1) {
+        each_blocks_2[i].m(div2, null);
       }
-      append(div5, t12);
-      append(div5, br);
-      append(div7, t13);
-      append(div7, div6);
-      append(div6, h5);
-      append(div6, t15);
-      append(div6, span3);
-      append(span3, t16);
-      append(span3, t17);
+      append(div2, t4);
+      append(div2, div1);
+      append(div1, strong1);
+      append(strong1, t5);
+      append(div1, t6);
+      append(div1, span1);
+      append(span1, t7);
+      append(div4, t8);
+      append(div4, div3);
+      for (let i = 0; i < each_blocks_1.length; i += 1) {
+        each_blocks_1[i].m(div3, null);
+      }
+      append(div4, t9);
+      append(div4, br);
+      append(div6, t10);
+      append(div6, div5);
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        each_blocks[i].m(div5, null);
+      }
     },
     p(ctx2, dirty) {
-      if (dirty & 16)
-        set_data(t2, ctx2[4]);
-      if (dirty & 2 && t6_value !== (t6_value = (ctx2[1] ? ctx2[1].toLocaleString() : DEFAULT_UNDEFINED) + ""))
-        set_data(t6, t6_value);
-      if (dirty & 1 && t10_value !== (t10_value = (ctx2[0] ? ctx2[0].toLocaleString() : DEFAULT_UNDEFINED) + ""))
-        set_data(t10, t10_value);
+      if (dirty & 4 && t2_value !== (t2_value = ctx2[2].displayName + ""))
+        set_data(t2, t2_value);
       if (dirty & 4) {
-        each_value = EXPERIENCE_THRESHOLDS;
+        each_value_2 = ctx2[2].intermediateValues;
+        let i;
+        for (i = 0; i < each_value_2.length; i += 1) {
+          const child_ctx = get_each_context_2(ctx2, each_value_2, i);
+          if (each_blocks_2[i]) {
+            each_blocks_2[i].p(child_ctx, dirty);
+          } else {
+            each_blocks_2[i] = create_each_block_2(child_ctx);
+            each_blocks_2[i].c();
+            each_blocks_2[i].m(div2, t4);
+          }
+        }
+        for (; i < each_blocks_2.length; i += 1) {
+          each_blocks_2[i].d(1);
+        }
+        each_blocks_2.length = each_value_2.length;
+      }
+      if (dirty & 4 && t5_value !== (t5_value = ctx2[2].title + ""))
+        set_data(t5, t5_value);
+      if (dirty & 4 && t7_value !== (t7_value = ctx2[4].formatDifficultyValue(ctx2[2].value) + ""))
+        set_data(t7, t7_value);
+      if (dirty & 17) {
+        each_value_1 = ctx2[4].getDifficultyThresholds(ctx2[0]);
+        let i;
+        for (i = 0; i < each_value_1.length; i += 1) {
+          const child_ctx = get_each_context_16(ctx2, each_value_1, i);
+          if (each_blocks_1[i]) {
+            each_blocks_1[i].p(child_ctx, dirty);
+          } else {
+            each_blocks_1[i] = create_each_block_16(child_ctx);
+            each_blocks_1[i].c();
+            each_blocks_1[i].m(div3, null);
+          }
+        }
+        for (; i < each_blocks_1.length; i += 1) {
+          each_blocks_1[i].d(1);
+        }
+        each_blocks_1.length = each_value_1.length;
+      }
+      if (dirty & 17) {
+        each_value = ctx2[4].getAdditionalDifficultyBudgets(ctx2[0]);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context21(ctx2, each_value, i);
+          const child_ctx = get_each_context22(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
           } else {
-            each_blocks[i] = create_each_block21(child_ctx);
+            each_blocks[i] = create_each_block22(child_ctx);
             each_blocks[i].c();
-            each_blocks[i].m(div4, null);
+            each_blocks[i].m(div5, null);
           }
         }
         for (; i < each_blocks.length; i += 1) {
@@ -53338,12 +53747,12 @@ function create_content_slot(ctx) {
         }
         each_blocks.length = each_value.length;
       }
-      if (dirty & 4 && t16_value !== (t16_value = ctx2[2].Daily.toLocaleString() + ""))
-        set_data(t16, t16_value);
     },
     d(detaching) {
       if (detaching)
-        detach(div7);
+        detach(div6);
+      destroy_each(each_blocks_2, detaching);
+      destroy_each(each_blocks_1, detaching);
       destroy_each(each_blocks, detaching);
     }
   };
@@ -53354,7 +53763,7 @@ function create_fragment48(ctx) {
   let current;
   collapsible = new Collapsible_default({
     props: {
-      open: ctx[5],
+      open: ctx[3],
       $$slots: {
         content: [create_content_slot],
         title: [create_title_slot]
@@ -53362,7 +53771,7 @@ function create_fragment48(ctx) {
       $$scope: { ctx }
     }
   });
-  collapsible.$on("toggle", ctx[13]);
+  collapsible.$on("toggle", ctx[7]);
   return {
     c() {
       div = element("div");
@@ -53376,7 +53785,7 @@ function create_fragment48(ctx) {
     },
     p(ctx2, [dirty]) {
       const collapsible_changes = {};
-      if (dirty & 131095) {
+      if (dirty & 65543) {
         collapsible_changes.$$scope = { dirty, ctx: ctx2 };
       }
       collapsible.$set(collapsible_changes);
@@ -53399,93 +53808,34 @@ function create_fragment48(ctx) {
   };
 }
 function instance48($$self, $$props, $$invalidate) {
-  let count;
-  let index2;
-  let modifier2;
-  let xp;
-  let adjXP;
-  let $thresholds;
+  let playerLevels;
+  let difficulty;
   let $encounter;
-  let $playerModifier;
-  component_subscribe($$self, encounter, ($$value) => $$invalidate(11, $encounter = $$value));
+  let $players;
+  component_subscribe($$self, encounter, ($$value) => $$invalidate(5, $encounter = $$value));
+  component_subscribe($$self, players, ($$value) => $$invalidate(6, $players = $$value));
   const plugin = getContext("plugin");
   const open = plugin.data.builder.showXP;
-  const { thresholds, modifier: playerModifier } = players;
-  component_subscribe($$self, thresholds, (value) => $$invalidate(2, $thresholds = value));
-  component_subscribe($$self, playerModifier, (value) => $$invalidate(12, $playerModifier = value));
-  let difficulty;
-  const toggle_handler = () => $$invalidate(3, plugin.data.builder.showXP = !plugin.data.builder.showXP, plugin);
+  const rpgSystem = getRpgSystem(plugin);
+  const toggle_handler = () => $$invalidate(1, plugin.data.builder.showXP = !plugin.data.builder.showXP, plugin);
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & 2048) {
+    if ($$self.$$.dirty & 64) {
       $:
-        $$invalidate(10, count = [...$encounter.values()].reduce(
-          (a, b) => {
-            return a + b;
-          },
-          0
-        ));
+        $$invalidate(0, playerLevels = $players.filter((p) => p.enabled).map((p) => p.level));
     }
-    if ($$self.$$.dirty & 5120) {
+    if ($$self.$$.dirty & 33) {
       $:
-        $$invalidate(9, index2 = MODIFIER_THRESHOLDS.lastIndexOf(MODIFIER_THRESHOLDS.filter((t2) => t2 <= count).pop()) + $playerModifier);
-    }
-    if ($$self.$$.dirty & 512) {
-      $:
-        $$invalidate(8, modifier2 = MODIFIERS_BY_COUNT[index2]);
-    }
-    if ($$self.$$.dirty & 2048) {
-      $:
-        $$invalidate(1, xp = [...$encounter.entries()].reduce(
-          (acc, cur2) => {
-            const [monster, count2] = cur2;
-            if (monster.cr && monster.cr in XP_PER_CR) {
-              acc += XP_PER_CR[monster.cr] * count2;
-            }
-            return acc;
-          },
-          0
-        ));
-    }
-    if ($$self.$$.dirty & 258) {
-      $:
-        $$invalidate(0, adjXP = xp * modifier2);
-    }
-    if ($$self.$$.dirty & 5) {
-      $: {
-        if (!adjXP)
-          $$invalidate(4, difficulty = DEFAULT_UNDEFINED);
-        else {
-          $$invalidate(4, difficulty = "Trivial");
-          if (adjXP > $thresholds.Easy) {
-            $$invalidate(4, difficulty = "Easy");
-          }
-          if (adjXP > $thresholds.Medium) {
-            $$invalidate(4, difficulty = "Medium");
-          }
-          if (adjXP > $thresholds.Hard) {
-            $$invalidate(4, difficulty = "Hard");
-          }
-          if (adjXP > $thresholds.Deadly) {
-            $$invalidate(4, difficulty = "Deadly");
-          }
-        }
-      }
+        $$invalidate(2, difficulty = rpgSystem.getEncounterDifficulty($encounter, playerLevels));
     }
   };
   return [
-    adjXP,
-    xp,
-    $thresholds,
+    playerLevels,
     plugin,
     difficulty,
     open,
-    thresholds,
-    playerModifier,
-    modifier2,
-    index2,
-    count,
+    rpgSystem,
     $encounter,
-    $playerModifier,
+    $players,
     toggle_handler
   ];
 }
@@ -53502,13 +53852,13 @@ var import_obsidian48 = require("obsidian");
 function add_css41(target) {
   append_styles(target, "svelte-wi0lrc", ".players.svelte-wi0lrc.svelte-wi0lrc{display:flex;flex-flow:column;gap:0.25rem}.player.svelte-wi0lrc.svelte-wi0lrc{display:flex;justify-content:space-between;align-items:center}input.svelte-wi0lrc.svelte-wi0lrc{text-align:center;width:40px}.disabled.svelte-wi0lrc>.player-name.svelte-wi0lrc{text-decoration:line-through}.disabled.svelte-wi0lrc.svelte-wi0lrc{color:var(--text-faint)}.player-right.svelte-wi0lrc.svelte-wi0lrc{display:flex;align-items:center;gap:0.25rem}.add-player.svelte-wi0lrc.svelte-wi0lrc{display:flex;align-items:center;justify-content:flex-end}");
 }
-function get_each_context22(ctx, list, i) {
+function get_each_context23(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[21] = list[i];
   child_ctx[23] = i;
   return child_ctx;
 }
-function get_each_context_16(ctx, list, i) {
+function get_each_context_17(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[21] = list[i];
   return child_ctx;
@@ -53604,7 +53954,7 @@ function create_if_block_122(ctx) {
     }
   };
 }
-function create_each_block_16(key_1, ctx) {
+function create_each_block_17(key_1, ctx) {
   let div2;
   let span0;
   let t0_value = ctx[21].name + "";
@@ -53721,7 +54071,7 @@ function create_else_block19(ctx) {
     }
   };
 }
-function create_if_block30(ctx) {
+function create_if_block31(ctx) {
   let div;
   let disable_action;
   let mounted;
@@ -53745,7 +54095,7 @@ function create_if_block30(ctx) {
     }
   };
 }
-function create_each_block22(ctx) {
+function create_each_block23(ctx) {
   let div5;
   let input0;
   let input0_value_value;
@@ -53777,7 +54127,7 @@ function create_each_block22(ctx) {
   }
   function select_block_type_1(ctx2, dirty) {
     if (ctx2[21].enabled)
-      return create_if_block30;
+      return create_if_block31;
     return create_else_block19;
   }
   let current_block_type = select_block_type_1(ctx, -1);
@@ -53904,14 +54254,14 @@ function create_content_slot2(ctx) {
   let each_value_1 = ctx[1];
   const get_key = (ctx2) => ctx2[21].name;
   for (let i = 0; i < each_value_1.length; i += 1) {
-    let child_ctx = get_each_context_16(ctx, each_value_1, i);
+    let child_ctx = get_each_context_17(ctx, each_value_1, i);
     let key = get_key(child_ctx);
-    each0_lookup.set(key, each_blocks_1[i] = create_each_block_16(key, child_ctx));
+    each0_lookup.set(key, each_blocks_1[i] = create_each_block_17(key, child_ctx));
   }
   let each_value = ctx[2];
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block22(get_each_context22(ctx, each_value, i));
+    each_blocks[i] = create_each_block23(get_each_context23(ctx, each_value, i));
   }
   return {
     c() {
@@ -53965,17 +54315,17 @@ function create_content_slot2(ctx) {
     p(ctx2, dirty) {
       if (dirty & 2) {
         each_value_1 = ctx2[1];
-        each_blocks_1 = update_keyed_each(each_blocks_1, dirty, get_key, 1, ctx2, each_value_1, each0_lookup, div3, destroy_block, create_each_block_16, t1, get_each_context_16);
+        each_blocks_1 = update_keyed_each(each_blocks_1, dirty, get_key, 1, ctx2, each_value_1, each0_lookup, div3, destroy_block, create_each_block_17, t1, get_each_context_17);
       }
       if (dirty & 4) {
         each_value = ctx2[2];
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context22(ctx2, each_value, i);
+          const child_ctx = get_each_context23(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
           } else {
-            each_blocks[i] = create_each_block22(child_ctx);
+            each_blocks[i] = create_each_block23(child_ctx);
             each_blocks[i].c();
             each_blocks[i].m(div3, t2);
           }
@@ -54349,7 +54699,7 @@ var resolved_promise2 = Promise.resolve();
 function add_css44(target) {
   append_styles(target, "svelte-1frc5is", ".full-center.svelte-1frc5is{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.initiative-tracker-table.svelte-1frc5is{padding:0.5rem;align-items:center;gap:0.25rem 0.5rem;width:100%;margin-left:0rem;table-layout:fixed;border-collapse:separate;border-spacing:0 2px;font-size:larger}.left.svelte-1frc5is{text-align:left}.name.svelte-1frc5is,.name.svelte-1frc5is>svg{display:flex;align-items:center;gap:0.5rem}.center.svelte-1frc5is{text-align:center}.healthy.svelte-1frc5is{color:var(--text-success)}.hurt.svelte-1frc5is{color:var(--text-warning)}.bloodied.svelte-1frc5is{color:var(--text-error)}.defeated.svelte-1frc5is{color:var(--text-faint)}.active.svelte-1frc5is{background-color:rgba(0, 0, 0, 0.1)}.theme-dark .active.svelte-1frc5is{background-color:rgba(255, 255, 255, 0.1)}");
 }
-function get_each_context23(ctx, list, i) {
+function get_each_context24(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[14] = list[i];
   return child_ctx;
@@ -54404,7 +54754,7 @@ function create_else_block20(ctx) {
     }
   };
 }
-function create_if_block31(ctx) {
+function create_if_block32(ctx) {
   let div;
   let raw_value = ctx[14].hpDisplay + "";
   return {
@@ -54427,7 +54777,7 @@ function create_if_block31(ctx) {
     }
   };
 }
-function create_each_block23(key_1, ctx) {
+function create_each_block24(key_1, ctx) {
   let tr;
   let td0;
   let t0_value = ctx[14].initiative + "";
@@ -54448,7 +54798,7 @@ function create_each_block23(key_1, ctx) {
   let if_block0 = ctx[14].friendly && create_if_block_123(ctx);
   function select_block_type(ctx2, dirty) {
     if (ctx2[14].player && ctx2[2].diplayPlayerHPValues)
-      return create_if_block31;
+      return create_if_block32;
     return create_else_block20;
   }
   let current_block_type = select_block_type(ctx, -1);
@@ -54573,9 +54923,9 @@ function create_fragment52(ctx) {
   let each_value = ctx[0];
   const get_key = (ctx2) => ctx2[14].id;
   for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context23(ctx, each_value, i);
+    let child_ctx = get_each_context24(ctx, each_value, i);
     let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block23(key, child_ctx));
+    each_1_lookup.set(key, each_blocks[i] = create_each_block24(key, child_ctx));
   }
   return {
     c() {
@@ -54634,7 +54984,7 @@ function create_fragment52(ctx) {
     p(ctx2, [dirty]) {
       if (dirty & 1799) {
         each_value = ctx2[0];
-        each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, tbody, destroy_block, create_each_block23, null, get_each_context23);
+        each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, tbody, destroy_block, create_each_block24, null, get_each_context24);
       }
     },
     i(local) {
@@ -54769,8 +55119,207 @@ var PlayerView2 = class extends import_obsidian51.ItemView {
   }
 };
 
+// src/encounter/editor-suggestor/index.ts
+var import_obsidian52 = require("obsidian");
+var EncounterSuggester = class extends import_obsidian52.EditorSuggest {
+  constructor(plugin) {
+    super(plugin.app);
+    this.plugin = plugin;
+    __publicField(this, "_context", 5 /* None */);
+    __publicField(this, "_encounter", {});
+  }
+  getSuggestions(ctx) {
+    let suggestions = [];
+    switch (this._context) {
+      case 4 /* Name */: {
+        suggestions = [];
+        break;
+      }
+      case 0 /* Players */:
+        suggestions = [...this.plugin.players.keys()].filter(
+          (p) => !this._encounter.players?.includes(p)
+        );
+        break;
+      case 1 /* Creatures */:
+        suggestions = this.plugin.bestiaryNames;
+        break;
+      case 2 /* Party */:
+        suggestions = ["false", ...this.plugin.data.parties?.map((p) => p.name)];
+        break;
+      case 3 /* RollHP */:
+        suggestions = ["true", "false"];
+        break;
+      case 5 /* None */:
+        suggestions = [
+          "players",
+          "creatures",
+          "party",
+          "rollHP",
+          "name"
+        ].filter((k) => !(k in this._encounter));
+        break;
+    }
+    return suggestions.filter(
+      (s) => !ctx.query.length || s.toLowerCase().contains(ctx.query.toLowerCase())
+    );
+  }
+  renderSuggestion(text2, el) {
+    el.createSpan({ text: text2 });
+  }
+  selectSuggestion(value, evt) {
+    if (!this.context)
+      return;
+    switch (this._context) {
+      case 5 /* None */: {
+        value = `${value}:`;
+        if (/^(players|creatures):/.test(value)) {
+          value = `${value}
+  - `;
+        } else {
+          value = `${value} `;
+        }
+        break;
+      }
+      case 1 /* Creatures */:
+      case 0 /* Players */: {
+        const spaces2 = this.context.editor.getLine(this.context.start.line).search(/\S/);
+        value = `${value}
+${" ".repeat(spaces2)}- `;
+        break;
+      }
+      case 2 /* Party */:
+      case 3 /* RollHP */: {
+        const endsWithSpace = /\s$/.test(
+          this.context.editor.getLine(this.context.start.line)
+        );
+        value = `${endsWithSpace ? "" : " "}${value.trim()}`;
+        break;
+      }
+      case 4 /* Name */:
+        break;
+    }
+    this.context.editor.replaceRange(
+      `${value}`,
+      this.context.start,
+      {
+        ...this.context.end,
+        ch: this.context.start.ch + this.context.query.length
+      },
+      "initiative-tracker"
+    );
+    this.context.editor.setCursor(
+      this.context.start.line,
+      this.context.start.ch + value.length
+    );
+    this.close();
+  }
+  onTrigger(cursor3, editor, file) {
+    this._context = 5 /* None */;
+    const range = editor.getRange({ line: 0, ch: 0 }, cursor3);
+    if (range.indexOf("```encounter\n") === -1)
+      return null;
+    const split = range.split("\n");
+    let inEncounter = false, start2;
+    for (let i = split.length - 1; i >= 0; i--) {
+      let line2 = split[i];
+      if (/^```$/.test(line2))
+        return null;
+      if (/^```encounter/.test(line2)) {
+        inEncounter = true;
+        start2 = i;
+        break;
+      }
+    }
+    if (!inEncounter)
+      return null;
+    try {
+      let doc2 = editor.getValue().split("\n");
+      doc2.splice(cursor3.line, 1);
+      doc2 = doc2.slice(start2 + 1);
+      let end2 = doc2.findIndex((l) => /^```$/.test(l));
+      if (end2 < 0)
+        end2 = doc2.length;
+      this._encounter = (0, import_obsidian52.parseYaml)(doc2.slice(0, end2).join("\n"));
+    } catch (e) {
+      this._encounter = {};
+    }
+    if (!this._encounter)
+      this._encounter = {};
+    const line = editor.getLine(cursor3.line);
+    if (/^name/.test(line))
+      return null;
+    if (/^rollHP:/.test(line)) {
+      this._context = 3 /* RollHP */;
+      const [_, query] = line.match(/^rollHP:\s?(.*)$/);
+      if (query === "true" || query === "false")
+        return null;
+      return {
+        end: cursor3,
+        start: {
+          ch: line.length - query.length,
+          line: cursor3.line
+        },
+        query
+      };
+    }
+    if (/^party:/.test(line)) {
+      this._context = 2 /* Party */;
+      const [_, query] = line.match(/^party:\s?(.*)$/);
+      if (this.plugin.data.parties.find((p) => p.name === query))
+        return null;
+      return {
+        end: cursor3,
+        start: {
+          ch: line.length - query.length,
+          line: cursor3.line
+        },
+        query
+      };
+    }
+    if (/\s+- (?:\d:)?/.test(line)) {
+      let found = false;
+      for (let i = split.length - 1; i >= 0; i--) {
+        let line2 = split[i];
+        if (/^```$/.test(line2))
+          return null;
+        if (/^```encounter/.test(line2))
+          return null;
+        if (/^players:/.test(line2)) {
+          this._context = 0 /* Players */;
+          found = true;
+          break;
+        }
+        if (/^creatures:/.test(line2)) {
+          this._context = 1 /* Creatures */;
+          found = true;
+          break;
+        }
+      }
+      if (!found)
+        return null;
+      const [_, query] = line.match(/^\s+- (?:\d:)?(.*)$/);
+      return {
+        end: cursor3,
+        start: {
+          ch: line.length - query.length,
+          line: cursor3.line
+        },
+        query
+      };
+    }
+    return {
+      end: cursor3,
+      start: {
+        ch: 0,
+        line: cursor3.line
+      },
+      query: line
+    };
+  }
+};
+
 // src/main.ts
-var InitiativeTracker = class extends import_obsidian52.Plugin {
+var InitiativeTracker = class extends import_obsidian53.Plugin {
   constructor() {
     super(...arguments);
     __publicField(this, "data");
@@ -54788,7 +55337,7 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
   get canUseDiceRoller() {
     if (this.app.plugins.getPlugin("obsidian-dice-roller") != null) {
       if (!this.app.plugins.getPlugin("obsidian-dice-roller").getRollerSync) {
-        new import_obsidian52.Notice(
+        new import_obsidian53.Notice(
           "Please update Dice Roller to the latest version to use with Initiative Tracker."
         );
       } else {
@@ -54821,6 +55370,9 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
       return new Creature({ name: name3 });
     return Creature.from(this.players.get(name3));
   }
+  getPlayerNamesForParty(party) {
+    return this.data.parties?.find((p) => p.name === party)?.players ?? [];
+  }
   getPlayersForParty(party) {
     return this.data.parties?.find((p) => p.name == party)?.players.map((p) => this.getPlayerByName(p))?.filter((p) => p) ?? [];
   }
@@ -54834,9 +55386,7 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
     return this.statblocks?.settings?.version ?? { major: 0 };
   }
   get canUseLeaflet() {
-    return this.app.plugins.getPlugin("obsidian-leaflet-plugin") != null && Number(
-      this.app.plugins.getPlugin("obsidian-leaflet-plugin").data?.version?.major >= 4
-    );
+    return false;
   }
   get leaflet() {
     if (this.canUseLeaflet) {
@@ -54855,9 +55405,14 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
   get bestiary() {
     return this.statblock_creatures.filter((p) => !p.player);
   }
+  get bestiaryNames() {
+    if (!this.app.plugins.getPlugin("obsidian-5e-statblocks"))
+      return [];
+    return this.app.plugins.getPlugin("obsidian-5e-statblocks")?.getBestiaryNames() ?? [];
+  }
   get view() {
     const leaves = this.app.workspace.getLeavesOfType(
-      INTIATIVE_TRACKER_VIEW
+      INITIATIVE_TRACKER_VIEW
     );
     const leaf = leaves?.length ? leaves[0] : null;
     if (leaf && leaf.view && leaf.view instanceof TrackerView)
@@ -54888,6 +55443,12 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
     if (creature)
       return Creature.from(creature);
   }
+  getCreatureFromBestiaryByDefinition(creature) {
+    if (creature.player && this.playerCreatures.has(creature.name)) {
+      return this.playerCreatures.get(creature.name);
+    }
+    return this.getCreatureFromBestiary(creature.name) ?? Creature.from(creature);
+  }
   get statblock_players() {
     return this.statblock_creatures.filter((p) => p.player).map((p) => [p.name, Creature.from(p)]);
   }
@@ -54903,7 +55464,7 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
     this.setBuilderIcon();
     this.addSettingTab(new InitiativeTrackerSettings(this));
     this.registerView(
-      INTIATIVE_TRACKER_VIEW,
+      INITIATIVE_TRACKER_VIEW,
       (leaf) => new TrackerView(leaf, this)
     );
     this.registerView(
@@ -54920,6 +55481,7 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
     );
     this.addCommands();
     this.addEvents();
+    this.registerEditorSuggest(new EncounterSuggester(this));
     this.registerMarkdownCodeBlockProcessor("encounter", (src, el, ctx) => {
       const handler = new EncounterBlock(this, src, el);
       ctx.addChild(handler);
@@ -54944,7 +55506,7 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
         return;
       for (const code of codes) {
         const definitions = code.innerText.replace(`encounter:`, "");
-        const creatures = (0, import_obsidian52.parseYaml)("[" + definitions.trim() + "]");
+        const creatures = (0, import_obsidian53.parseYaml)("[" + definitions.trim() + "]");
         const parser2 = new EncounterParser(this);
         const parsed = await parser2.parse({ creatures });
         if (!parsed || !parsed.creatures || !parsed.creatures.size)
@@ -54975,7 +55537,7 @@ var InitiativeTracker = class extends import_obsidian52.Plugin {
           ""
         );
         if (!file || !this.app.metadataCache.getFileCache(file)?.frontmatter) {
-          new import_obsidian52.Notice(
+          new import_obsidian53.Notice(
             `Initiative Tracker: There was an issue with the linked note for ${player.name}.
 
 Please re-link it in settings.`
@@ -54985,7 +55547,7 @@ Please re-link it in settings.`
       }
       this.registerEvent(
         this.app.metadataCache.on("changed", (file) => {
-          if (!(file instanceof import_obsidian52.TFile))
+          if (!(file instanceof import_obsidian53.TFile))
             return;
           const players2 = this.data.players.filter(
             (p) => p.path == file.path
@@ -55024,7 +55586,7 @@ Please re-link it in settings.`
       );
       this.registerEvent(
         this.app.vault.on("rename", (file, old) => {
-          if (!(file instanceof import_obsidian52.TFile))
+          if (!(file instanceof import_obsidian53.TFile))
             return;
           const players2 = this.data.players.filter(
             (p) => p.path == old
@@ -55039,7 +55601,7 @@ Please re-link it in settings.`
       );
       this.registerEvent(
         this.app.vault.on("delete", (file) => {
-          if (!(file instanceof import_obsidian52.TFile))
+          if (!(file instanceof import_obsidian53.TFile))
             return;
           const players2 = this.data.players.filter(
             (p) => p.path == file.path
@@ -55159,12 +55721,12 @@ Please re-link it in settings.`
               });
               this.app.workspace.revealLeaf(view.leaf);
             } else {
-              new import_obsidian52.Notice(
+              new import_obsidian53.Notice(
                 "Could not find the Initiative Tracker. Try reloading the note!"
               );
             }
           } catch (e) {
-            new import_obsidian52.Notice(
+            new import_obsidian53.Notice(
               "There was an issue launching the encounter.\n\n" + e.message
             );
             console.error(e);
@@ -55177,16 +55739,16 @@ Please re-link it in settings.`
   async onunload() {
     await this.saveSettings();
     this.app.workspace.trigger("initiative-tracker:unload");
-    this.app.workspace.getLeavesOfType(INTIATIVE_TRACKER_VIEW).forEach((leaf) => leaf.detach());
+    this.app.workspace.getLeavesOfType(INITIATIVE_TRACKER_VIEW).forEach((leaf) => leaf.detach());
     this.app.workspace.getLeavesOfType(CREATURE_TRACKER_VIEW).forEach((leaf) => leaf.detach());
     console.log("Initiative Tracker unloaded");
   }
   async addTrackerView() {
-    if (this.app.workspace.getLeavesOfType(INTIATIVE_TRACKER_VIEW)?.length) {
+    if (this.app.workspace.getLeavesOfType(INITIATIVE_TRACKER_VIEW)?.length) {
       return;
     }
     await this.app.workspace.getRightLeaf(false).setViewState({
-      type: INTIATIVE_TRACKER_VIEW
+      type: INITIATIVE_TRACKER_VIEW
     });
   }
   get builder() {
@@ -55248,12 +55810,6 @@ Please re-link it in settings.`
       await this.loadData()
     );
     this.data = data;
-    if (this.data.leafletIntegration && !this.data.players.every((p) => p.marker)) {
-      this.data.players = this.data.players.map((p) => {
-        p.marker = p.marker ?? this.data.playerMarker;
-        return p;
-      });
-    }
     if (this.data.statuses?.some((c) => !c.id)) {
       for (const condition of this.data.statuses) {
         condition.id = condition.id ?? Conditions.find((c) => c.name == condition.name)?.id ?? getId();
@@ -55263,12 +55819,6 @@ Please re-link it in settings.`
     this.data.version = this.manifest.version.split(".").map((n) => Number(n));
   }
   async saveSettings() {
-    if (this.data.leafletIntegration && !this.data.players.every((p) => p.marker)) {
-      this.data.players = this.data.players.map((p) => {
-        p.marker = p.marker ?? this.data.playerMarker;
-        return p;
-      });
-    }
     await this.saveData(this.data);
     tracker.setData(this.data);
   }
@@ -55289,7 +55839,7 @@ Please re-link it in settings.`
     if (this.data.builder.sidebarIcon) {
       this._builderIcon = this.addRibbonIcon(
         BUILDER_VIEW,
-        "Intiative Tracker Encounter Builder",
+        "Initiative Tracker Encounter Builder",
         () => {
           this.addBuilderView();
         }
