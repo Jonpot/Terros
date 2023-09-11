@@ -52,7 +52,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Objects/Elder Blades/Carina.md",
+                "file": "Locations/The Winter Plane.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -134,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Objects/Elder Blades/Carina.md",
+                "file": "Locations/The Winter Plane.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Objects/Elder Blades/Carina.md",
+                "file": "Locations/The Winter Plane.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Objects/Elder Blades/Carina.md"
+                "file": "Locations/The Winter Plane.md"
               }
             }
           },
@@ -214,7 +214,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Objects/Elder Blades/Carina.md",
+                "file": "Locations/The Winter Plane.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -334,35 +334,35 @@
   },
   "active": "54b60ccfd7f50757",
   "lastOpenFiles": [
-    "Planets.md",
+    "Locations/Telam's Castle.md",
+    "Tela Verii.md",
     "Nicephoros.md",
+    "Locations/The Plane of Ideas.md",
+    "People/Emperor Caius.md",
+    "Locations/The Plane of Delos/Delos.md",
+    "Objects/Elder Blades/Carina.md",
+    "Planets.md",
     "People/Vesa van Delzig.md",
     "Lore/Mordred's Report on Isabel.md",
     "People/Mordred Van Delzig.md",
     "Lore/Address Concerning the Fundamental Questions of Humanity.md",
     "People/Emperor Maximilian.md",
     "Objects/Elder Blades/Tevas.md",
-    "Locations/The Plane of Delos/Delos.md",
     "Locations/The Plane of Delos",
-    "Locations/The Plane of Ideas.md",
     "Locations/The Plane of Fire.md",
     "Locations/The Plane of Terros/Isle of Faith.md",
     "People/Mithrin.md",
     "Locations/The Plane of Terros",
-    "People/Emperor Caius.md",
     "Locations/The Winter Plane.md",
     "The Tyrant.md",
     "The Planes.canvas",
     "The Bird Creatures.md",
     "General Useful Information.md",
-    "Locations/Telam's Castle.md",
     "Locations/The Plane of Terros/The Ceon Sea.md",
     "Locations/The Demon Plane.md",
     "Lore/Appendix C- Rebellion in Illyria.md",
     "Lore/Letter to Lord Cadmus.md",
     "Lore/Record from the Court of the Attish King in the 6th Year of Time's Sleep.md",
-    "Lore/The History of Terros, Volume 12.md",
-    "Lore/The Journal of Caerys Blackstar.md",
     "_attachments",
     "_attachments/terros_newmap.png",
     "People/Organizations/The Order of the Red Rose",
