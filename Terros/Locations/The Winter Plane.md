@@ -1,3 +1,3 @@
 #plane #location 
 
-Literally just the sun of [[Terros]].
+Merged with [[the Plane of Fire]]

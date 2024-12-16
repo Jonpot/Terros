@@ -5,3 +5,5 @@ Sword of the Universe and of Creation. The blade is long and a pale gray. The hi
 One of [[The Elder Blades]].
 
 Previously held by [[Eudoxus]].
+
+A clockwork mind, didn't think about much other than mathematics.

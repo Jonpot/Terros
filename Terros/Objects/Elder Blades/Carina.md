@@ -5,6 +5,8 @@ Sword of the ocean and the deepest pits of the world. Blue curved blade with red
 
 One of [[The Elder Blades]]. 
 
+Fun, sociable
+
 Previously held by [[Lana]].
 
 Eventually came into the control of [[Theo Stonewall]].

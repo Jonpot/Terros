@@ -1,4 +1,4 @@
-#building #location
+#tavern #building #location
 
 A tavern/inn in [[Westfall]].
 

@@ -5,3 +5,5 @@ Sword of forests, swamps, savannas, rainforests, and other domains of nature. Th
 One of [[The Elder Blades]].
 
 Previously held by [[Ezrien]].
+
+Very live and let live. Capable of very deep kinds of anger. Preservationist. Liked things to stay the way that they were.

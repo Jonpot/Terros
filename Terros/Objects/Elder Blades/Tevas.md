@@ -7,3 +7,5 @@ One of [[The Elder Blades]].
 Previously held by [[Telam]].
 
 Currently held by [[Mordred Van Delzig]]
+
+Didn't talk to anyone but [[Telam]] 

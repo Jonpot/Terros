@@ -5,3 +5,5 @@ Sword of fire, lava, and mountains. Long, light red, curved blade. The handle is
 One of [[The Elder Blades]].
 
 Previously held by [[Vitellius]].
+
+A lot of fire, a taste for violence, fun.

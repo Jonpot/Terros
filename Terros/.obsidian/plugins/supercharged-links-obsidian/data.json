@@ -191,6 +191,78 @@
       "selectAppend": true,
       "selectPrepend": true,
       "selectBackground": true
+    },
+    {
+      "type": "tag",
+      "name": "icon",
+      "value": "building",
+      "matchCaseSensitive": false,
+      "match": "exact",
+      "uid": "7856-c817",
+      "selectText": true,
+      "selectAppend": true,
+      "selectPrepend": true,
+      "selectBackground": true
+    },
+    {
+      "type": "tag",
+      "name": "icon",
+      "value": "god",
+      "matchCaseSensitive": false,
+      "match": "exact",
+      "uid": "82bd-74eb",
+      "selectText": true,
+      "selectAppend": true,
+      "selectPrepend": true,
+      "selectBackground": true
+    },
+    {
+      "type": "tag",
+      "name": "icon",
+      "value": "tavern",
+      "matchCaseSensitive": false,
+      "match": "exact",
+      "uid": "6b2f-577d",
+      "selectText": true,
+      "selectAppend": true,
+      "selectPrepend": true,
+      "selectBackground": true
+    },
+    {
+      "type": "tag",
+      "name": "icon",
+      "value": "country",
+      "matchCaseSensitive": false,
+      "match": "exact",
+      "uid": "a61a-997c",
+      "selectText": true,
+      "selectAppend": true,
+      "selectPrepend": true,
+      "selectBackground": true
+    },
+    {
+      "type": "tag",
+      "name": "icon",
+      "value": "city",
+      "matchCaseSensitive": false,
+      "match": "exact",
+      "uid": "bad8-aa8e",
+      "selectText": true,
+      "selectAppend": true,
+      "selectPrepend": true,
+      "selectBackground": true
+    },
+    {
+      "type": "tag",
+      "name": "icon",
+      "value": "ocean",
+      "matchCaseSensitive": false,
+      "match": "exact",
+      "uid": "affb-9d5f",
+      "selectText": true,
+      "selectAppend": true,
+      "selectPrepend": true,
+      "selectBackground": true
     }
   ]
 }

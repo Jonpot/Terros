@@ -5,7 +5,7 @@ aliases: ["The Lich King", "Cassius", "Vecna", "Mazrim"]
 
 Once wielded [[Corvus]].
 
-## Young Vecna:
+## Young Vecna (2400 Years ago):
 Perhaps teenagers, the oldest maybe 20. Traveled in a band of three, accompanied by his wife, the Empress [[Xaira]], and the Achon of Ademon and the founder of the Church of Death, [[Diosophanes]].
 
 The group traveled to [[The Pale|Attica]] [Modern day Pale] to search out the wisdom of a sage. Learned magic and reason there.

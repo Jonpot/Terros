@@ -53,7 +53,7 @@ So I guess I’ll drink his share!
 [[Eudoxus]], he was geriatric,
 Gods, he was a loon!
 He took [[Cetus]] to outer space,
-And made [[Arcterus|another moon]].
+And made [[The Second Moon of Terros|another moon]].
 But now the night is brighter,
 So a drink seems only fair,
 But he can’t think nor much less drink,

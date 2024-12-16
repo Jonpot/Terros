@@ -5,3 +5,5 @@ Sword of the sands, deserts, dunes and dry places of the world. It’s blade loo
 One of [[The Elder Blades]].
 
 Previously held by [[Miran]].
+
+Didn't talk much to [[Cephus]].

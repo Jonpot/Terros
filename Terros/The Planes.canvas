@@ -6,7 +6,7 @@
 		{"id":"0a61eba0f2344c76","x":-600,"y":230,"width":260,"height":130,"type":"file","file":"Locations/The Plane of Terros/Terros/Westgard.md"},
 		{"id":"f43288b1a17cd2ad","x":220,"y":40,"width":400,"height":240,"type":"file","file":"Locations/The Plane of Terros/Terros/The Centerlands.md"},
 		{"type":"file","file":"Locations/The Plane of Terros/Terros/Caldaria.md","id":"e1d862d20f8fc987","x":100,"y":540,"width":220,"height":120},
-		{"id":"09516326d575c79e","x":-380,"y":140,"width":240,"height":100,"type":"file","file":"Locations/The Plane of Terros/Terros/Netheril.md"},
+		{"id":"09516326d575c79e","x":-380,"y":140,"width":240,"height":100,"type":"file","file":"Locations/The Plane of Terros/Terros/Netheril/Netheril.md"},
 		{"type":"file","file":"Locations/The Plane of Terros/Terros/Cormyr.md","id":"9fa7042aaa37805e","x":-120,"y":110,"width":240,"height":130},
 		{"id":"32d5c5c5cce90c27","x":609,"y":382,"width":302,"height":158,"type":"file","file":"Locations/The Plane of Terros/Terros/Illyria/Illyria.md"},
 		{"id":"e0d12944fcc3ad62","x":-17,"y":-688,"width":337,"height":176,"type":"file","file":"Locations/The Plane of Terros/The Western Continent/The World-Soul.md"},
@@ -14,9 +14,9 @@
 		{"id":"efbb0bfb62d812ed","x":-920,"y":-75,"width":208,"height":120,"type":"file","file":"Locations/The Plane of Terros/The Western Continent/Ardae.md"},
 		{"id":"9c9e2b05c8d82ab4","x":-920,"y":-315,"width":200,"height":160,"type":"file","file":"Locations/The Plane of Terros/The Western Continent/Caeta.md"},
 		{"id":"caefcd169d6e8229","x":-609,"y":-13,"width":237,"height":123,"type":"file","file":"Locations/The Plane of Terros/The Ceon Sea.md"},
-		{"id":"ad6cca5591659b90","x":-620,"y":800,"width":400,"height":400,"type":"file","file":"Locations/Arcterus.md"},
+		{"id":"ad6cca5591659b90","x":-620,"y":800,"width":400,"height":400,"type":"file","file":"Locations/The Second Moon of Terros.md"},
 		{"id":"65328f11934d2c70","x":-620,"y":1280,"width":400,"height":400,"type":"file","file":"Locations/The Plane of Delos/Delos.md"},
-		{"id":"b2d55928fb56447b","x":-140,"y":800,"width":400,"height":400,"type":"file","file":"Locations/The Demon Plane.md"}
+		{"id":"b2d55928fb56447b","x":-140,"y":800,"width":400,"height":400,"type":"file","file":"Locations/The Demon Plane/The Plane of Shadows.md"}
 	],
 	"edges":[]
 }

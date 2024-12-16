@@ -1,11 +1,17 @@
 ---
-aliases: ["Telam's Gate"]
+aliases:
+  - Telam's Gate
+  - The Isle of Faith
 ---
 #location 
 
 A place in the North of the Western Continent. Where the [[Tela Verii]] have emerged from.
 
 It is a gate to the lower planes.
+
+- Telam's Gate connects to 
+	- [[The Dark Forest]], primarily 
+	- In principal, any plane can connect to any other plane, it is just a matter of time or chance 
 
 
 ## *Legend Lore* Reveals:

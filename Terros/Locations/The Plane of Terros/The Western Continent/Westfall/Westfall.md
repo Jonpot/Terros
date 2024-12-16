@@ -5,4 +5,3 @@ A city on the Western Continent.
 Known Residents:
 - [[Vasilis]]
 - [[Sevilla de Castelle]]
-- 
