@@ -1,0 +1,29 @@
+- Saricians were the first force sent before [[The Seventh Army]] 
+	- First extraplanar humans since [[Telam]] 
+- Aristones the [[Tela Verii]], friend of Len, helped me get to the Devil of Knowledge
+- Met up with:
+	- Loreno (Captain of Saricians)
+	- [[Tela Verii]] - **Calisto**
+	- [[Vampires|Vampire]] - Dead soon, captured during kill of vampire lord 
+		- Tela Verii offered amnesty but not under any "tolerable conditions"
+		- 10,000 years old
+- ~thousands of Saricians here 
+	- lots of translucent glass panes like with [[The Seventh Army]] 
+	- the vampire lord has to be boiled to be killed
+		- From the Karatesh vampire clan, there were at least a dozen here, they've gotten 4 so far
+		- Lost 560 in the fight 
+- Divinations don't work here, 8HS has countered them 
+- The master of the tela verii is a conglomeration of the longest living tela verii that know the most. they live on the most time advantaged plane and are able to make decisions very rapidly and sync memories across all tela verii.
+	- They cannot lie to each other 
+- [[Aneius]] is "in tela verii posession" but has no memories 
+- Door with 6 Ancient Glyphs said "Do not open"
+	- Rectangular script
+- Words surrounding the door in flowy script - this is a ward to keep the devil sealed
+- Met mind lost Imperial Demovand (that's the name of the emperor), Lucian Groccan  
+- **_I_ was the one who started reforming [[Casia]]?**
+- For next time: **use mirror to split vision**
+- Middle aged man with deep heavy black eyes and half gray hair ("You succeeded where I failed")
+- Scroll to summon Devil of Unseen 
+	- I am a friend of the Devil of Knowledge, that I am a true seeker of knowledge, and that I've come to see the devil of knowledge twice 
+	- There must be no light on you at the time, you must be in absolute darkness, and I must be totally alone 
+	- 

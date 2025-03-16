@@ -1,0 +1,92 @@
+- Brought before **Sir Acacian** and **Lady Isabel (not [[Isabel]] )**
+	- I am now Julius Acosta
+	- Accompany her unit to go into [[The Dark Forest]]  because I was good at mind reading and mind alteration
+- Quartermaster Hoffman
+	- [[Kestrel]] on the other side in the hands of [[The House of Shadow]]s
+	- Pieces of offensive weaponry, Glyphs of Warding, Antimagic Fields, Power Armor, "The Drugs" (Green, Red, Courage)
+		- Courage - liquid courage, kills emotions like fear- DON'T TAKE TOO MUCH, WILL FRY BRAIN 
+			- There are BRAIN DISEASES?!? Main one is caused by too much courage 
+			- Not more than 3 in a week
+			- Lasts 1 hours
+		- Green - Enhanced reaction time, enhanced senses
+		- Red - Healing Magic (Immediate healing and induces body repair processes to accelerate. Also very relaxing. Builds muscle overtime.)
+			- Only be aware of long term usage, lasts 4 hours
+			- Very expensive
+			- Long term might be _really bad_
+		- Eating Kestrel is highly toxic
+	- We are working with 8 Headed Spiders 
+	- We're about to go to war with the [[Tela Verii]] 
+		- The [[Tela Verii]] have been bringing over the Sarician that were pushed off plane as well as their other human allies. 
+- Isabel gives me a pocketwatch
+	- [[The Dark Forest]] is in almost perfect alignment 
+	- Shows time here, shows time in forest, also a stopwatch 
+	- Isabel is from Southgard 
+	- The Dark Forest  has demons that can modify memories
+		- **1573 IS THE CODE**
+	- "Never go anywhere alone"
+	- Say your name, place of birth, one other fact, why you're here, and the code 
+		- My fake parents: Loretta and Bob
+	- Isabel's mother's name was Casillia 
+		- Acacian is from [[Corytha]]  and his father's name is Lambert
+	- Should only stay for a few days
+- CROSSING INTO [[The Dark Forest]] 
+- Going to the Prisons, not many here, mostly evacuated
+	- Human in grey robes: Patyura
+		- A Sarician that was captured 
+		- Hoping to make more friendly contact
+		- Afraid Tela Verii have put mental modifications on the Saricians that will kill the Saricians if I press too hard
+		- Isabel will be very upset if the Sarician is killed 
+		- Late 20s
+		- Curly brown hair
+		- Tan skin 
+		- Square face, hardy guy 
+		- From Castalia
+		- Speaks Illyrian in a modern accent 
+		- Thinks seventh army are weakling pacifists
+			- long given up warmongering ways 
+		- "coexistence with demons is impossible"
+		- Prime Material Plane belongs to [[Tela Verii]] 
+		- Refers to Dark Forest as a Planet 
+		- "The greater part of humanity is not responsible for the decisions of their government"
+		- Thinks they are very close to taking the plane 
+		- Fucking entrenched in sunk cost fallacy
+		- They are going to try to force the Tela Verii to bring [[Vespa]] and [[Carina]] to [[The Dark Forest]] 
+			- The Tela Verii made a new weapon with the vast amounts of Mana they have and they are going to use it to Destroy to Eight Headed Spider
+	- Saricians 
+		- Lived here since Vecna first sent people here 
+		- Live far from the Demons 
+		- They've been supplementing with humans from other planes perhaps 
+		- Know they are very allied with [[Tela Verii]] 
+			- This has made them far more militarized
+		- Need to know their numbers, capabilities, and what they can do without spellcasting
+			- ALL SPELLCASTING IS GOING TO STOP IN THE DARK FOREST IN A FEW DAYS
+				- Has been cooked up with [[The Eight Headed Spider]] 
+					- Will last "quite a while" 
+				- There are very ancient humans that came here before Terrans (before spellcasting existed on the material plane)
+					- Maybe taught Saricians how to use Demonic magic that won't be effected by the embargo 
+						- Conjure Power of Ancient Devils
+							- What destroyed the forgotten kingdom, the prince learned how to use the magic of the God of Nothingness
+					- The Forgotten Kingdom
+						- The Prince of Nothingness (of the Forgotten Kingdom) also used the magic of the Devil of the Unseen 
+						- The people of the kingdom all disappeared 
+				- Also want to know general sentiments 
+					- We have a guarantee of safety for all humans across planes before demons can purge them, which the Netherese are willing to extend that 
+						- Need to know how many live off plane 
+					- Do they want to come back to Material Plane?
+					- Incept this idea into him.
+	- Can silence the sound
+	- Doing checks to make sure Tela Verii can't prophesize what's going to happen here
+- Guy in Power Armor - Kesh
+- Every 171 Hours the Forest Sparkles
+	- No demons conjuring it
+	- No magic casting it
+	- It's just like that 
+	- Lasts exactly 53 minutes 
+	- Only living organisms can see it, constructs can't detect it 
+- Elevator cycles between 5 sites, Prison is Site C, stays on a site for a few hours 
+	- Even if the plane is in alignment it will go to a random place, but less likely
+- **DON'T USE SENDING**
+- [[Tela Verii]] 
+- Saricians were the first force sent before [[The Seventh Army]] 
+	- First humans since [[Telam]] 
+- Aristones the [[Tela Verii]], friend of Len, helped me get to the Devil of Knowledge

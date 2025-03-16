@@ -13,36 +13,194 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Locations/The Winter Plane.md",
+                "file": "Sessions/2025-02-22 Meeting the Master of the Tela Verii.md",
                 "mode": "source",
+                "source": false,
                 "backlinks": true,
-                "source": false
-              }
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "2025-02-22 Meeting the Master of the Tela Verii"
             }
           },
           {
-            "id": "390024a3002f69a1",
+            "id": "8efe401d86db8113",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Locations/The Plane of Fire.md",
+                "file": "Gods/List of Gods.md",
                 "mode": "source",
+                "source": false,
                 "backlinks": true,
-                "source": false
-              }
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "List of Gods"
+            }
+          },
+          {
+            "id": "285db7572aa468bd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Gods/Ishivan.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Ishivan"
+            }
+          },
+          {
+            "id": "b6aff0477251486e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sessions/2025-01-30 In the Dark Forest.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "2025-01-30 In the Dark Forest"
+            }
+          },
+          {
+            "id": "8d5bb0aaeec653de",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The Hierophant.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "The Hierophant"
             }
           },
           {
             "id": "1c7a935cf6735611",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "People/Organizations/The Order of the Magi/Nale.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Nale"
+            }
+          },
+          {
+            "id": "28a2234619b8a327",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Locations/The Celestial Plane/Tela Verii.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Tela Verii"
+            }
+          },
+          {
+            "id": "b81b92c9d2529f90",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sessions/2025-01-30 In the Dark Forest.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "2025-01-30 In the Dark Forest"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -61,8 +219,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -71,13 +232,15 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "storm",
+                "query": "knowledge",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -85,7 +248,9 @@
             "type": "leaf",
             "state": {
               "type": "starred",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -93,11 +258,12 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -117,7 +283,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Locations/The Winter Plane.md",
+                "file": "People/Organizations/The Order of the Magi/Nale.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +291,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": false
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Nale"
             }
           },
           {
@@ -134,10 +302,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Locations/The Winter Plane.md",
+                "file": "People/Organizations/The Order of the Magi/Nale.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Nale"
             }
           },
           {
@@ -148,7 +318,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -157,8 +329,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Locations/The Winter Plane.md"
-              }
+                "file": "People/Organizations/The Order of the Magi/Nale.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Nale"
             }
           },
           {
@@ -166,7 +340,9 @@
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
-              "state": {}
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           },
           {
@@ -174,7 +350,9 @@
             "type": "leaf",
             "state": {
               "type": "DICE_ROLLER_VIEW",
-              "state": {}
+              "state": {},
+              "icon": "dice-roller-icon",
+              "title": "Dice Roller"
             }
           },
           {
@@ -182,7 +360,9 @@
             "type": "leaf",
             "state": {
               "type": "initiative-tracker-view",
-              "state": {}
+              "state": {},
+              "icon": "initiative-tracker",
+              "title": "Initiative Tracker"
             }
           },
           {
@@ -194,7 +374,9 @@
                 "sortOrder": "frequency",
                 "showSearch": false,
                 "searchQuery": ""
-              }
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
             }
           }
         ],
@@ -210,7 +392,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Locations/The Winter Plane.md",
+                "file": "People/Organizations/The Order of the Magi/Nale.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -300,7 +482,9 @@
                   "scale": 0.35196236056289154,
                   "close": true
                 }
-              }
+              },
+              "icon": "lucide-git-fork",
+              "title": "Graph of Nale"
             }
           }
         ]
@@ -314,7 +498,9 @@
             "type": "leaf",
             "state": {
               "type": "combatant-view",
-              "state": {}
+              "state": {},
+              "icon": "skull",
+              "title": "Combatant"
             }
           }
         ]
@@ -343,12 +529,26 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "1c7a935cf6735611",
+  "active": "b6aff0477251486e",
   "lastOpenFiles": [
-    "Locations/The Plane of Terros/The Bird Creatures.md",
+    "Gods/List of Gods.md",
+    "Gods/Veysan.md",
+    "Sessions/2025-02-22 Meeting the Master of the Tela Verii.md",
+    "Sessions/2025-01-12 Going to the Dark Forest.md",
+    "Sessions/2025-01-30 In the Dark Forest.md",
+    "Sessions/2025-02-12 Meeting the Devil of the Unseen.md",
+    "Sessions/2025-02-02 In the Dark Forest 2.md",
+    "Locations/The Plane of Ideas.md",
+    "Gods/Ishivan.md",
+    "The Hierophant.md",
+    "People/Organizations/The Order of the Magi/Nale.md",
+    "Locations/The Celestial Plane/Tela Verii.md",
     "Locations/The Dark Forest.md",
-    "Locations/The Plane of Fire.md",
     "Locations/The Winter Plane.md",
+    "The Seventh Army.md",
+    "Locations/The Plane of Fire.md",
+    "Sessions",
+    "Locations/The Plane of Terros/The Bird Creatures.md",
     "Lore/Address Concerning the Fundamental Questions of Humanity.md",
     "the Watcher of Saera.md",
     "Objects/Codexes/Codex de Caelus.md",
@@ -358,19 +558,6 @@
     "Locations/The Second Moon of Terros.md",
     "Gods/The God of Space.md",
     "Gods/The God of Fire.md",
-    "Gods/The God of Sands.md",
-    "Gods/List of Gods.md",
-    "The Hierophant.md",
-    "Locations/The Planes.md",
-    "Locations/The Plane of Ideas.md",
-    "The 8 Headed Spider.md",
-    "Locations/The Plane of Terros/The Prime Material Plane.md",
-    "Locations/The Plane of Terros/The Ceon Sea.md",
-    "Locations/The Plane of Terros/The Western Continent/The World-Soul.md",
-    "Locations/The Plane of Terros/The Western Continent/Caeta.md",
-    "Locations/The Plane of Terros/Isle of Faith.md",
-    "Locations/The Plane of Terros/The Western Continent/Ardae.md",
-    "Locations/The Plane of Terros/The Western Continent/Westfall/Westfall.md",
     "Locations/Damnation",
     "Locations/Shadesmyr",
     "Locations/The Plane of Terros/The Deep Ocean",
@@ -381,7 +568,6 @@
     "Locations/The Plane of Terros/Terros/Netheril",
     "Locations/The Plane of Delos",
     "Locations/The Plane of Terros",
-    "_attachments",
     "_attachments/terros_newmap.png",
     "_attachments/the crates logo.png",
     "_attachments/abyssailia logo.png",

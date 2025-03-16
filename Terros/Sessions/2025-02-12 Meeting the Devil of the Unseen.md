@@ -1,0 +1,37 @@
+- [[Tela Verii]] : **Callisto**
+- **Loreno's Camp**
+
+- I am a friend of the Devil of Knowledge, that I am a true seeker of knowledge, and that I've come to see the devil of knowledge twice 
+	- There must be no light on you at the time, you must be in absolute darkness, and I must be totally alone 
+- Prince Erowan, Shattered Moon, and Nale are the only others with the Unseen's power 
+	- Shattered Moon: 2500 years ago, long after Prince Erowan 
+		- Prince Erowan never leaves 
+			- Very private, will likely try to avoid contact. Very shy, very scared.
+		- Shattered Moon was last seen 2000 years ago - maybe in a sequester 
+- Unseen
+	- Old, bald man in a tunic, long beard 
+	- To use his power, simply will not to be seen and you will not be seen 
+		- Cannot be detected by physical or magical means (divination nor demonic)
+		- Also can't be physically harmed, most effects will just pass through you 
+		- If you interact too much with physical environment, someone might notice, but they can't latch their mind onto what is happening
+		- "Devil of the Unseen, appear before me"
+- **NEVER BE VIOLENT WHEN UNSEEN, WILL GET POWERS REVOKED**
+- Something only a [[Tela Verii]] would know 
+	- 10,761 - ask the master of the [[Tela Verii]] 
+
+- Back to Imperial Vessel 
+	- Lots of sensors and stuff
+	- Loaded with supplies and [[Kestrel]]  and other artificer equipment
+	- There is an engine powered by kestrel 
+	- Dealing with incredible pressures 
+
+- DDay
+	- Light Gray Dragon
+	- Giant Tidal Wave
+	- Bonds of the black knights have been broken 
+	- [[Tyranny]] is lost 
+	- Black Knight says The Imperial City has been lost, units now operating independently 
+	- Black Knight says they are unleashing [[The Tyrant]]
+	- Illian lives! He is with Aurellian (current Highest Ranking) 
+		- Says do NOT release the Tyrant 
+		- 

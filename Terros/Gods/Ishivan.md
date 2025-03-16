@@ -11,3 +11,6 @@ The God of Knowledge and Magic.
 	- Spellcasting is more powerful than other Gods'
 	- He is unable to spellcast himself, and must get others to do his bidding for him 
 - Has no physical form(?)
+
+
+- [[The Plane of Ideas]]

@@ -1,0 +1,12 @@
+- Escorts/Guards Names: **Tiberius** and **Lucien**
+- Outpost Name: Pale Prison Seven
+- Head to Northguard for teleport circle to Dark Forest
+- Transfer papers to one of the units in [[The Dark Forest]] 
+- Quartermaster Vallijo
+- 50 crown bet with **Catullus** on whether we're going to encounter any Sarician
+	- Leader of squad: Company Leader **Lockturan**
+- There's one big portal at [[Caeta|Telam's Gate]] , and then a bunch of smaller portals surrounding, and it's theorized that there are like, infinite portals that are very very small 
+	- The portal has been growing steadily, it's grown by almost 2 feet since the imperials have gotten control of it
+- Brought before **Sir Acacian** and **Lady Isabel (not [[Isabel]] )**
+	- I am now Julius Acosta
+	- 

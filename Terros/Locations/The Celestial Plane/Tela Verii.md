@@ -30,3 +30,6 @@ Come from [[Caeta|Telam's Gate]].
 - Hinges on the plan to stop new gods from being born 
 - As new gods will continuously be born, the influence of all entities on the universe will fade as new gods will rise and overpower the present entities 
 - One proposed method of stopping Gods from being born is by freezing Time by sleeping or killing [[The God of Time]] 
+
+# The Curse
+- Cannot disagree with each other/the master of the [[Tela Verii]], was the first thing the first [[Tela Verii]]  did
